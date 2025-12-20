@@ -974,9 +974,26 @@
 
 /* Responsive Design */
 /* Mobile text wrapping */
-.hero-title.mobile-wrap,
+.hero-title.mobile-wrap {
+  white-space: normal;
+  display: block;
+  text-align: center;
+}
+
+.hero-title.mobile-wrap .typewriter-text {
+  display: inline;
+}
+
+.hero-title.mobile-wrap .cursor {
+  position: static;
+  display: inline;
+  right: auto;
+}
+
 .hero-subtitle.mobile-wrap {
   white-space: normal;
+  max-width: 100%;
+  padding: 0 1rem;
 }
 
 @media (max-width: 768px) {
