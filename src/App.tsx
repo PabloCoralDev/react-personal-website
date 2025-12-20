@@ -31,6 +31,7 @@ function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [typedText, setTypedText] = useState('')
   const [typingComplete, setTypingComplete] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const fullText = "Hi, I'm Pablo Coral"
 
@@ -61,6 +62,19 @@ function App() {
       setTypingComplete(true)
     }
   }, [typedText, fullText, typingComplete])
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileWidth = window.innerWidth <= 768
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setIsMobile(isMobileWidth || isMobileDevice)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -215,13 +229,13 @@ function App() {
           PABLO CORAL
         </div>
         <div className="hero-content">
-          <h1 className="hero-title typewriter">
+          <h1 className={`hero-title typewriter ${isMobile ? 'mobile-wrap' : ''}`}>
             <span className="typewriter-text">
               <span className="typed-content">{typedText}</span>
               <span className={`cursor ${typingComplete ? 'blink' : 'static'}`}>_</span>
             </span>
           </h1>
-          <p className="hero-subtitle fade-in-up delay-2">
+          <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
             Aerospace Engineer & Full-Stack Developer bridging engineering precision with elegant code
           </p>
           <div className="hero-buttons fade-in-up delay-3">
@@ -237,6 +251,16 @@ function App() {
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
                 LinkedIn
+              </a>
+              <a href="/resume.pdf" download className="hero-btn social-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Resume
               </a>
             </div>
             <div className="hero-buttons-row">
@@ -469,8 +493,9 @@ function App() {
       <section id="contact" className="section contact-section">
         <div className="section-content">
           <h2 className="section-label">C_</h2>
-          <h3 className="section-title">Let's Connect</h3>
-          <div className="contact-content">
+          <div className="contact-wrapper">
+            <div className="contact-content">
+              <h3 className="section-title">Let's Connect</h3>
             <p className="contact-text">
               I'm always open to discussing engineering challenges, software projects, or opportunities where I can apply my unique blend of technical expertise and creative problem-solving.
             </p>
@@ -494,6 +519,13 @@ function App() {
                 </svg>
               </a>
             </div>
+            </div>
+            <div className="polaroid">
+              <div className="polaroid-image">
+                <img src="/public/project_images/profile-photo.jpg" alt="Pablo Coral" />
+              </div>
+              <div className="polaroid-caption">Pablo Coral</div>
+            </div>
           </div>
         </div>
       </section>
@@ -503,7 +535,7 @@ function App() {
         <div className="marquee">
           <div className="marquee-content">
             {Array(20).fill('PABLO CORAL').map((text, i) => (
-              <span key={i}>{text} | </span>
+              <span key={i}>{text}</span>
             ))}
           </div>
         </div>
