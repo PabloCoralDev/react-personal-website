@@ -29,6 +29,10 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [typedText, setTypedText] = useState('')
+  const [typingComplete, setTypingComplete] = useState(false)
+
+  const fullText = "Hi, I'm Pablo Coral"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +50,18 @@ function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
+  // Typing animation
+  useEffect(() => {
+    if (typedText.length < fullText.length) {
+      const timeout = setTimeout(() => {
+        setTypedText(fullText.slice(0, typedText.length + 1))
+      }, 100)
+      return () => clearTimeout(timeout)
+    } else if (typedText.length === fullText.length && !typingComplete) {
+      setTypingComplete(true)
+    }
+  }, [typedText, fullText, typingComplete])
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     element?.scrollIntoView({ behavior: 'smooth' })
@@ -59,10 +75,7 @@ function App() {
       image: '/project_images/virtuonext.png',
       details: {
         fullDescription: [
-          'Developed a full-stack MVP for VirtuoNext, a bid-based booking platform matching soloists with accompanist pianists',
-          'Built with React and TypeScript, implemented asynchronous bidding logic, authentication, and relational data persistence using Supabase (SQL)',
-          'Integrated in-app messaging via the open-source ChatScope Framework',
-          'Currently implementing in-app payment processing through the Stripe API'
+          `Developed a full-stack MVP for VirtuoNext, a bid-based booking platform matching soloists with accompanist pianists. Built with React and TypeScript, implemented asynchronous bidding logic, authentication, and relational data persistence using Supabase (SQL). Integrated in-app messaging via the open-source ChatScope Framework. Currently implementing in-app payment processing through the Stripe API.`
         ],
         github: 'https://github.com/PabloCoralDev/VirtuoNext_ReactMVP',
         demo: 'https://virtuonext.vercel.app/'
@@ -75,9 +88,7 @@ function App() {
       image: '/project_images/diff-eqns.png',
       details: {
         fullDescription: [
-          'Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration',
-          'Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI',
-          'Hosting open-source on a Vercel + GitHub integration'
+          `Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration. Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI. Hosting open-source on a Vercel + GitHub integration.`
         ],
         github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
       }
@@ -89,10 +100,7 @@ function App() {
       image: '/project_images/fsd-truss.png',
       details: {
         fullDescription: [
-          'Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses',
-          'Integrating the ABAQUS API with async PowerShell communication to write and run .inp files',
-          'Extract axial stress data, and perform iterative FSD checks',
-          'Cutting manual workflow by 4+ hours'
+          `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses. Integrating the ABAQUS API with async PowerShell communication to write and run .inp files. Extract axial stress data, and perform iterative FSD checks, cutting manual workflow by 4+ hours.`
         ],
         github: 'https://github.com/PabloCoralDev/Abaqus-Python-fully_stressed_method'
       }
@@ -104,10 +112,7 @@ function App() {
       image: '/project_images/decision-matrix.png',
       details: {
         fullDescription: [
-          'Built a dynamic decision matrix using Sheets and JavaScript + GS API',
-          'Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters',
-          'Applied linear regression to the output scores to generate ranked car recommendations',
-          'Tailored to desired cost, mileage and mpg'
+          `Built a dynamic decision matrix using Sheets and JavaScript + GS API. Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters. Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
         ],
         sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
       }
@@ -122,10 +127,7 @@ function App() {
       image: '/project_images/heat-transfer.png',
       details: {
         fullDescription: [
-          'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
-          'Using SolidWorks for design and Fusion360 for CAM',
-          'Abiding by DFM principles and producing a design that is both hand and CNC machinable',
-          'Using affordable, available parts from McMaster Carr'
+          `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
         ]
       }
     },
@@ -136,9 +138,7 @@ function App() {
       image: '/project_images/steel-pen.png',
       details: {
         fullDescription: [
-          'Designed and machined a custom steel pen over 10+ iterations using a manual lathe',
-          'Independently learned single-point threading techniques',
-          'Iterated on design for manufacturability and precision'
+          `Designed and machined a custom steel pen over 10+ iterations using a manual lathe. Independently learned single-point threading techniques. Iterated on design for manufacturability and precision.`
         ]
       }
     },
@@ -149,9 +149,7 @@ function App() {
       image: '/project_images/air-engine.png',
       details: {
         fullDescription: [
-          'Programmed, CNC-machined and assembled 5 components for an air engine',
-          'Using Fusion and a Haas VF-3 mill',
-          'Earning the ACE CNC certificate'
+          `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
         ]
       }
     }
@@ -164,8 +162,7 @@ function App() {
       location: 'Vero Beach, FL',
       period: 'Jan 2024 – May 2024',
       description: [
-        'Brief description of your key responsibilities at Piper Aircraft...',
-        'Impact you made or results you achieved...'
+        'Developed solutions to help advance Piper aircraft\'s mission of making flight available for all, designign both software and hardware to streamline operations, and increase testing safety'
       ],
       tags: ['Python', 'TensorFlow', 'Pandas', 'CFD', 'Blender']
     },
@@ -218,9 +215,11 @@ function App() {
           PABLO CORAL
         </div>
         <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="fade-in-up">Hi, I'm</span>
-            <span className="fade-in-up delay-1">Pablo Coral</span>
+          <h1 className="hero-title typewriter">
+            <span className="typewriter-text">
+              <span className="typed-content">{typedText}</span>
+              <span className={`cursor ${typingComplete ? 'blink' : 'static'}`}>_</span>
+            </span>
           </h1>
           <p className="hero-subtitle fade-in-up delay-2">
             Aerospace Engineer & Full-Stack Developer bridging engineering precision with elegant code
@@ -277,14 +276,14 @@ function App() {
               </p>
             </div>
             <div className="skills-grid">
-              <div className="skill-item">React + TypeScript</div>
-              <div className="skill-item">Python + TensorFlow</div>
+              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=typescript&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">React + TypeScript</a>
+              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">Python + TensorFlow</a>
               <div className="skill-item">C# .NET</div>
               <div className="skill-item">Flutter + Dart</div>
-              <div className="skill-item">Node.js + Supabase</div>
+              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=javascript&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">Node.js + Supabase</a>
               <div className="skill-item">SolidWorks + NX</div>
               <div className="skill-item">MATLAB + C++</div>
-              <div className="skill-item">FastAPI</div>
+              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">FastAPI</a>
             </div>
           </div>
         </div>
@@ -304,8 +303,9 @@ function App() {
                 <div
                   key={index}
                   className="project-card clickable"
+                  onClick={() => setSelectedProject(project)}
                 >
-                  <div className="project-image-container" onClick={() => setSelectedProject(project)}>
+                  <div className="project-image-container">
                     <img src={project.image} alt={project.title} className="project-image" />
                   </div>
                   <h5 className="project-title">{project.title}</h5>
@@ -361,7 +361,7 @@ function App() {
                         Sheets
                       </a>
                     )}
-                    <button className="project-details-btn" onClick={() => setSelectedProject(project)}>
+                    <button className="project-details-btn">
                       View Details →
                     </button>
                   </div>
@@ -378,8 +378,9 @@ function App() {
                 <div
                   key={index}
                   className="project-card clickable"
+                  onClick={() => setSelectedProject(project)}
                 >
-                  <div className="project-image-container" onClick={() => setSelectedProject(project)}>
+                  <div className="project-image-container">
                     <img src={project.image} alt={project.title} className="project-image" />
                   </div>
                   <h5 className="project-title">{project.title}</h5>
@@ -421,7 +422,7 @@ function App() {
                         Live Demo
                       </a>
                     )}
-                    <button className="project-details-btn" onClick={() => setSelectedProject(project)}>
+                    <button className="project-details-btn">
                       View Details →
                     </button>
                   </div>
@@ -519,7 +520,9 @@ function App() {
             </button>
 
             <div className="modal-header">
-              <div className="modal-icon">{selectedProject.image}</div>
+              <div className="modal-image-container">
+                <img src={selectedProject.image} alt={selectedProject.title} className="modal-image" />
+              </div>
               <h3 className="modal-title">{selectedProject.title}</h3>
             </div>
 
