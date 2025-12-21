@@ -25,14 +25,27 @@ interface Experience {
   tags: string[]
 }
 
+interface Book {
+  title: string
+  author: string
+  image: string
+  status: 'complete' | 'in-progress'
+  details?: {
+    fullDescription: string[]
+    keyTakeaways?: string[]
+  }
+}
+
 function App() {
   const [scrolled, setScrolled] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [typedText, setTypedText] = useState('')
   const [typingComplete, setTypingComplete] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const fullText = "Hi, I'm Pablo Coral"
+  const fullText = "Hi, I'm Pablo"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +74,19 @@ function App() {
       setTypingComplete(true)
     }
   }, [typedText, fullText, typingComplete])
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileWidth = window.innerWidth <= 768
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setIsMobile(isMobileWidth || isMobileDevice)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -190,6 +216,170 @@ function App() {
     }
   ]
 
+  const books: Book[] = [
+    {
+      title: 'The Intelligent Investor',
+      author: 'Benjamin Graham',
+      image: '/book_images/intelligent-investor.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
+        ],
+        keyTakeaways: [
+          'Value Investing Principles',
+          'Margin of Safety',
+          'Market Psychology',
+          'Long-term Thinking',
+          'Risk Management'
+        ]
+      }
+    },
+    {
+      title: 'The Man Who Solved the Market',
+      author: 'Gregory Zuckerman',
+      image: '/book_images/man-solved-market.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Jim Simons and Renaissance Technologies revolutionized investing by applying mathematics and data science to markets. Success came from hiring brilliant scientists, not finance people, and letting data guide decisions over intuition. Small edges compound dramatically with scale and speed. The story demonstrates how quantitative analysis, computing power, and rigorous scientific method can find patterns invisible to traditional investors.`
+        ]
+      }
+    },
+    {
+      title: 'Atomic Habits',
+      author: 'James Clear',
+      image: '/book_images/atomic-habits.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Small habits compound over time - improving by just 1% each day leads to remarkable results. The key isn't setting goals, but building systems. Focus on identity-based habits: instead of "I want to run a marathon," think "I am a runner." Make good habits obvious, attractive, easy, and satisfying. The inverse applies to breaking bad habits.`
+        ]
+      }
+    },
+    {
+      title: 'Rich Dad Poor Dad',
+      author: 'Robert Kiyosaki',
+      image: '/book_images/rich-dad-poor-dad.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Assets put money in your pocket; liabilities take money out. The rich buy assets, the poor buy liabilities thinking they're assets. Financial literacy is crucial - understand the difference between working for money and having money work for you. Pay yourself first, invest in income-generating assets, and focus on building businesses and investment portfolios rather than climbing the corporate ladder.`
+        ]
+      }
+    },
+    {
+      title: 'Deep Work',
+      author: 'Cal Newport',
+      image: '/book_images/deep-work.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `The ability to focus without distraction on cognitively demanding tasks is becoming increasingly rare and valuable. Deep work produces better results in less time than shallow work. Schedule deep work blocks, eliminate distractions, embrace boredom to strengthen focus, and drain the shallows from your schedule. Quality of work = Time spent × Intensity of focus.`
+        ]
+      }
+    },
+    {
+      title: 'Extreme Ownership',
+      author: 'Jocko Willink & Leif Babin',
+      image: '/book_images/extreme-ownership.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Leaders must own everything in their world - no excuses. There are no bad teams, only bad leaders. Believe in the mission, explain the "why" to your team, and check your ego. Simplify plans, prioritize and execute, and use decentralized command. When things go wrong, look in the mirror first - total responsibility for failure is what leads to success.`
+        ]
+      }
+    },
+    {
+      title: 'Mindfulness in Plain English',
+      author: 'Bhante Gunaratana',
+      image: '/book_images/mindfulness-plain-english.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Mindfulness is about being present with whatever arises, without judgment. Meditation isn't about stopping thoughts - it's about observing them without attachment. Start with breath awareness, notice when your mind wanders, and gently return focus. The goal is to develop clear seeing and equanimity in daily life, transforming how you relate to experience itself.`
+        ]
+      }
+    },
+    {
+      title: 'The One Thing',
+      author: 'Gary Keller',
+      image: '/book_images/the-one-thing.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Ask yourself: "What's the ONE thing I can do such that by doing it, everything else will be easier or unnecessary?" Success is sequential, not simultaneous. Multitasking is a lie - focus on your most important work first. Time block your ONE thing, say no to distractions, and build the domino effect where each action makes the next one easier.`
+        ]
+      }
+    },
+    {
+      title: 'Rewiring Your OCD Brain',
+      author: 'Catherine Pittman & William Youngs',
+      image: '/book_images/rewiring-ocd-brain.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `OCD is a brain circuit problem, not a character flaw. Understanding the neuroscience helps: the cortex creates obsessive thoughts, the basal ganglia creates compulsive behaviors. Exposure and Response Prevention (ERP) therapy physically rewires these circuits. Face the anxiety, resist the compulsion, and the brain gradually learns the feared outcome won't occur.`
+        ]
+      }
+    },
+    {
+      title: 'The 4-Hour Workweek',
+      author: 'Tim Ferriss',
+      image: '/book_images/4-hour-workweek.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Don't defer life until retirement - design your ideal lifestyle now. The 80/20 rule: 80% of results come from 20% of efforts. Eliminate the unimportant, automate what you can, and delegate the rest. Build systems that generate income without your constant presence. Time is more valuable than money - buy your time back by outsourcing low-value tasks.`
+        ],
+        keyTakeaways: [
+          'Lifestyle Design',
+          '80/20 Principle',
+          'Automation & Delegation',
+          'Time Management',
+          'Location Independence'
+        ]
+      }
+    },
+    {
+      title: 'The Four Agreements',
+      author: 'Don Miguel Ruiz',
+      image: '/book_images/four-agreements.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Four simple yet profound principles for personal freedom: Be impeccable with your word - speak with integrity and say only what you mean. Don't take anything personally - others' actions are a projection of their own reality. Don't make assumptions - have the courage to ask questions and express what you really want. Always do your best - your best will change moment to moment, but giving your best prevents self-judgment and regret.`
+        ],
+        keyTakeaways: [
+          'Be Impeccable with Your Word',
+          'Don\'t Take Anything Personally',
+          'Don\'t Make Assumptions',
+          'Always Do Your Best',
+          'Personal Freedom'
+        ]
+      }
+    },
+    {
+      title: 'The Mastery of Self',
+      author: 'Don Miguel Ruiz Jr.',
+      image: '/book_images/mastery-of-self.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Building on Toltec wisdom, this book teaches awareness of the beliefs and agreements that shape your reality. You are not your thoughts or emotions - you are the one observing them. Break free from domestication and the voice of knowledge that judges and limits you. Practice unconditional self-love and authentic expression. The master within recognizes that suffering comes from attachment to beliefs, not from life itself.`
+        ],
+        keyTakeaways: [
+          'Self-Awareness',
+          'Breaking Domestication',
+          'Unconditional Self-Love',
+          'Authentic Expression',
+          'Toltec Wisdom',
+          'Emotional Intelligence'
+        ]
+      }
+    }
+  ]
+
   return (
     <div className="app">
       {/* Navigation */}
@@ -198,6 +388,7 @@ function App() {
           <div className="nav-links">
             <button onClick={() => scrollToSection('about')}>ABOUT</button>
             <button onClick={() => scrollToSection('projects')}>PROJECTS</button>
+            <button onClick={() => scrollToSection('reading')}>READING</button>
             <button onClick={() => scrollToSection('experience')}>EXPERIENCE</button>
             <button onClick={() => scrollToSection('contact')}>CONTACT</button>
           </div>
@@ -215,14 +406,14 @@ function App() {
           PABLO CORAL
         </div>
         <div className="hero-content">
-          <h1 className="hero-title typewriter">
+          <h1 className={`hero-title typewriter ${isMobile ? 'mobile-wrap' : ''}`}>
             <span className="typewriter-text">
               <span className="typed-content">{typedText}</span>
               <span className={`cursor ${typingComplete ? 'blink' : 'static'}`}>_</span>
             </span>
           </h1>
-          <p className="hero-subtitle fade-in-up delay-2">
-            Aerospace Engineer & Full-Stack Developer bridging engineering precision with elegant code
+          <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
+            Aerospace Engineer & Full-Stack Developer, bridging engineering precision with elegant code
           </p>
           <div className="hero-buttons fade-in-up delay-3">
             <div className="hero-buttons-row">
@@ -237,6 +428,16 @@ function App() {
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
                 LinkedIn
+              </a>
+              <a href="/resume.pdf" download className="hero-btn social-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Resume
               </a>
             </div>
             <div className="hero-buttons-row">
@@ -433,6 +634,38 @@ function App() {
         </div>
       </section>
 
+      {/* Reading Section */}
+      <section id="reading" className="section reading-section">
+        <div className="section-content">
+          <h2 className="section-label">R_</h2>
+          <h3 className="section-title">Reading</h3>
+          <div className="books-grid">
+            {books.map((book, index) => (
+              <div
+                key={index}
+                className="book-card clickable"
+                onClick={() => setSelectedBook(book)}
+              >
+                <div className="book-image-container">
+                  <img src={book.image} alt={book.title} className="book-image" />
+                </div>
+                <div className="book-header-compact">
+                  <h4 className="book-title">{book.title}</h4>
+                  <span className={`book-status-compact ${book.status}`}>
+                    {book.status === 'in-progress' && <span className="status-dot-small"></span>}
+                    {book.status === 'complete' ? 'Complete' : 'Reading'}
+                  </span>
+                </div>
+                <p className="book-author">by {book.author}</p>
+                <button className="book-lessons-btn">
+                  Lessons Learned →
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className="section experience-section">
         <div className="section-content">
@@ -469,8 +702,9 @@ function App() {
       <section id="contact" className="section contact-section">
         <div className="section-content">
           <h2 className="section-label">C_</h2>
-          <h3 className="section-title">Let's Connect</h3>
-          <div className="contact-content">
+          <div className="contact-wrapper">
+            <div className="contact-content">
+              <h3 className="section-title">Let's Connect</h3>
             <p className="contact-text">
               I'm always open to discussing engineering challenges, software projects, or opportunities where I can apply my unique blend of technical expertise and creative problem-solving.
             </p>
@@ -494,6 +728,13 @@ function App() {
                 </svg>
               </a>
             </div>
+            </div>
+            <div className="polaroid">
+              <div className="polaroid-image">
+                <img src="/public/project_images/profile-photo.jpg" alt="Pablo Coral" />
+              </div>
+              <div className="polaroid-caption">Pablo Coral</div>
+            </div>
           </div>
         </div>
       </section>
@@ -503,7 +744,7 @@ function App() {
         <div className="marquee">
           <div className="marquee-content">
             {Array(20).fill('PABLO CORAL').map((text, i) => (
-              <span key={i}>{text} | </span>
+              <span key={i}>{text}</span>
             ))}
           </div>
         </div>
@@ -580,6 +821,46 @@ function App() {
                     </a>
                   )}
                 </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Book Modal */}
+      {selectedBook && (
+        <div className="modal-overlay" onClick={() => setSelectedBook(null)}>
+          <div className="modal-content book-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedBook(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+            </button>
+
+            <div className="book-modal-header">
+              <h3 className="book-modal-title">{selectedBook.title}</h3>
+              <p className="book-modal-author">by {selectedBook.author}</p>
+              <span className={`book-status ${selectedBook.status}`}>
+                {selectedBook.status === 'in-progress' && <span className="status-dot"></span>}
+                {selectedBook.status === 'complete' ? 'Complete' : 'Currently Reading'}
+              </span>
+            </div>
+
+            <div className="book-modal-body">
+              <h4 className="book-modal-section-title">What I Learned</h4>
+              {selectedBook.details?.fullDescription.map((para, i) => (
+                <p key={i} className="book-modal-paragraph">{para}</p>
+              ))}
+
+              {selectedBook.details?.keyTakeaways && selectedBook.details.keyTakeaways.length > 0 && (
+                <>
+                  <h4 className="book-modal-section-title">Key Takeaways</h4>
+                  <div className="book-takeaways-grid">
+                    {selectedBook.details.keyTakeaways.map((takeaway, i) => (
+                      <div key={i} className="book-takeaway-item">{takeaway}</div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           </div>
