@@ -219,6 +219,28 @@ function App() {
 
   const books: Book[] = [
     {
+      title: 'The Intelligent Investor',
+      author: 'Benjamin Graham',
+      image: '/book_images/intelligent-investor.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
+        ]
+      }
+    },
+    {
+      title: 'The Man Who Solved the Market',
+      author: 'Gregory Zuckerman',
+      image: '/book_images/man-solved-market.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Jim Simons and Renaissance Technologies revolutionized investing by applying mathematics and data science to markets. Success came from hiring brilliant scientists, not finance people, and letting data guide decisions over intuition. Small edges compound dramatically with scale and speed. The story demonstrates how quantitative analysis, computing power, and rigorous scientific method can find patterns invisible to traditional investors.`
+        ]
+      }
+    },
+    {
       title: 'Atomic Habits',
       author: 'James Clear',
       image: '/book_images/atomic-habits.jpg',
@@ -303,28 +325,6 @@ function App() {
       details: {
         fullDescription: [
           `Don't defer life until retirement - design your ideal lifestyle now. The 80/20 rule: 80% of results come from 20% of efforts. Eliminate the unimportant, automate what you can, and delegate the rest. Build systems that generate income without your constant presence. Time is more valuable than money - buy your time back by outsourcing low-value tasks.`
-        ]
-      }
-    },
-    {
-      title: 'The Intelligent Investor',
-      author: 'Benjamin Graham',
-      image: '/book_images/intelligent-investor.jpg',
-      status: 'in-progress',
-      details: {
-        fullDescription: [
-          `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
-        ]
-      }
-    },
-    {
-      title: 'The Man Who Solved the Market',
-      author: 'Gregory Zuckerman',
-      image: '/book_images/man-solved-market.jpg',
-      status: 'in-progress',
-      details: {
-        fullDescription: [
-          `Jim Simons and Renaissance Technologies revolutionized investing by applying mathematics and data science to markets. Success came from hiring brilliant scientists, not finance people, and letting data guide decisions over intuition. Small edges compound dramatically with scale and speed. The story demonstrates how quantitative analysis, computing power, and rigorous scientific method can find patterns invisible to traditional investors.`
         ]
       }
     }
@@ -599,25 +599,17 @@ function App() {
                 <div className="book-image-container">
                   <img src={book.image} alt={book.title} className="book-image" />
                 </div>
-                <div className="book-content">
-                  <div className="book-header">
-                    <div>
-                      <h4 className="book-title">{book.title}</h4>
-                      <p className="book-author">by {book.author}</p>
-                    </div>
-                    <span className={`book-status ${book.status}`}>
-                      {book.status === 'in-progress' && <span className="status-dot"></span>}
-                      {book.status === 'complete' ? 'Complete' : 'In Progress'}
-                    </span>
-                  </div>
-                  {book.details?.fullDescription && (
-                    <div className="book-description">
-                      {book.details.fullDescription.map((para, i) => (
-                        <p key={i}>{para}</p>
-                      ))}
-                    </div>
-                  )}
+                <div className="book-header-compact">
+                  <h4 className="book-title">{book.title}</h4>
+                  <span className={`book-status-compact ${book.status}`}>
+                    {book.status === 'in-progress' && <span className="status-dot-small"></span>}
+                    {book.status === 'complete' ? 'Complete' : 'Reading'}
+                  </span>
                 </div>
+                <p className="book-author">by {book.author}</p>
+                <button className="book-lessons-btn">
+                  Lessons Learned →
+                </button>
               </div>
             ))}
           </div>
