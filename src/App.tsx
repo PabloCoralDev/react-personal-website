@@ -25,15 +25,28 @@ interface Experience {
   tags: string[]
 }
 
+interface Book {
+  title: string
+  author: string
+  image: string
+  status: 'complete' | 'in-progress'
+  details?: {
+    fullDescription: string[]
+    keyTakeaways?: string[]
+    rating?: number
+  }
+}
+
 function App() {
   const [scrolled, setScrolled] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [typedText, setTypedText] = useState('')
   const [typingComplete, setTypingComplete] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
-  const fullText = "Hi, I'm Pablo Coral"
+  const fullText = "Hi, I'm Pablo"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -204,6 +217,119 @@ function App() {
     }
   ]
 
+  const books: Book[] = [
+    {
+      title: 'Atomic Habits',
+      author: 'James Clear',
+      image: '/book_images/atomic-habits.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Small habits compound over time - improving by just 1% each day leads to remarkable results. The key isn't setting goals, but building systems. Focus on identity-based habits: instead of "I want to run a marathon," think "I am a runner." Make good habits obvious, attractive, easy, and satisfying. The inverse applies to breaking bad habits.`
+        ]
+      }
+    },
+    {
+      title: 'Rich Dad Poor Dad',
+      author: 'Robert Kiyosaki',
+      image: '/book_images/rich-dad-poor-dad.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Assets put money in your pocket; liabilities take money out. The rich buy assets, the poor buy liabilities thinking they're assets. Financial literacy is crucial - understand the difference between working for money and having money work for you. Pay yourself first, invest in income-generating assets, and focus on building businesses and investment portfolios rather than climbing the corporate ladder.`
+        ]
+      }
+    },
+    {
+      title: 'Deep Work',
+      author: 'Cal Newport',
+      image: '/book_images/deep-work.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `The ability to focus without distraction on cognitively demanding tasks is becoming increasingly rare and valuable. Deep work produces better results in less time than shallow work. Schedule deep work blocks, eliminate distractions, embrace boredom to strengthen focus, and drain the shallows from your schedule. Quality of work = Time spent × Intensity of focus.`
+        ]
+      }
+    },
+    {
+      title: 'Extreme Ownership',
+      author: 'Jocko Willink & Leif Babin',
+      image: '/book_images/extreme-ownership.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Leaders must own everything in their world - no excuses. There are no bad teams, only bad leaders. Believe in the mission, explain the "why" to your team, and check your ego. Simplify plans, prioritize and execute, and use decentralized command. When things go wrong, look in the mirror first - total responsibility for failure is what leads to success.`
+        ]
+      }
+    },
+    {
+      title: 'Mindfulness in Plain English',
+      author: 'Bhante Gunaratana',
+      image: '/book_images/mindfulness-plain-english.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Mindfulness is about being present with whatever arises, without judgment. Meditation isn't about stopping thoughts - it's about observing them without attachment. Start with breath awareness, notice when your mind wanders, and gently return focus. The goal is to develop clear seeing and equanimity in daily life, transforming how you relate to experience itself.`
+        ]
+      }
+    },
+    {
+      title: 'The One Thing',
+      author: 'Gary Keller',
+      image: '/book_images/the-one-thing.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Ask yourself: "What's the ONE thing I can do such that by doing it, everything else will be easier or unnecessary?" Success is sequential, not simultaneous. Multitasking is a lie - focus on your most important work first. Time block your ONE thing, say no to distractions, and build the domino effect where each action makes the next one easier.`
+        ]
+      }
+    },
+    {
+      title: 'Rewiring Your OCD Brain',
+      author: 'Catherine Pittman & William Youngs',
+      image: '/book_images/rewiring-ocd-brain.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `OCD is a brain circuit problem, not a character flaw. Understanding the neuroscience helps: the cortex creates obsessive thoughts, the basal ganglia creates compulsive behaviors. Exposure and Response Prevention (ERP) therapy physically rewires these circuits. Face the anxiety, resist the compulsion, and the brain gradually learns the feared outcome won't occur.`
+        ]
+      }
+    },
+    {
+      title: 'The 4-Hour Workweek',
+      author: 'Tim Ferriss',
+      image: '/book_images/4-hour-workweek.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Don't defer life until retirement - design your ideal lifestyle now. The 80/20 rule: 80% of results come from 20% of efforts. Eliminate the unimportant, automate what you can, and delegate the rest. Build systems that generate income without your constant presence. Time is more valuable than money - buy your time back by outsourcing low-value tasks.`
+        ]
+      }
+    },
+    {
+      title: 'The Intelligent Investor',
+      author: 'Benjamin Graham',
+      image: '/book_images/intelligent-investor.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
+        ]
+      }
+    },
+    {
+      title: 'The Man Who Solved the Market',
+      author: 'Gregory Zuckerman',
+      image: '/book_images/man-solved-market.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [
+          `Jim Simons and Renaissance Technologies revolutionized investing by applying mathematics and data science to markets. Success came from hiring brilliant scientists, not finance people, and letting data guide decisions over intuition. Small edges compound dramatically with scale and speed. The story demonstrates how quantitative analysis, computing power, and rigorous scientific method can find patterns invisible to traditional investors.`
+        ]
+      }
+    }
+  ]
+
   return (
     <div className="app">
       {/* Navigation */}
@@ -212,6 +338,7 @@ function App() {
           <div className="nav-links">
             <button onClick={() => scrollToSection('about')}>ABOUT</button>
             <button onClick={() => scrollToSection('projects')}>PROJECTS</button>
+            <button onClick={() => scrollToSection('reading')}>READING</button>
             <button onClick={() => scrollToSection('experience')}>EXPERIENCE</button>
             <button onClick={() => scrollToSection('contact')}>CONTACT</button>
           </div>
@@ -236,7 +363,7 @@ function App() {
             </span>
           </h1>
           <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
-            Aerospace Engineer & Full-Stack Developer bridging engineering precision with elegant code
+            Aerospace Engineer & Full-Stack Developer, bridging engineering precision with elegant code
           </p>
           <div className="hero-buttons fade-in-up delay-3">
             <div className="hero-buttons-row">
@@ -453,6 +580,46 @@ function App() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reading Section */}
+      <section id="reading" className="section reading-section">
+        <div className="section-content">
+          <h2 className="section-label">R_</h2>
+          <h3 className="section-title">Reading</h3>
+          <div className="books-grid">
+            {books.map((book, index) => (
+              <div
+                key={index}
+                className="book-card clickable"
+                onClick={() => setSelectedBook(book)}
+              >
+                <div className="book-image-container">
+                  <img src={book.image} alt={book.title} className="book-image" />
+                </div>
+                <div className="book-content">
+                  <div className="book-header">
+                    <div>
+                      <h4 className="book-title">{book.title}</h4>
+                      <p className="book-author">by {book.author}</p>
+                    </div>
+                    <span className={`book-status ${book.status}`}>
+                      {book.status === 'in-progress' && <span className="status-dot"></span>}
+                      {book.status === 'complete' ? 'Complete' : 'In Progress'}
+                    </span>
+                  </div>
+                  {book.details?.fullDescription && (
+                    <div className="book-description">
+                      {book.details.fullDescription.map((para, i) => (
+                        <p key={i}>{para}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
