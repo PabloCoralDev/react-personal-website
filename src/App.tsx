@@ -33,7 +33,6 @@ interface Book {
   details?: {
     fullDescription: string[]
     keyTakeaways?: string[]
-    rating?: number
   }
 }
 
@@ -226,6 +225,13 @@ function App() {
       details: {
         fullDescription: [
           `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
+        ],
+        keyTakeaways: [
+          'Value Investing Principles',
+          'Margin of Safety',
+          'Market Psychology',
+          'Long-term Thinking',
+          'Risk Management'
         ]
       }
     },
@@ -325,6 +331,50 @@ function App() {
       details: {
         fullDescription: [
           `Don't defer life until retirement - design your ideal lifestyle now. The 80/20 rule: 80% of results come from 20% of efforts. Eliminate the unimportant, automate what you can, and delegate the rest. Build systems that generate income without your constant presence. Time is more valuable than money - buy your time back by outsourcing low-value tasks.`
+        ],
+        keyTakeaways: [
+          'Lifestyle Design',
+          '80/20 Principle',
+          'Automation & Delegation',
+          'Time Management',
+          'Location Independence'
+        ]
+      }
+    },
+    {
+      title: 'The Four Agreements',
+      author: 'Don Miguel Ruiz',
+      image: '/book_images/four-agreements.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Four simple yet profound principles for personal freedom: Be impeccable with your word - speak with integrity and say only what you mean. Don't take anything personally - others' actions are a projection of their own reality. Don't make assumptions - have the courage to ask questions and express what you really want. Always do your best - your best will change moment to moment, but giving your best prevents self-judgment and regret.`
+        ],
+        keyTakeaways: [
+          'Be Impeccable with Your Word',
+          'Don\'t Take Anything Personally',
+          'Don\'t Make Assumptions',
+          'Always Do Your Best',
+          'Personal Freedom'
+        ]
+      }
+    },
+    {
+      title: 'The Mastery of Self',
+      author: 'Don Miguel Ruiz Jr.',
+      image: '/book_images/mastery-of-self.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Building on Toltec wisdom, this book teaches awareness of the beliefs and agreements that shape your reality. You are not your thoughts or emotions - you are the one observing them. Break free from domestication and the voice of knowledge that judges and limits you. Practice unconditional self-love and authentic expression. The master within recognizes that suffering comes from attachment to beliefs, not from life itself.`
+        ],
+        keyTakeaways: [
+          'Self-Awareness',
+          'Breaking Domestication',
+          'Unconditional Self-Love',
+          'Authentic Expression',
+          'Toltec Wisdom',
+          'Emotional Intelligence'
         ]
       }
     }
@@ -771,6 +821,46 @@ function App() {
                     </a>
                   )}
                 </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Book Modal */}
+      {selectedBook && (
+        <div className="modal-overlay" onClick={() => setSelectedBook(null)}>
+          <div className="modal-content book-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedBook(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+            </button>
+
+            <div className="book-modal-header">
+              <h3 className="book-modal-title">{selectedBook.title}</h3>
+              <p className="book-modal-author">by {selectedBook.author}</p>
+              <span className={`book-status ${selectedBook.status}`}>
+                {selectedBook.status === 'in-progress' && <span className="status-dot"></span>}
+                {selectedBook.status === 'complete' ? 'Complete' : 'Currently Reading'}
+              </span>
+            </div>
+
+            <div className="book-modal-body">
+              <h4 className="book-modal-section-title">What I Learned</h4>
+              {selectedBook.details?.fullDescription.map((para, i) => (
+                <p key={i} className="book-modal-paragraph">{para}</p>
+              ))}
+
+              {selectedBook.details?.keyTakeaways && selectedBook.details.keyTakeaways.length > 0 && (
+                <>
+                  <h4 className="book-modal-section-title">Key Takeaways</h4>
+                  <div className="book-takeaways-grid">
+                    {selectedBook.details.keyTakeaways.map((takeaway, i) => (
+                      <div key={i} className="book-takeaway-item">{takeaway}</div>
+                    ))}
+                  </div>
+                </>
               )}
             </div>
           </div>
