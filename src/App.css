@@ -387,13 +387,13 @@
   align-items: center;
   justify-content: center;
   min-height: 280px;
+  overflow: hidden;
 }
 
 .project-image {
   width: 100%;
-  height: auto;
-  max-height: 280px;
-  object-fit: contain;
+  height: 280px;
+  object-fit: cover;
   border-radius: 0.25rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

@@ -5,7 +5,8 @@ interface Project {
   title: string
   description: string
   tags: string[]
-  image: string
+  outer_image: string
+  inner_image?: string
   details?: {
     fullDescription: string[]
     images?: string[]
@@ -95,10 +96,21 @@ function App() {
 
   const softwareProjects: Project[] = [
     {
+      title: 'Mini Back testing Engine',
+      description: 'Full-stack, lightweight backtesting engine as a demo to understand the Backtrader API, and get a better understanding to propel my knowledge as Knead CTO',
+      tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI', 'Vercel'],
+      outer_image: '/project_images/backtesting-engine.png',
+      details: {
+
+        fullDescription: [],
+        github: 'https://github.com/pablocoraldev',
+      }
+    },
+    {
       title: 'VirtuoNext',
       description: 'Full-stack MVP for a bid-based booking platform matching soloists with accompanist pianists',
       tags: ['React', 'TypeScript', 'Supabase', 'Stripe API'],
-      image: '/project_images/virtuonext.png',
+      outer_image: '/pictures/virtuonext_mvp-out.png',
       details: {
         fullDescription: [
           `Developed a full-stack MVP for VirtuoNext, a bid-based booking platform matching soloists with accompanist pianists. Built with React and TypeScript, implemented asynchronous bidding logic, authentication, and relational data persistence using Supabase (SQL). Integrated in-app messaging via the open-source ChatScope Framework. Currently implementing in-app payment processing through the Stripe API.`
@@ -111,7 +123,7 @@ function App() {
       title: 'Differential Equations Playground',
       description: 'Full-stack application to deepen mathematical understanding and cross-language integration',
       tags: ['Python', 'React', 'FastAPI', 'Vercel'],
-      image: '/project_images/diff-eqns.png',
+      outer_image: '/pictures/diff_eq_playground-out.png',
       details: {
         fullDescription: [
           `Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration. Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI. Hosting open-source on a Vercel + GitHub integration.`
@@ -123,7 +135,7 @@ function App() {
       title: 'FSD Truss Automation Pipeline',
       description: 'Automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses',
       tags: ['Python', 'ABAQUS API', 'PowerShell'],
-      image: '/project_images/fsd-truss.png',
+      outer_image: '/project_images/fsd-truss.png',
       details: {
         fullDescription: [
           `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses. Integrating the ABAQUS API with async PowerShell communication to write and run .inp files. Extract axial stress data, and perform iterative FSD checks, cutting manual workflow by 4+ hours.`
@@ -135,7 +147,8 @@ function App() {
       title: 'Dynamic Decision Matrix',
       description: 'Built a dynamic decision matrix using Google Sheets and JavaScript',
       tags: ['JavaScript', 'Google Sheets API', 'Data Analysis'],
-      image: '/project_images/decision-matrix.png',
+      outer_image: '/pictures/car_decision_matrix-out.jpeg',
+      inner_image: '/pictures/car_decision_matrix-in.jpeg',
       details: {
         fullDescription: [
           `Built a dynamic decision matrix using Sheets and JavaScript + GS API. Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters. Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
@@ -150,7 +163,7 @@ function App() {
       title: 'Heat Transfer Device',
       description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
       tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
-      image: '/project_images/heat-transfer.png',
+      outer_image: '/project_images/heat-transfer.png',
       details: {
         fullDescription: [
           `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
@@ -161,7 +174,8 @@ function App() {
       title: 'Custom Steel Pen',
       description: 'Designed and machined a custom steel pen over 10+ iterations using a manual lathe',
       tags: ['Manual Lathe', 'Threading', 'Machining'],
-      image: '/project_images/steel-pen.png',
+      outer_image: '/pictures/hand_machined_pen-out.jpeg',
+      inner_image: '/pictures/hand_machined_pen-in.jpeg',
       details: {
         fullDescription: [
           `Designed and machined a custom steel pen over 10+ iterations using a manual lathe. Independently learned single-point threading techniques. Iterated on design for manufacturability and precision.`
@@ -172,7 +186,7 @@ function App() {
       title: 'Air Engine Components',
       description: 'Programmed, CNC-machined and assembled 5 components for an air engine',
       tags: ['Fusion 360', 'Haas VF-3', 'CNC', 'ACE Certified'],
-      image: '/project_images/air-engine.png',
+      outer_image: '/project_images/air-engine.png',
       details: {
         fullDescription: [
           `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
@@ -198,8 +212,7 @@ function App() {
       location: 'Gainesville, FL',
       period: 'Aug 2024 – Present',
       description: [
-        'Brief description of your teaching responsibilities...',
-        'Impact on students or lab operations...'
+        'Directed semester-long trainings for groups of 4+ students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles. Supervised lab work to ensure safe operation of equipment.'
       ],
       tags: ['Teaching', 'Machining', 'DFMA', 'GD&T', 'Safety']
     },
@@ -209,15 +222,25 @@ function App() {
       location: 'Gainesville, FL',
       period: 'May 2025 – Present',
       description: [
-        'Brief description of what Bike Bros does...',
-        'Impact on the community or business growth...'
+        'Founded and operate a bicycle refurbishment & sales business. Manage a network of bicycle mechanics, and drive day-to-day operations to ensure product quality, and optimal profit margins.'
       ],
-      tags: ['Business', 'Operations', 'Sustainability']
+      tags: ['Business', 'Operations', 'Sustainability', 'Leadership']
     }
   ]
 
   const books: Book[] = [
     {
+      title: 'Fear',
+      author: 'Tich Nhat Hanh',
+      image: '/book_images/fear.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: [],
+        keyTakeaways: [],        
+      },
+    }
+
+    ,{
       title: 'The Intelligent Investor',
       author: 'Benjamin Graham',
       image: '/book_images/intelligent-investor.jpg',
@@ -236,10 +259,42 @@ function App() {
       }
     },
     {
+      title: 'So Good they Can\'t Ignore You',
+      author: 'Cal Newport',
+      image: '/book_images/so-good-they-cant-ignore-you.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          'The passion hypothesis is a lie. Career satisfaction comes from developing rare and valuable skills, not following pre-existing passions. Adopt a craftsman mindset, focus on skill acquisition, and seek "career capital" through deliberate practice. Control over your work and the ability to leverage your skills lead to fulfilling careers. Mission emerges from mastery, not the other way around.'
+        ],
+        keyTakeaways: [
+          'Craftsman Mindset',
+          'Mission from Mastery',
+          'Deliberate Practice',
+          'Career Capital',
+
+        ],
+      }
+    },
+    {
+      title: 'The Psychology of Money',
+      author: 'Morgan Housel',
+      image: '/book_images/psychology-of-money.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [ 
+          `Wealth is what you don't see - it's saved and invested money, not flashy spending. Getting rich and staying rich require different skills: getting rich needs taking risks, being optimistic, and seizing opportunities; staying rich requires frugality, humility, and long-term thinking. Luck and risk are both real and often misunderstood. Compounding is the most powerful force in finance: small consistent actions lead to extraordinary results over time.`
+        ],
+        keyTakeaways: [
+          'Power of Compounding'
+        ]
+      }
+    },
+    {
       title: 'The Man Who Solved the Market',
       author: 'Gregory Zuckerman',
       image: '/book_images/man-solved-market.jpg',
-      status: 'in-progress',
+      status: 'complete',
       details: {
         fullDescription: [
           `Jim Simons and Renaissance Technologies revolutionized investing by applying mathematics and data science to markets. Success came from hiring brilliant scientists, not finance people, and letting data guide decisions over intuition. Small edges compound dramatically with scale and speed. The story demonstrates how quantitative analysis, computing power, and rigorous scientific method can find patterns invisible to traditional investors.`
@@ -429,7 +484,7 @@ function App() {
                 </svg>
                 LinkedIn
               </a>
-              <a href="/resume.pdf" download className="hero-btn social-btn">
+              <a href="src/assets/resume.pdf" download className="hero-btn social-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
@@ -498,7 +553,7 @@ function App() {
 
           {/* Software Projects */}
           <div className="subsection">
-            <h4 className="subsection-title">Software Projects</h4>
+            <h4 className="subsection-title"></h4>
             <div className="projects-grid">
               {softwareProjects.map((project, index) => (
                 <div
@@ -507,7 +562,7 @@ function App() {
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="project-image-container">
-                    <img src={project.image} alt={project.title} className="project-image" />
+                    <img src={project.outer_image} alt={project.title} className="project-image" />
                   </div>
                   <h5 className="project-title">{project.title}</h5>
                   <p className="project-description">{project.description}</p>
@@ -549,7 +604,7 @@ function App() {
                       </a>
                     )}
                     {project.details?.sheets && (
-                      <a
+                       <a
                         href={project.details.sheets}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -573,7 +628,7 @@ function App() {
 
           {/* Engineering Projects */}
           <div className="subsection">
-            <h4 className="subsection-title">Engineering Projects</h4>
+            <h4 className="subsection-title"></h4>
             <div className="projects-grid">
               {engineeringProjects.map((project, index) => (
                 <div
@@ -582,7 +637,7 @@ function App() {
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="project-image-container">
-                    <img src={project.image} alt={project.title} className="project-image" />
+                    <img src={project.outer_image} alt={project.title} className="project-image" />
                   </div>
                   <h5 className="project-title">{project.title}</h5>
                   <p className="project-description">{project.description}</p>
@@ -762,7 +817,7 @@ function App() {
 
             <div className="modal-header">
               <div className="modal-image-container">
-                <img src={selectedProject.image} alt={selectedProject.title} className="modal-image" />
+                <img src={selectedProject.inner_image} alt={selectedProject.title} className="modal-image" />
               </div>
               <h3 className="modal-title">{selectedProject.title}</h3>
             </div>
