@@ -232,18 +232,18 @@ function App() {
     {
       title: 'Fear',
       author: 'Tich Nhat Hanh',
-      image: '/book_images/fear.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780062004734-L.jpg',
       status: 'in-progress',
       details: {
         fullDescription: [],
-        keyTakeaways: [],        
+        keyTakeaways: [],
       },
     }
 
     ,{
       title: 'The Intelligent Investor',
       author: 'Benjamin Graham',
-      image: '/book_images/intelligent-investor.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg',
       status: 'in-progress',
       details: {
         fullDescription: [
@@ -261,7 +261,7 @@ function App() {
     {
       title: 'So Good they Can\'t Ignore You',
       author: 'Cal Newport',
-      image: '/book_images/so-good-they-cant-ignore-you.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781455509126-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -279,7 +279,7 @@ function App() {
     {
       title: 'The Psychology of Money',
       author: 'Morgan Housel',
-      image: '/book_images/psychology-of-money.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [ 
@@ -293,7 +293,7 @@ function App() {
     {
       title: 'The Man Who Solved the Market',
       author: 'Gregory Zuckerman',
-      image: '/book_images/man-solved-market.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780735217980-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -304,7 +304,7 @@ function App() {
     {
       title: 'Atomic Habits',
       author: 'James Clear',
-      image: '/book_images/atomic-habits.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -315,7 +315,7 @@ function App() {
     {
       title: 'Rich Dad Poor Dad',
       author: 'Robert Kiyosaki',
-      image: '/book_images/rich-dad-poor-dad.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781612680194-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -326,7 +326,7 @@ function App() {
     {
       title: 'Deep Work',
       author: 'Cal Newport',
-      image: '/book_images/deep-work.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781455586691-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -337,7 +337,7 @@ function App() {
     {
       title: 'Extreme Ownership',
       author: 'Jocko Willink & Leif Babin',
-      image: '/book_images/extreme-ownership.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781250067050-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -348,7 +348,7 @@ function App() {
     {
       title: 'Mindfulness in Plain English',
       author: 'Bhante Gunaratana',
-      image: '/book_images/mindfulness-plain-english.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780861719068-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -359,7 +359,7 @@ function App() {
     {
       title: 'The One Thing',
       author: 'Gary Keller',
-      image: '/book_images/the-one-thing.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781885167774-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -370,7 +370,7 @@ function App() {
     {
       title: 'Rewiring Your OCD Brain',
       author: 'Catherine Pittman & William Youngs',
-      image: '/book_images/rewiring-ocd-brain.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781684037186-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -381,7 +381,7 @@ function App() {
     {
       title: 'The 4-Hour Workweek',
       author: 'Tim Ferriss',
-      image: '/book_images/4-hour-workweek.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9780307465351-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -399,7 +399,7 @@ function App() {
     {
       title: 'The Four Agreements',
       author: 'Don Miguel Ruiz',
-      image: '/book_images/four-agreements.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781878424310-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
@@ -417,7 +417,7 @@ function App() {
     {
       title: 'The Mastery of Self',
       author: 'Don Miguel Ruiz Jr.',
-      image: '/book_images/mastery-of-self.jpg',
+      image: 'https://covers.openlibrary.org/b/isbn/9781938289538-L.jpg',
       status: 'complete',
       details: {
         fullDescription: [
