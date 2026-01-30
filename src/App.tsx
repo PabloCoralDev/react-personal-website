@@ -108,10 +108,23 @@ function App() {
       }
     },
     {
+      title: 'Heat Transfer Device',
+      description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
+      tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
+      outer_image: '/pictures/heat_device-out.jpeg',
+      inner_image: '/pictures/heat_device-in.jpeg',
+      details: {
+        fullDescription: [
+          `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
+        ]
+      }
+    },
+    {
       title: 'VirtuoNext',
       description: 'Full-stack MVP for a bid-based booking platform matching soloists with accompanist pianists',
       tags: ['React', 'TypeScript', 'Supabase', 'Stripe API'],
       outer_image: '/pictures/virtuonext_mvp-out.png',
+      inner_image: '/pictures/virtuonext_mvp-in.png',
       details: {
         fullDescription: [
           `Developed a full-stack MVP for VirtuoNext, a bid-based booking platform matching soloists with accompanist pianists. Built with React and TypeScript, implemented asynchronous bidding logic, authentication, and relational data persistence using Supabase (SQL). Integrated in-app messaging via the open-source ChatScope Framework. Currently implementing in-app payment processing through the Stripe API.`
@@ -156,18 +169,6 @@ function App() {
           `Built a dynamic decision matrix using Sheets and JavaScript + GS API. Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters. Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
         ],
         sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
-      }
-    },
-    {
-      title: 'Heat Transfer Device',
-      description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
-      tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
-      outer_image: '/pictures/heat_device-out.jpeg',
-      inner_image: '/pictures/heat_device-in.jpeg',
-      details: {
-        fullDescription: [
-          `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
-        ]
       }
     },
     {
@@ -563,9 +564,28 @@ function App() {
                   className="project-card clickable"
                   onClick={() => setSelectedProject(project)}
                 >
-                  <div className="project-image-container">
-                    <img src={project.outer_image} alt={project.title} className="project-image" />
-                  </div>
+                  {project.inner_image ? (
+                    <div className="flip-card">
+                      <div className="flip-card-inner">
+                        <div className="flip-card-front">
+                          <img src={project.outer_image} alt={project.title} />
+                        </div>
+                        <div className="flip-card-back">
+                          {project.isVideo ? (
+                            <video autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.25rem' }}>
+                              <source src={project.inner_image} type="video/mp4" />
+                            </video>
+                          ) : (
+                            <img src={project.inner_image} alt={`${project.title} - Back`} />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="project-image-container">
+                      <img src={project.outer_image} alt={project.title} className="project-image" />
+                    </div>
+                  )}
                   <h5 className="project-title">{project.title}</h5>
                   <p className="project-description">{project.description}</p>
                   <div className="project-tags">
