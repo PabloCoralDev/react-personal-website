@@ -848,8 +848,8 @@
 
 .modal-image-container {
   width: 100%;
-  max-width: 600px;
-  height: 350px;
+  max-width: 800px;
+  height: 500px;
   background: var(--bg-secondary);
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;

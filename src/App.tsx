@@ -7,6 +7,7 @@ interface Project {
   tags: string[]
   outer_image: string
   inner_image?: string
+  isVideo?: boolean
   details?: {
     fullDescription: string[]
     images?: string[]
@@ -94,12 +95,12 @@ function App() {
     element?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const softwareProjects: Project[] = [
+  const projects: Project[] = [
     {
       title: 'Mini Back testing Engine',
       description: 'Full-stack, lightweight backtesting engine as a demo to understand the Backtrader API, and get a better understanding to propel my knowledge as Knead CTO',
       tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI', 'Vercel'],
-      outer_image: '/project_images/backtesting-engine.png',
+      outer_image: '/pictures/backtesting-in-out.png',
       details: {
 
         fullDescription: [],
@@ -135,7 +136,8 @@ function App() {
       title: 'FSD Truss Automation Pipeline',
       description: 'Automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses',
       tags: ['Python', 'ABAQUS API', 'PowerShell'],
-      outer_image: '/project_images/fsd-truss.png',
+      outer_image: '/pictures/abaqus_project-out.jpeg',
+      inner_image: '/pictures/abaqus_project-in.jpeg',
       details: {
         fullDescription: [
           `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses. Integrating the ABAQUS API with async PowerShell communication to write and run .inp files. Extract axial stress data, and perform iterative FSD checks, cutting manual workflow by 4+ hours.`
@@ -148,22 +150,20 @@ function App() {
       description: 'Built a dynamic decision matrix using Google Sheets and JavaScript',
       tags: ['JavaScript', 'Google Sheets API', 'Data Analysis'],
       outer_image: '/pictures/car_decision_matrix-out.jpeg',
-      inner_image: '/pictures/car_decision_matrix-in.jpeg',
+      inner_image: '/pictures/car_decision_matrix-in-a.jpeg',
       details: {
         fullDescription: [
           `Built a dynamic decision matrix using Sheets and JavaScript + GS API. Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters. Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
         ],
         sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
       }
-    }
-  ]
-
-  const engineeringProjects: Project[] = [
+    },
     {
       title: 'Heat Transfer Device',
       description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
       tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
-      outer_image: '/project_images/heat-transfer.png',
+      outer_image: '/pictures/heat_device-out.jpeg',
+      inner_image: '/pictures/heat_device-in.jpeg',
       details: {
         fullDescription: [
           `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
@@ -186,7 +186,9 @@ function App() {
       title: 'Air Engine Components',
       description: 'Programmed, CNC-machined and assembled 5 components for an air engine',
       tags: ['Fusion 360', 'Haas VF-3', 'CNC', 'ACE Certified'],
-      outer_image: '/project_images/air-engine.png',
+      outer_image: '/pictures/air_engine_components-out.jpeg',
+      inner_image: '/pictures/air_engine_components-in.mp4',
+      isVideo: true,
       details: {
         fullDescription: [
           `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
@@ -443,7 +445,7 @@ function App() {
           <div className="nav-links">
             <button onClick={() => scrollToSection('about')}>ABOUT</button>
             <button onClick={() => scrollToSection('projects')}>PROJECTS</button>
-            <button onClick={() => scrollToSection('reading')}>READING</button>
+            <button onClick={() => scrollToSection('reading')}>LIBRARY</button>
             <button onClick={() => scrollToSection('experience')}>EXPERIENCE</button>
             <button onClick={() => scrollToSection('contact')}>CONTACT</button>
           </div>
@@ -468,7 +470,7 @@ function App() {
             </span>
           </h1>
           <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
-            Aerospace Engineer & Full-Stack Developer, bridging engineering precision with elegant code
+            Engineer, Pianist & Developer, bridging engineering precision with elegant code
           </p>
           <div className="hero-buttons fade-in-up delay-3">
             <div className="hero-buttons-row">
@@ -498,6 +500,9 @@ function App() {
             <div className="hero-buttons-row">
               <button onClick={() => scrollToSection('projects')} className="hero-btn cta-primary">
                 View My Work
+              </button>
+              <button onClick={() => window.open('https://www.youtube.com/channel/UCjBwIoBIEFzbVQpBZGPWWTw', '_blank')} className="hero-btn cta-primary">
+                Watch Me Perform
               </button>
               <button onClick={() => scrollToSection('contact')} className="hero-btn cta-secondary">
                 Contact Me
@@ -551,11 +556,8 @@ function App() {
           <h2 className="section-label">P_</h2>
           <h3 className="section-title">Projects</h3>
 
-          {/* Software Projects */}
-          <div className="subsection">
-            <h4 className="subsection-title"></h4>
-            <div className="projects-grid">
-              {softwareProjects.map((project, index) => (
+          <div className="projects-grid">
+            {projects.map((project, index) => (
                 <div
                   key={index}
                   className="project-card clickable"
@@ -623,68 +625,6 @@ function App() {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Engineering Projects */}
-          <div className="subsection">
-            <h4 className="subsection-title"></h4>
-            <div className="projects-grid">
-              {engineeringProjects.map((project, index) => (
-                <div
-                  key={index}
-                  className="project-card clickable"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <div className="project-image-container">
-                    <img src={project.outer_image} alt={project.title} className="project-image" />
-                  </div>
-                  <h5 className="project-title">{project.title}</h5>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tags">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                  <div className="project-card-footer">
-                    {project.details?.github && (
-                      <a
-                        href={project.details.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-github-btn"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        GitHub
-                      </a>
-                    )}
-                    {project.details?.demo && (
-                      <a
-                        href={project.details.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-github-btn"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="live-icon">
-                          <circle cx="12" cy="12" r="2" fill="black"></circle>
-                          <circle cx="12" cy="12" r="5" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-1"></circle>
-                          <circle cx="12" cy="12" r="8" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-2"></circle>
-                          <circle cx="12" cy="12" r="11" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-3"></circle>
-                        </svg>
-                        Live Demo
-                      </a>
-                    )}
-                    <button className="project-details-btn">
-                      View Details →
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -692,8 +632,18 @@ function App() {
       {/* Reading Section */}
       <section id="reading" className="section reading-section">
         <div className="section-content">
-          <h2 className="section-label">R_</h2>
-          <h3 className="section-title">Reading</h3>
+          <h2 className="section-label">L_</h2>
+          <h3 className="section-title">Library</h3>
+          <p style={{
+            fontSize: '0.9rem',
+            color: 'var(--text-secondary)',
+            fontStyle: 'italic',
+            marginTop: '-1rem',
+            marginBottom: '3rem',
+            opacity: 0.8
+          }}>
+            Book Covers Courtesy of <a href="https://openlibrary.org/dev/docs/api/covers" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', textDecoration: 'none', fontStyle: 'italic' }}>Open Library Covers API</a>
+          </p>
           <div className="books-grid">
             {books.map((book, index) => (
               <div
@@ -786,7 +736,7 @@ function App() {
             </div>
             <div className="polaroid">
               <div className="polaroid-image">
-                <img src="/public/project_images/profile-photo.jpg" alt="Pablo Coral" />
+                <img src="/pictures/pablo-contact-pic.jpg" alt="Pablo Coral" />
               </div>
               <div className="polaroid-caption">Pablo Coral</div>
             </div>
@@ -817,7 +767,13 @@ function App() {
 
             <div className="modal-header">
               <div className="modal-image-container">
-                <img src={selectedProject.inner_image} alt={selectedProject.title} className="modal-image" />
+                {selectedProject.isVideo && selectedProject.inner_image ? (
+                  <video autoPlay loop muted playsInline className="modal-image">
+                    <source src={selectedProject.inner_image} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img src={selectedProject.inner_image || selectedProject.outer_image} alt={selectedProject.title} className="modal-image" />
+                )}
               </div>
               <h3 className="modal-title">{selectedProject.title}</h3>
             </div>
