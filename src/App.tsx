@@ -108,29 +108,34 @@ function App() {
       }
     },
     {
-      title: 'Heat Transfer Device',
+      title: 'The (Heat) Equalizer™',
       description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
       tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
       outer_image: '/pictures/heat_device-out.jpeg',
       inner_image: '/pictures/heat_device-in.jpeg',
       details: {
         fullDescription: [
-          `Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves. Using SolidWorks for design and Fusion360 for CAM, abiding by DFM principles and producing a design that is both hand and CNC machinable. Using affordable, available parts from McMaster Carr.`
+          ` Used SolidWorks for design and thermal simulation to determine minimum necessary wall width and assess theoretical effectiveness of air pockets as a thermal resistor, acting as a regulator that dampened heat spikes and absorbed & transferred heat more smoothly.
+
+            This project started after countless burned pans, and realizing that most cheaper electric stoves have a lot of temperature overshoot since they are purely an on-off state that is driven by a thermistor.
+
+            V3 of the ‘Equalizer’ ™ is picture inside this card, and features an easy-to-machine and prototype layout (there is not enough functional difference between the circular and straight fins), with components and materials (including disk diameter) that are most affordable and easiest to find in McMaster Carr, with a total cost of around $70.00.
+
+            The equalizer also features clearance slots under the base that allow the installation of teflon pads to add more friction with stove surfaces and prevent the device from slipping.`
         ]
       }
     },
-    {
-      title: 'VirtuoNext',
-      description: 'Full-stack MVP for a bid-based booking platform matching soloists with accompanist pianists',
-      tags: ['React', 'TypeScript', 'Supabase', 'Stripe API'],
-      outer_image: '/pictures/virtuonext_mvp-out.png',
-      inner_image: '/pictures/virtuonext_mvp-in.png',
+     {
+      title: 'Air Engine Components',
+      description: 'Programmed, CNC-machined and assembled 5 components for an air engine',
+      tags: ['Fusion 360', 'Haas VF-3', 'CNC', 'ACE Certified'],
+      outer_image: '/pictures/air_engine_components-out.jpeg',
+      inner_image: '/pictures/air_engine_components-in.mp4',
+      isVideo: true,
       details: {
         fullDescription: [
-          `Developed a full-stack MVP for VirtuoNext, a bid-based booking platform matching soloists with accompanist pianists. Built with React and TypeScript, implemented asynchronous bidding logic, authentication, and relational data persistence using Supabase (SQL). Integrated in-app messaging via the open-source ChatScope Framework. Currently implementing in-app payment processing through the Stripe API.`
-        ],
-        github: 'https://github.com/PabloCoralDev/VirtuoNext_ReactMVP',
-        demo: 'https://virtuonext.vercel.app/'
+          `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
+        ]
       }
     },
     {
@@ -147,55 +152,87 @@ function App() {
     },
     {
       title: 'FSD Truss Automation Pipeline',
-      description: 'Automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses',
-      tags: ['Python', 'ABAQUS API', 'PowerShell'],
+      description: 'Automated Python pipeline for iterative FSD (Fully Stressed Design) of general 2D trusses by interacting with the Abaqus API through the Powershell.',
+      tags: ['Python', 'ABAQUS API', 'PowerShell', 'Async Communication'],
       outer_image: '/pictures/abaqus_project-out.jpeg',
       inner_image: '/pictures/abaqus_project-in.jpeg',
       details: {
         fullDescription: [
-          `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses. Integrating the ABAQUS API with async PowerShell communication to write and run .inp files. Extract axial stress data, and perform iterative FSD checks, cutting manual workflow by 4+ hours.`
+          `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses, integrating the ABAQUS API with async PowerShell communication to write and run .inp files (Abaqus' standard input script for any 2D or 3D truss, which specifies nodes, connections and initial conditions).
+
+              The <b> FSD process iterates through the following steps: </b>
+              • Generate initial truss geometry with starting member dimensions
+              • Run FEA simulation via ABAQUS to extract axial stress data for each member
+              • Check if any member is below minimum size to not exceed maximum normal stress
+              • Reduce cross-sectional area of over-designed members
+              • Re-run simulation with updated dimensions
+              • Repeat until all members are optimally sized (fully stressed)
+
+            This automation cut manual workflow time by ~16 hours per Truss analysis, based on the following calculations:
+
+                <b>→</b> 12 nodes @ 4 mins hand calcs per node = 48 mins per iteration. 
+                <b>→</b> ~20 iterations = 16 hours
+            
+              A single truss FSD instance takes less than 2 minutes with the Pipeline.
+              
+              `
         ],
         github: 'https://github.com/PabloCoralDev/Abaqus-Python-fully_stressed_method'
       }
     },
     {
       title: 'Dynamic Decision Matrix',
-      description: 'Built a dynamic decision matrix using Google Sheets and JavaScript',
-      tags: ['JavaScript', 'Google Sheets API', 'Data Analysis'],
+      description: 'Built a dynamic decision matrix using Google Sheets and JavaScript to mathematically choose the best car given price, mpg, tranmission and trunk space constrains. <b>Final contender shown in the picture above!</b>',
+      tags: ['JavaScript', 'Google Apps Script', 'Data Analysis', 'Google Sheets'],
       outer_image: '/pictures/car_decision_matrix-out.jpeg',
       inner_image: '/pictures/car_decision_matrix-in-a.jpeg',
       details: {
         fullDescription: [
-          `Built a dynamic decision matrix using Sheets and JavaScript + GS API. Implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters. Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
+          `Built a dynamic decision matrix using Sheets and JavaScript + Google Apps Script, which implemented 3 piecewise scoring functions with sensitivity scaling and anomaly filters (hand made and tuned for the specific input parameters and objectives). Applied linear regression to the output scores to generate ranked car recommendations, tailored to desired cost, mileage and mpg.`
         ],
         sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
       }
     },
     {
-      title: 'Custom Steel Pen',
-      description: 'Designed and machined a custom steel pen over 10+ iterations using a manual lathe',
-      tags: ['Manual Lathe', 'Threading', 'Machining'],
+      title: 'Custom Hand-Machined Pen',
+      description: 'Designed and machined a custom pen for my Dad\'s 65th birthday, creating a timeless and useful gift. Utilized Single-point threading along other machining techniques.',
+      tags: ['Manual Lathe', 'Single-Point Threading', 'Machining', 'On-The-Spot problem solving', 'DFMA'],
       outer_image: '/pictures/hand_machined_pen-out.jpeg',
       inner_image: '/pictures/hand_machined_pen-in.jpeg',
       details: {
         fullDescription: [
-          `Designed and machined a custom steel pen over 10+ iterations using a manual lathe. Independently learned single-point threading techniques. Iterated on design for manufacturability and precision.`
+          `Designed around a Pilot G2 cartridge, chosen (between Parker and Scribe contenders) due to its cost effectiveness to premium feel ratio, as well as it's availability (I could mess up a few without incurring great cost).
+          
+          Use Solidworks to created a fully dimensioned model of the cartridge, including complex and curved geometries, and designed the pen to fit around it while keeping DFMA and tool availability principles in mind.
+
+          Chose the specific screw-in mechanism for ease of use, as well as to ensure a no-seam fit when the pen was in-use. Calculated pen moment arm for ideal top-section fill and length for best writing feel, and chose 310 stainless steel for the final pen for its durability and sand-blasted aesthetic appeal.`
         ]
       }
     },
-    {
-      title: 'Air Engine Components',
-      description: 'Programmed, CNC-machined and assembled 5 components for an air engine',
-      tags: ['Fusion 360', 'Haas VF-3', 'CNC', 'ACE Certified'],
-      outer_image: '/pictures/air_engine_components-out.jpeg',
-      inner_image: '/pictures/air_engine_components-in.mp4',
-      isVideo: true,
+        {
+      title: 'VirtuoNext™',
+      description: 'Full-stack MVP for a bid-based booking platform matching soloists with accompanist pianists',
+      tags: ['React', 'TypeScript', 'Supabase', 'Stripe API'],
+      outer_image: '/pictures/virtuonext_mvp-out.png',
+      inner_image: '/pictures/virtuonext_mvp-in.png',
       details: {
         fullDescription: [
-          `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
-        ]
+          `Developed an MVP for VirtuoNext™, in order to match pianists to soloists, while functioning as an AirBnb all-in-one platform to search for, ask/bid, connect, message and ultimately and securely perform payments between Pianists and Soloists.
+
+          Being a professional pianist myself, I came to realize that the majority of pianist to soloist or pianist to institution connections happen exclusively through word-of-mouth, denying the opportunity for many to break into the field and overloading others such as myself.
+
+          I constantly encountered some Vocalists who could not find a Pianist, while at the same time receiving about 5 or more messages a week from others asking me to accompany them, all while my Pianist peers could not find a job or a gig.
+
+          At the same time, as a church pianist at University Lutheran Church, every weekend I must take off for holidays/exams or internships, I face the struggle of being unable to find a pianist for them despite the large demand and desire for a church gig. 
+
+          Thus, the idea for VirtuoNext™ was born, as a bid-based system so both Pianists and Soloists/institutions can organically agree on a price, being just to more experienced musicians while allowing less experienced ones to enter the field.
+
+          The application is currently in the MVP stage, with Open Source chat messaging + Stripe API integration.`
+        ],
+        github: 'https://github.com/PabloCoralDev/VirtuoNext_ReactMVP',
+        demo: 'https://virtuonext.vercel.app/'
       }
-    }
+    },
   ]
 
   const experiences: Experience[] = [
@@ -587,7 +624,7 @@ function App() {
                     </div>
                   )}
                   <h5 className="project-title">{project.title}</h5>
-                  <p className="project-description">{project.description}</p>
+                  <p className="project-description" dangerouslySetInnerHTML={{ __html: project.description }} />
                   <div className="project-tags">
                     {project.tags.map((tag, i) => (
                       <span key={i} className="tag">{tag}</span>
@@ -632,11 +669,11 @@ function App() {
                         rel="noopener noreferrer"
                         className="project-github-btn"
                         onClick={(e) => e.stopPropagation()}
-                      >
+                      > 
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
                         </svg>
-                        Sheets
+                        Explore the Sheet!
                       </a>
                     )}
                     <button className="project-details-btn">
@@ -800,7 +837,9 @@ function App() {
 
             <div className="modal-body">
               {selectedProject.details?.fullDescription.map((para, i) => (
-                <p key={i} className="modal-paragraph">{para}</p>
+                <p key={i} className="modal-paragraph" dangerouslySetInnerHTML={{
+                  __html: para.replace(/\n/g, '<br />')
+                }} />
               ))}
 
               {selectedProject.details?.images && (
