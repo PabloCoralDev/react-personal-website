@@ -321,10 +321,38 @@
   color: var(--text-secondary);
 }
 
+.about-quote {
+  margin-top: 3.5rem;
+  padding: 1.5rem 3rem;
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 3px solid rgba(0, 0, 0, 0.15);
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.quote-text {
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.quote-author {
+  display: block;
+  font-size: 1rem;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  align-content: start;
+  margin: 0 auto;
 }
 
 .skill-item {
@@ -771,6 +799,25 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
 }
 
+.experience-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.experience-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 0.5rem;
+}
+
 .experience-header {
   display: flex;
   justify-content: space-between;
@@ -807,8 +854,8 @@
 }
 
 .experience-description {
-  list-style: disc;
-  padding-left: 1.5rem;
+  list-style: none;
+  padding-left: 0;
   margin-bottom: 1.5rem;
 }
 
@@ -915,7 +962,7 @@
 .modal-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 0.25rem;
 }
 
@@ -987,6 +1034,35 @@
 
 .modal-btn svg {
   flex-shrink: 0;
+}
+
+/* Experience Modal */
+.experience-modal-content {
+  max-width: 1000px;
+}
+
+.experience-modal-company {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 0.5rem;
+}
+
+.experience-company-link {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.experience-company-link:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.experience-modal-meta {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }
 
 /* Book Modal */

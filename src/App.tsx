@@ -25,6 +25,12 @@ interface Experience {
   period: string
   description: string[]
   tags: string[]
+  logo?: string
+  website?: string
+  details?: {
+    fullDescription: string[]
+    image?: string
+  }
 }
 
 interface Book {
@@ -42,6 +48,7 @@ function App() {
   const [scrolled, setScrolled] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [selectedBook, setSelectedBook] = useState<Book | null>(null)
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [typedText, setTypedText] = useState('')
   const [typingComplete, setTypingComplete] = useState(false)
@@ -236,35 +243,129 @@ function App() {
   ]
 
   const experiences: Experience[] = [
+
     {
       title: 'Powerplant and Mechanical Systems Engineering Intern',
       company: 'Piper Aircraft Inc.',
       location: 'Vero Beach, FL',
-      period: 'Jan 2024 – May 2024',
+      period: 'Jan 2025 – May 2025',
+      logo: '/pictures/piper-logo.png',
+      website: 'https://www.piper.com',
       description: [
         'Developed solutions to help advance Piper aircraft\'s mission of making flight available for all, designign both software and hardware to streamline operations, and increase testing safety'
       ],
-      tags: ['Python', 'TensorFlow', 'Pandas', 'CFD', 'Blender']
+      tags: ['Siemens NX', 'Python', 'TensorFlow', 'Pandas', 'CFD', 'Blender'],
+      details: {
+        fullDescription: [
+          `During my time at Piper Aircraft, I worked with real aircraft systems and large sets of engineering data, focusing on building tools and models that made complex information easier to understand and use. I developed a Python based heat analysis tool to study how aircraft brakes warm up over time using test data. This allowed engineers to better visualize trends and chose appropriate brake rotor dimensions for a POC Aircraft.
+
+            In parallel, I performed detailed measurement and reverse engineering work on aircraft components. A major project involved an aftermarket oleo strut system, where I carefully measured parts and recreated them in CAD so the digital models accurately reflected the physical hardware. I also designed brackets for the parking brake system, working closely with representatives from Beringer to ensure the designs met real installation and use requirements.
+
+            Beyond hardware and analysis, I built several Python scripts to help organize and manage thousands of technical documents, including maintenance manuals, parts catalogs, and pilot handbooks stored on the network. These tools improved accessibility and reduced the time engineers spent searching for information. Overall, my experience at Piper combined hands on problem solving, software driven organization, and practical design work in a real world aerospace environment.`
+        ],
+        image: '/pictures/piper_experience_image.jpeg'
+      }
     },
     {
       title: 'Teaching Assistant',
       company: 'Design and Manufacturing Lab, UF',
       location: 'Gainesville, FL',
       period: 'Aug 2024 – Present',
+      logo: '/pictures/uf-logo.png',
       description: [
-        'Directed semester-long trainings for groups of 4+ students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles. Supervised lab work to ensure safe operation of equipment.'
+        'Direct semester-long trainings for groups of 4 students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles, while supervising lab work to ensure operational safety.'
       ],
-      tags: ['Teaching', 'Machining', 'DFMA', 'GD&T', 'Safety']
+      tags: ['Teaching & Mentoring', 'Manual and CNC Machining', 'DFMA', 'GD&T', 'Operational Safety'],
+      details: {
+
+        fullDescription: [
+          `At the University of Florida’s Design & Manufacturing Lab (DML), I serve in a hands-on teaching and leadership role focused on bridging the gap between classroom theory and real-world engineering practice. Each semester, I directly train and mentor a group of students on manual mills and lathes, emphasizing safe operation, process planning, and practical shop decision-making. 
+          
+          Beyond machine operation, I teach students how to design components with manufacturing in mind, integrating mechanics of materials, design for manufacturability, GD&T, production cost awareness, and realistic manufacturing timelines. The goal is to shift their mindset from completing assignments to thinking like practicing engineers and business owners responsible for performance, cost, and feasibility.
+          
+          In addition to instruction, I evaluate homework and long-form design projects that mirror industry deliverables. My feedback is framed through a leadership and business lens: what a board of directors or technical leadership team would expect if this work were submitted in a real company, and how design decisions translate into quality, impact, and accountability. The focus is on developing engineers who take ownership of their work, communicate clearly, and consistently deliver high-quality solutions under real-world constraints.`
+
+        ],
+        image: '',
+      }
+    },
+            {
+      title: 'Co-Founder & CTO',
+      company: 'Knead',
+      location: 'Gainesville, FL',
+      period: 'Dec 2025 – Present',
+      logo: '/pictures/knead-logo.svg',
+      website: 'https://www.kneadtoinvest.com',
+      description: [
+        'Serve as CTO and co‑founder of Knead, responsible for defining the technical vision, system architecture, and execution strategy for a block‑based quantitative trading platform designed to make investing accessible and intuitive for non‑technical users.'
+      ],
+      tags: ['Operations', 'Leadership & PM', 'Technology', 'Cloud Architecture', 'Distributed Systems'],
+      details: {
+
+        fullDescription: [
+
+          `As CTO of Knead, I define and own the high‑level technical direction for a block‑based trading platform designed to lower the barrier to entry for quantitative investing. Knead is not just a backtesting tool; it is a product‑driven platform that allows users to visually assemble trading strategies from modular building blocks, enabling sophisticated behavior without requiring users to write code. My role centers on maintaining a holistic understanding of the system while translating product goals into clear technical priorities and constraints for the team.
+
+          I lead and manage a nine‑person engineering team across front‑end development, backtesting and execution engines, APIs, cloud infrastructure, and compliance‑aware architecture. I set expectations around interfaces, ownership, and delivery timelines, and I established execution systems through ClickUp, including authored SOPs, milestone tracking, and weekly technical reviews. Rather than operating as an individual contributor, I focus on directing work, unblocking engineers, and ensuring that parallel efforts converge toward a unified product vision.
+
+          From an architectural standpoint, I guide decisions around scalability, numerical correctness, system reliability, and separation of concerns between the strategy engine, API layer, and user‑facing interfaces. I stay fluent in cloud and distributed‑system fundamentals through formal AWS training to make informed infrastructure‑level decisions and communicate effectively with specialists on the team. In parallel, I contribute to company‑level execution by shaping the technical narrative for demos, applications, and pitch materials, helping position Knead as a platform that democratizes investing by making powerful tools intuitive, visual, and engaging.`
+          
+        ],
+        image: '/pictures/knead_pic.jpg',
+
+      }
     },
     {
-      title: 'Founder and CEO',
+      title: 'Founder and Partner',
       company: 'Bike Bros Gainesville',
       location: 'Gainesville, FL',
       period: 'May 2025 – Present',
+      logo: '/pictures/bike_bros-logo.png',
+      website: '',
       description: [
         'Founded and operate a bicycle refurbishment & sales business. Manage a network of bicycle mechanics, and drive day-to-day operations to ensure product quality, and optimal profit margins.'
       ],
-      tags: ['Business', 'Operations', 'Sustainability', 'Leadership']
+      tags: ['Operations', 'finances', 'upcycling', 'Sustainability', 'Leadership'],
+
+      details: {
+        fullDescription: [
+
+          `At Bike Bros Gainesville, the work centers on identifying value where others see waste and turning abandoned or overlooked bicycles into reliable, affordable transportation. Gainesville generates a steady supply of impounded and discarded bikes, many of which still have meaningful market and functional value. Inventory that cannot be responsibly restored is recycled, while select bicycles are refurbished and reintroduced into the community with an emphasis on quality, sustainability, and accessibility.
+
+          My role as Founder and CEO is rooted in quantitative decision-making and hands-on operations. I personally perform preemptive valuations before acquisition, analyzing each bike or lot based on overall condition, model and style, market demand, estimated parts and repair costs, resale timelines, and risk. For every opportunity, I quantitatively model best and worst case profit scenarios and derive a strict maximum bid price from those bounds, allowing the business to operate with disciplined margins and a data-driven advantage over competitors who rely primarily on intuition.
+
+          In addition to strategy and valuation, I oversee day-to-day execution across the business. This includes early-morning impound lot sourcing, inventory transport, financial management, repair coordination, marketing through Instagram and online marketplaces, and direct customer communication. Bike Bros Gainesville is operated as a hands-on venture where execution quality, consistency, and accountability directly determine outcomes, mirroring the demands of a real operating company rather than a casual side project.`
+        
+        ],
+
+        image: '/pictures/bike_bros_pic.png',
+      }
+    },
+            {
+      title: 'Pianist and Accompanist',
+      company: 'Freelance',
+      location: 'Gainesville, FL',
+      period: 'Jan 2023 – Present',
+      logo: '/pictures/piano-logo.png',
+      website: 'https://www.youtube.com/watch?v=sgQgLC_Gxt8',
+      description: [
+        'Perform as a classical pianist and freelance musician with formal conservatory training, active in solo performance, collaborative work, and weekly professional church music service. Execute rapid learning, preparation, and performance of a high volume of repertoire under tight deadlines.'
+      ],
+      tags: ['Performance', 'Collaboration', 'Rapid Learning', 'Communication', 'Adaptability'],
+      details: {
+
+        fullDescription: [
+
+          `My work as a pianist is centered on disciplined preparation, stylistic accuracy, and dependable performance across a wide range of classical repertoire. I have studied and performed works spanning the Baroque through late Romantic periods, including technically and structurally demanding solo pieces that require long‑term planning, endurance, and interpretive clarity. My approach emphasizes musical architecture, precision, and consistency rather than surface‑level virtuosity.
+
+          In parallel with solo performance, I operate as a freelance pianist with significant collaborative and service‑based experience. I serve as the primary pianist for a church every Sunday, where I regularly learn, rehearse, and perform new repertoire on a weekly cycle. This role requires fast score assimilation, stylistic flexibility, and the ability to deliver polished performances with minimal rehearsal time. Over time, this has resulted in exposure to a large and diverse body of music and has strengthened my reliability under recurring performance constraints.
+
+          Beyond church work, I have extensive experience as a collaborative pianist for instrumentalists and vocalists. This includes accompanying rehearsals and performances, adapting to different musical styles and interpretations, and supporting ensemble cohesion through clear musical communication. I treat freelance performance as a professional service role, where preparation efficiency, responsiveness, and consistency are essential. Across all settings, I apply a systems‑driven practice methodology that breaks repertoire into technical, musical, and structural components and manages preparation timelines backward from performance dates.`
+        ],
+
+        image: '/pictures/piano_pic.png',
+
+      }
     }
   ]
 
@@ -275,7 +376,7 @@ function App() {
       image: 'https://covers.openlibrary.org/b/isbn/9780062004734-L.jpg',
       status: 'in-progress',
       details: {
-        fullDescription: [],
+        fullDescription: ['currently learning...'],
         keyTakeaways: [],
       },
     }
@@ -483,8 +584,8 @@ function App() {
           <div className="nav-links">
             <button onClick={() => scrollToSection('about')}>ABOUT</button>
             <button onClick={() => scrollToSection('projects')}>PROJECTS</button>
-            <button onClick={() => scrollToSection('reading')}>LIBRARY</button>
             <button onClick={() => scrollToSection('experience')}>EXPERIENCE</button>
+            <button onClick={() => scrollToSection('reading')}>LIBRARY</button>
             <button onClick={() => scrollToSection('contact')}>CONTACT</button>
           </div>
         </div>
@@ -524,7 +625,7 @@ function App() {
                 </svg>
                 LinkedIn
               </a>
-              <a href="src/assets/resume.pdf" download className="hero-btn social-btn">
+              <a href="public/downloadables/resume.pdf" download className="hero-btn social-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
@@ -564,14 +665,14 @@ function App() {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I'm an Aerospace Engineering student at the University of Florida with a minor in Computer Science and a Bachelor of Music in Piano.
+                I'm an Aerospace Engineering and Piano Performancedouble major at the University of Florida, with a passion for building and learning.
                 I thrive at the intersection of engineering precision and creative problem-solving, building everything from predictive ML models
-                at Piper Aircraft to full-stack web applications.
+                for engineering analysis to full-stack web applications and handcrafted mechanical systems.
               </p>
               <p>
-                When I'm not coding or designing systems, you'll find me performing piano with orchestras, training for triathlons,
-                or running my bicycle refurbishment business. I believe in cultivating a holistic skillset across engineering, computer science,
-                music, and athletics.
+                When I'm not working on my projects, you'll find me performing piano, training for triathlons,
+                running my bike refurbishing business, or having a chill afternoon with my friends. I believe in cultivating a holistic skillset across STEM,
+                music, and athletics, and deeply value strong and meaningful relationships with those around me.
               </p>
             </div>
             <div className="skills-grid">
@@ -580,11 +681,15 @@ function App() {
               <div className="skill-item">C# .NET</div>
               <div className="skill-item">Flutter + Dart</div>
               <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=javascript&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">Node.js + Supabase</a>
-              <div className="skill-item">SolidWorks + NX</div>
-              <div className="skill-item">MATLAB + C++</div>
-              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">FastAPI</a>
+              <div className="skill-item">SolidWorks & Siemens NX</div>
+              <div className="skill-item">MATLAB</div>
+              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">AWS Cloud Practitioner</a>
             </div>
           </div>
+          <blockquote className="about-quote">
+            <p className="quote-text">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
+            <cite className="quote-author">— Aristotle</cite>
+          </blockquote>
         </div>
       </section>
 
@@ -686,6 +791,52 @@ function App() {
         </div>
       </section>
 
+      {/* Experience Section */}
+      <section id="experience" className="section experience-section">
+        <div className="section-content">
+          <h2 className="section-label">E_</h2>
+          <h3 className="section-title">Work Experience</h3>
+          <div className="experience-grid">
+            {experiences.map((exp, index) => (
+              <div
+                key={index}
+                className={`experience-card ${exp.details ? 'clickable' : ''}`}
+                onClick={() => exp.details && setSelectedExperience(exp)}
+              >
+                <div className="experience-header">
+                  <div>
+                    {exp.logo && (
+                      <div className="experience-logo">
+                        <img src={exp.logo} alt={`${exp.company} logo`} />
+                      </div>
+                    )}
+                    <h4 className="experience-title">{exp.title}</h4>
+                    <p className="experience-company">{exp.company}</p>
+                    <p className="experience-location">{exp.location}</p>
+                  </div>
+                  <span className="experience-period">{exp.period}</span>
+                </div>
+                <ul className="experience-description">
+                  {exp.description.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+                <div className="project-tags">
+                  {exp.tags.map((tag, i) => (
+                    <span key={i} className="tag">{tag}</span>
+                  ))}
+                </div>
+                {exp.details && (
+                  <button className="project-details-btn" style={{ marginTop: '1rem' }}>
+                    View Details →
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Reading Section */}
       <section id="reading" className="section reading-section">
         <div className="section-content">
@@ -722,38 +873,6 @@ function App() {
                 <button className="book-lessons-btn">
                   Lessons Learned →
                 </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="section experience-section">
-        <div className="section-content">
-          <h2 className="section-label">E_</h2>
-          <h3 className="section-title">Work Experience</h3>
-          <div className="experience-grid">
-            {experiences.map((exp, index) => (
-              <div key={index} className="experience-card">
-                <div className="experience-header">
-                  <div>
-                    <h4 className="experience-title">{exp.title}</h4>
-                    <p className="experience-company">{exp.company}</p>
-                    <p className="experience-location">{exp.location}</p>
-                  </div>
-                  <span className="experience-period">{exp.period}</span>
-                </div>
-                <ul className="experience-description">
-                  {exp.description.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-                <div className="project-tags">
-                  {exp.tags.map((tag, i) => (
-                    <span key={i} className="tag">{tag}</span>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
@@ -932,6 +1051,54 @@ function App() {
                   </div>
                 </>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Experience Modal */}
+      {selectedExperience && (
+        <div className="modal-overlay" onClick={() => setSelectedExperience(null)}>
+          <div className="modal-content experience-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setSelectedExperience(null)}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+            </button>
+
+            <div className="modal-header">
+              {selectedExperience.details?.image && (
+                <div className="modal-image-container">
+                  <img src={selectedExperience.details.image} alt={selectedExperience.company} className="modal-image" />
+                </div>
+              )}
+              <div>
+                <h3 className="modal-title">{selectedExperience.title}</h3>
+                <p className="experience-modal-company">
+                  {selectedExperience.website ? (
+                    <a href={selectedExperience.website} target="_blank" rel="noopener noreferrer" className="experience-company-link">
+                      {selectedExperience.company}
+                    </a>
+                  ) : (
+                    selectedExperience.company
+                  )}
+                </p>
+                <p className="experience-modal-meta">{selectedExperience.location} • {selectedExperience.period}</p>
+              </div>
+            </div>
+
+            <div className="modal-body">
+              {selectedExperience.details?.fullDescription.map((para, i) => (
+                <p key={i} className="modal-paragraph" dangerouslySetInnerHTML={{
+                  __html: para.replace(/\n/g, '<br />')
+                }} />
+              ))}
+
+              <div className="modal-tags">
+                {selectedExperience.tags.map((tag, i) => (
+                  <span key={i} className="tag">{tag}</span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
