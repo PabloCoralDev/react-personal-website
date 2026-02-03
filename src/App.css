@@ -919,6 +919,50 @@
   }
 }
 
+.mobile-warning-modal {
+  max-width: 500px;
+}
+
+.mobile-warning-modal .modal-header {
+  text-align: center;
+  border-bottom: none;
+  padding-bottom: 1rem;
+}
+
+.mobile-warning-modal .modal-body {
+  text-align: center;
+}
+
+.mobile-warning-modal .modal-paragraph {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.mobile-warning-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.mobile-warning-cta:hover {
+  background: var(--text-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-warning-cta svg {
+  flex-shrink: 0;
+}
+
 .modal-close {
   position: absolute;
   top: 1.5rem;
