@@ -112,13 +112,14 @@ function App() {
   const projects: Project[] = [
     {
       title: 'Mini Back testing Engine',
-      description: 'Full-stack, lightweight backtesting engine as a demo to understand the Backtrader API, and get a better understanding to propel my knowledge as Knead CTO',
-      tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI', 'Vercel'],
+      description: 'Full-stack, lightweight backtesting engine demo to understand the Backtrader library, endpoints and communication, and get a better understanding of full-stack applications to propel my knowledge as Knead CTO',
+      tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI + Gunicorn', 'Vercel', 'API Endpoints'],
       outer_image: '/pictures/backtesting-in-out.png',
       details: {
 
         fullDescription: [],
-        github: 'https://github.com/pablocoraldev',
+        github: 'https://github.com/PabloCoralDev/backtesting-interface',
+        demo: 'https://backtesting-interface.vercel.app/'
       }
     },
     {
