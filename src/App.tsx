@@ -674,7 +674,7 @@ function App() {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I'm an Aerospace Engineering and Piano Performancedouble major at the University of Florida, with a passion for building and learning.
+                I'm an Aerospace Engineering and Piano Performance double-major at the University of Florida, with a passion for building and learning.
                 I thrive at the intersection of engineering precision and creative problem-solving, building everything from predictive ML models
                 for engineering analysis to full-stack web applications and handcrafted mechanical systems.
               </p>
