@@ -114,7 +114,8 @@ function App() {
       title: 'Mini Back testing Engine',
       description: 'Full-stack, lightweight backtesting engine demo to understand the Backtrader library, endpoints and communication, and get a better understanding of full-stack applications to propel my knowledge as Knead CTO',
       tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI + Gunicorn', 'Vercel', 'API Endpoints'],
-      outer_image: '/pictures/backtesting-in-out.png',
+      outer_image: '/pictures/backtesting-out.png',
+      inner_image: '/pictures/backtesting-in.png',
       details: {
 
         fullDescription: [],
