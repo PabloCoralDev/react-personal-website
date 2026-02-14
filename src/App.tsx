@@ -380,6 +380,27 @@ function App() {
 
   const books: Book[] = [
     {
+      title: 'Advanced Futures Trading Strategies',
+      author: 'Robert Carver',
+      image: 'https://covers.openlibrary.org/b/isbn/9780857199683-L.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: ['currently learning...'],
+        keyTakeaways: [],
+      }
+    },
+    {
+      title: 'Python for Algorithmic Trading Cookbook',
+      author: 'Jason Strimpel',
+      image: 'https://covers1.booksamillion.com/covers/bam/1/83/508/470/1835084702_b.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: ['currently learning...'],
+        keyTakeaways: [],
+      }
+
+    },
+    {
       title: 'Fear',
       author: 'Tich Nhat Hanh',
       image: 'https://covers.openlibrary.org/b/isbn/9780062004734-L.jpg',
@@ -518,17 +539,6 @@ function App() {
       }
     },
     {
-      title: 'Rewiring Your OCD Brain',
-      author: 'Catherine Pittman & William Youngs',
-      image: 'https://covers.openlibrary.org/b/isbn/9781684037186-L.jpg',
-      status: 'complete',
-      details: {
-        fullDescription: [
-          `OCD is a brain circuit problem, not a character flaw. Understanding the neuroscience helps: the cortex creates obsessive thoughts, the basal ganglia creates compulsive behaviors. Exposure and Response Prevention (ERP) therapy physically rewires these circuits. Face the anxiety, resist the compulsion, and the brain gradually learns the feared outcome won't occur.`
-        ]
-      }
-    },
-    {
       title: 'The 4-Hour Workweek',
       author: 'Tim Ferriss',
       image: 'https://covers.openlibrary.org/b/isbn/9780307465351-L.jpg',
@@ -580,6 +590,18 @@ function App() {
           'Authentic Expression',
           'Toltec Wisdom',
           'Emotional Intelligence'
+        ]
+      }
+    },
+        {
+      title: 'Rewiring Your OCD Brain',
+      author: 'Catherine Pittman & William Youngs',
+      image: 'https://covers.openlibrary.org/b/isbn/9781684037186-L.jpg',
+      status: 'complete',
+      details: {
+        fullDescription: [
+          `Opened my mind to a crucial thing: My brain is malleable at-will. After applying the concepts here to improve my own mental health, the door opened for an insane amount of possibilities: I can rewire my brain to be more focused, more resilient, a better engineer & pianist, and ultimately a better version of myself. The book provides practical tools to understand and rewire the brain's response to OCD, but the underlying principle of neuroplasticity can be applied to any area of life. By consciously changing thought patterns and behaviors, we can reshape our brains and transform our lives.
+           Meditation is amazing!`
         ]
       }
     }
