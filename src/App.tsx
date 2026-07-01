@@ -49,6 +49,7 @@ interface Photo {
   subtitle: string,
   location: string,
   date?: string,
+  portrait?: boolean,
 }
 
 function App() {
@@ -354,28 +355,41 @@ function App() {
   // and update the image/subtitle/location/date below.
   const photos: Photo[] = [
     {
-      image: '/pictures/piano_pic.png',
-      subtitle: 'Sundays at the keys',
-      location: 'University Lutheran Church',
-      date: 'Gainesville, FL',
+      image: '/pictures/gallery/Acadia_trip_2.png',
+      subtitle: `Road trip in an '89 Stanza Wagon`,
+      location: 'Vermont',
+      date: '',
     },
     {
-      image: '/pictures/bike_bros_pic.png',
-      subtitle: 'Turning waste into wheels',
-      location: 'Bike Bros HQ',
-      date: 'Gainesville, FL',
+      image: '/pictures/gallery/Acadia_trip_3.png',
+      subtitle: 'Early Morning After Camping',
+      location: 'Quill Hill, Maine',
+      date: '',
     },
     {
-      image: '/pictures/knead_pic.jpg',
-      subtitle: 'Building the future of investing',
-      location: 'Knead',
-      date: 'Gainesville, FL',
+      image: '/pictures/gallery/Calisthenics_progress_Acadia_2.png.png',
+      subtitle: 'Calisthenics with a View',
+      location: 'Acadia National Park',
+      date: 'Maine',
+      portrait: true,
     },
     {
-      image: '/pictures/piper_experience_image.jpeg',
-      subtitle: 'Where engineering takes flight',
-      location: 'Piper Aircraft Inc.',
-      date: 'Vero Beach, FL',
+      image: '/pictures/gallery/vermont_trip_1.png',
+      subtitle: 'Fall foliage',
+      location: 'Vermont',
+      date: '',
+    },
+    {
+      image: '/pictures/gallery/MiamiSteinwayHall_piano_1.png',
+      subtitle: 'Playing at Steinway Hall',
+      location: 'Steinway Hall',
+      date: 'Miami, FL',
+    },
+    {
+      image: '/pictures/gallery/Calisthenics_Gainesville_1.png',
+      subtitle: 'Calisthenics Sesh',
+      location: 'Gainesville, FL',
+      date: '',
     },
   ];
 
@@ -710,15 +724,14 @@ function App() {
                 living at the intersection of <em>precision and creativity</em>
               </p>
               <p>
-                I love to build. handcrafted machined parts, ML models for engineering analysis, and full-stack apps. After school, I'm at the piano, training for triathlons, or running my
-                bike-refurbishing business.
+                I love to build. handcrafted machined parts, ML models for engineering analysis, and full-stack apps. After school, I'm at the piano, training for triathlons, doing handstands, or running my
+                bike-refurbishing business!
               </p>
               <div className="about-tags">
                 <span className="about-tag">🚀 Engineer</span>
                 <span className="about-tag">🎹 Pianist</span>
                 <span className="about-tag">🛠️ Builder</span>
                 <span className="about-tag">🏊 Triathlete</span>
-                <span className="about-tag">🚲 Founder</span>
               </div>
               <blockquote className="about-quote">
                 <p className="quote-text">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
@@ -958,7 +971,10 @@ function App() {
                   className={`carousel-slide ${index === currentPhoto ? 'active' : ''}`}
                   aria-hidden={index !== currentPhoto}
                 >
-                  <img src={photo.image} alt={photo.subtitle} className="carousel-image" />
+                  {photo.portrait && (
+                    <div className="carousel-image-bg" style={{ backgroundImage: `url(${photo.image})` }} aria-hidden="true" />
+                  )}
+                  <img src={photo.image} alt={photo.subtitle} className={`carousel-image ${photo.portrait ? 'carousel-image-portrait' : ''}`} />
                   <div className="carousel-caption">
                     <span className="carousel-index">
                       {String(index + 1).padStart(2, '0')} <span className="carousel-index-total">/ {String(photos.length).padStart(2, '0')}</span>
