@@ -664,7 +664,7 @@ function App() {
             </span>
           </h1>
           <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
-            Engineer and musician working with precision and performing with passion
+            Engineer and Musician working with precision and performing with passion
           </p>
           <div className="hero-buttons fade-in-up delay-3">
             <div className="hero-buttons-row">
