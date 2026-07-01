@@ -44,6 +44,13 @@ interface Book {
   }
 }
 
+interface Photo {
+  image: string,
+  subtitle: string,
+  location: string,
+  date?: string,
+}
+
 function App() {
   const [scrolled, setScrolled] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
@@ -54,6 +61,7 @@ function App() {
   const [typingComplete, setTypingComplete] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [showMobileWarning, setShowMobileWarning] = useState(false)
+  const [currentPhoto, setCurrentPhoto] = useState(0)
 
   const fullText = "Hi, I'm Pablo"
 
@@ -110,17 +118,20 @@ function App() {
   }
 
   const projects: Project[] = [
-    {
-      title: 'Mini Back testing Engine',
-      description: 'Full-stack, lightweight backtesting engine demo to understand the Backtrader library, endpoints and communication, and get a better understanding of full-stack applications to propel my knowledge as Knead CTO',
-      tags: ['Python', 'Backtrader', 'PyFolio', 'FastAPI + Gunicorn', 'Vercel', 'API Endpoints'],
-      outer_image: '/pictures/backtesting-out.png',
-      inner_image: '/pictures/backtesting-in.png',
+        {
+      title: 'Custom Hand-Machined Pen',
+      description: 'Designed and machined a custom pen for my Dad\'s 65th birthday, creating a timeless and useful gift. Utilized Single-point threading along other machining techniques.',
+      tags: ['Manual Lathe', 'Single-Point Threading', 'Machining', 'On-The-Spot problem solving', 'DFMA'],
+      outer_image: '/pictures/hand_machined_pen-out.jpeg',
+      inner_image: '/pictures/hand_machined_pen-in.jpeg',
       details: {
+        fullDescription: [
+          `Designed around a Pilot G2 cartridge, chosen (between Parker and Scribe contenders) due to its cost effectiveness to premium feel ratio, as well as it's availability (I could mess up a few without incurring great cost).
+          
+          Use Solidworks to created a fully dimensioned model of the cartridge, including complex and curved geometries, and designed the pen to fit around it while keeping DFMA and tool availability principles in mind.
 
-        fullDescription: [],
-        github: 'https://github.com/PabloCoralDev/backtesting-interface',
-        demo: 'https://backtesting-interface.vercel.app/'
+          Chose the specific screw-in mechanism for ease of use, as well as to ensure a no-seam fit when the pen was in-use. Calculated pen moment arm for ideal top-section fill and length for best writing feel, and chose 310 stainless steel for the final pen for its durability and sand-blasted aesthetic appeal.`
+        ]
       }
     },
     {
@@ -152,18 +163,6 @@ function App() {
         fullDescription: [
           `Programmed, CNC-machined and assembled 5 components for an air engine. Using Fusion and a Haas VF-3 mill. Earning the ACE CNC certificate.`
         ]
-      }
-    },
-    {
-      title: 'Differential Equations Playground',
-      description: 'Full-stack application to deepen mathematical understanding and cross-language integration',
-      tags: ['Python', 'React', 'FastAPI', 'Vercel'],
-      outer_image: '/pictures/diff_eq_playground-out.png',
-      details: {
-        fullDescription: [
-          `Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration. Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI. Hosting open-source on a Vercel + GitHub integration.`
-        ],
-        github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
       }
     },
     {
@@ -209,44 +208,16 @@ function App() {
         sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
       }
     },
-    {
-      title: 'Custom Hand-Machined Pen',
-      description: 'Designed and machined a custom pen for my Dad\'s 65th birthday, creating a timeless and useful gift. Utilized Single-point threading along other machining techniques.',
-      tags: ['Manual Lathe', 'Single-Point Threading', 'Machining', 'On-The-Spot problem solving', 'DFMA'],
-      outer_image: '/pictures/hand_machined_pen-out.jpeg',
-      inner_image: '/pictures/hand_machined_pen-in.jpeg',
-      details: {
-        fullDescription: [
-          `Designed around a Pilot G2 cartridge, chosen (between Parker and Scribe contenders) due to its cost effectiveness to premium feel ratio, as well as it's availability (I could mess up a few without incurring great cost).
-          
-          Use Solidworks to created a fully dimensioned model of the cartridge, including complex and curved geometries, and designed the pen to fit around it while keeping DFMA and tool availability principles in mind.
-
-          Chose the specific screw-in mechanism for ease of use, as well as to ensure a no-seam fit when the pen was in-use. Calculated pen moment arm for ideal top-section fill and length for best writing feel, and chose 310 stainless steel for the final pen for its durability and sand-blasted aesthetic appeal.`
-        ]
-      }
-    },
         {
-      title: 'VirtuoNext™',
-      description: 'Full-stack MVP for a bid-based booking platform matching soloists with accompanist pianists',
-      tags: ['React', 'TypeScript', 'Supabase', 'Stripe API'],
-      outer_image: '/pictures/virtuonext_mvp-out.png',
-      inner_image: '/pictures/virtuonext_mvp-in.png',
+      title: 'Differential Equations Playground',
+      description: 'Full-stack application to deepen mathematical understanding and cross-language integration',
+      tags: ['Python', 'React', 'FastAPI', 'Vercel'],
+      outer_image: '/pictures/diff_eq_playground-out.png',
       details: {
         fullDescription: [
-          `Developed an MVP for VirtuoNext™, in order to match pianists to soloists, while functioning as an AirBnb all-in-one platform to search for, ask/bid, connect, message and ultimately and securely perform payments between Pianists and Soloists.
-
-          Being a professional pianist myself, I came to realize that the majority of pianist to soloist or pianist to institution connections happen exclusively through word-of-mouth, denying the opportunity for many to break into the field and overloading others such as myself.
-
-          I constantly encountered some Vocalists who could not find a Pianist, while at the same time receiving about 5 or more messages a week from others asking me to accompany them, all while my Pianist peers could not find a job or a gig.
-
-          At the same time, as a church pianist at University Lutheran Church, every weekend I must take off for holidays/exams or internships, I face the struggle of being unable to find a pianist for them despite the large demand and desire for a church gig. 
-
-          Thus, the idea for VirtuoNext™ was born, as a bid-based system so both Pianists and Soloists/institutions can organically agree on a price, being just to more experienced musicians while allowing less experienced ones to enter the field.
-
-          The application is currently in the MVP stage, with Open Source chat messaging + Stripe API integration.`
+          `Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration. Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI. Hosting open-source on a Vercel + GitHub integration.`
         ],
-        github: 'https://github.com/PabloCoralDev/VirtuoNext_ReactMVP',
-        demo: 'https://virtuonext.vercel.app/'
+        github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
       }
     },
   ]
@@ -254,6 +225,30 @@ function App() {
   const experiences: Experience[] = [
 
     {
+      title: 'Teaching Assistant',
+      company: 'Design and Manufacturing Lab, UF',
+      location: 'Gainesville, FL',
+      period: 'Aug 2024 – Present',
+      logo: '/pictures/uf-logo.png',
+      website: 'https://web.mae.ufl.edu/designlab/',
+      description: [
+        'Direct semester-long trainings for groups of 4 students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles, while supervising lab work to ensure operational safety.'
+      ],
+      tags: ['Teaching & Mentoring', 'Manual and CNC Machining', 'DFMA', 'GD&T', 'Operational Safety'],
+      details: {
+
+        fullDescription: [
+          `At the University of Florida’s Design & Manufacturing Lab (DML), I serve in a hands-on teaching and leadership role focused on bridging the gap between classroom theory and real-world engineering practice. Each semester, I directly train and mentor a group of students on manual mills and lathes, emphasizing safe operation, process planning, and practical shop decision-making. 
+          
+          Beyond machine operation, I teach students how to design components with manufacturing in mind, integrating mechanics of materials, design for manufacturability, GD&T, production cost awareness, and realistic manufacturing timelines. The goal is to shift their mindset from completing assignments to thinking like practicing engineers and business owners responsible for performance, cost, and feasibility.
+          
+          In addition to instruction, I evaluate homework and long-form design projects that mirror industry deliverables. My feedback is framed through a leadership and business lens: what a board of directors or technical leadership team would expect if this work were submitted in a real company, and how design decisions translate into quality, impact, and accountability. The focus is on developing engineers who take ownership of their work, communicate clearly, and consistently deliver high-quality solutions under real-world constraints.`
+
+        ],
+        image: '',
+      }
+    },
+        {
       title: 'Powerplant and Mechanical Systems Engineering Intern',
       company: 'Piper Aircraft Inc.',
       location: 'Vero Beach, FL',
@@ -276,49 +271,52 @@ function App() {
       }
     },
     {
-      title: 'Teaching Assistant',
-      company: 'Design and Manufacturing Lab, UF',
+      title: 'Pianist and Accompanist',
+      company: 'Freelance',
       location: 'Gainesville, FL',
-      period: 'Aug 2024 – Present',
-      logo: '/pictures/uf-logo.png',
+      period: 'Jan 2023 – Present',
+      logo: '/pictures/piano-logo.png',
+      website: 'https://www.youtube.com/watch?v=sgQgLC_Gxt8',
       description: [
-        'Direct semester-long trainings for groups of 4 students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles, while supervising lab work to ensure operational safety.'
+        'Perform as a classical pianist and freelance musician with formal conservatory training, active in solo performance, collaborative work, and weekly professional church music service. Execute rapid learning, preparation, and performance of a high volume of repertoire under tight deadlines.'
       ],
-      tags: ['Teaching & Mentoring', 'Manual and CNC Machining', 'DFMA', 'GD&T', 'Operational Safety'],
+      tags: ['Performance', 'Collaboration', 'Rapid Learning', 'Communication', 'Adaptability'],
       details: {
 
         fullDescription: [
-          `At the University of Florida’s Design & Manufacturing Lab (DML), I serve in a hands-on teaching and leadership role focused on bridging the gap between classroom theory and real-world engineering practice. Each semester, I directly train and mentor a group of students on manual mills and lathes, emphasizing safe operation, process planning, and practical shop decision-making. 
-          
-          Beyond machine operation, I teach students how to design components with manufacturing in mind, integrating mechanics of materials, design for manufacturability, GD&T, production cost awareness, and realistic manufacturing timelines. The goal is to shift their mindset from completing assignments to thinking like practicing engineers and business owners responsible for performance, cost, and feasibility.
-          
-          In addition to instruction, I evaluate homework and long-form design projects that mirror industry deliverables. My feedback is framed through a leadership and business lens: what a board of directors or technical leadership team would expect if this work were submitted in a real company, and how design decisions translate into quality, impact, and accountability. The focus is on developing engineers who take ownership of their work, communicate clearly, and consistently deliver high-quality solutions under real-world constraints.`
 
+          `My work as a pianist is centered on disciplined preparation, stylistic accuracy, and dependable performance across a wide range of classical repertoire. I have studied and performed works spanning the Baroque through late Romantic periods, including technically and structurally demanding solo pieces that require long‑term planning, endurance, and interpretive clarity. My approach emphasizes musical architecture, precision, and consistency rather than surface‑level virtuosity.
+
+          In parallel with solo performance, I operate as a freelance pianist with significant collaborative and service‑based experience. I serve as the primary pianist for a church every Sunday, where I regularly learn, rehearse, and perform new repertoire on a weekly cycle. This role requires fast score assimilation, stylistic flexibility, and the ability to deliver polished performances with minimal rehearsal time. Over time, this has resulted in exposure to a large and diverse body of music and has strengthened my reliability under recurring performance constraints.
+
+          Beyond church work, I have extensive experience as a collaborative pianist for instrumentalists and vocalists. This includes accompanying rehearsals and performances, adapting to different musical styles and interpretations, and supporting ensemble cohesion through clear musical communication. I treat freelance performance as a professional service role, where preparation efficiency, responsiveness, and consistency are essential. Across all settings, I apply a systems‑driven practice methodology that breaks repertoire into technical, musical, and structural components and manages preparation timelines backward from performance dates.`
         ],
-        image: '',
+
+        image: '/pictures/piano_pic.png',
+
       }
     },
-            {
-      title: 'Co-Founder & CTO',
+    {
+      title: 'Lead Operating Officer',
       company: 'Knead',
       location: 'Gainesville, FL',
       period: 'Dec 2025 – Present',
       logo: '/pictures/knead-logo.svg',
       website: 'https://www.kneadtoinvest.com',
       description: [
-        'Serve as CTO and co‑founder of Knead, responsible for defining the technical vision, system architecture, and execution strategy for a block‑based quantitative trading platform designed to make investing accessible and intuitive for non‑technical users.'
+        'I coordinate our engineering team and turn the product vision into reality for an easy-to-use quantitative trading platform designed to make investing accessible and intuitive for non‑technical users.'
       ],
-      tags: ['Operations', 'Leadership & PM', 'Technology', 'Cloud Architecture', 'Distributed Systems'],
+      tags: ['Operations', 'Leadership & PM', 'Product', 'User Research', 'Business Strategy'],
       details: {
 
         fullDescription: [
 
-          `As CTO of Knead, I define and own the high‑level technical direction for a block‑based trading platform designed to lower the barrier to entry for quantitative investing. Knead is not just a backtesting tool; it is a product‑driven platform that allows users to visually assemble trading strategies from modular building blocks, enabling sophisticated behavior without requiring users to write code. My role centers on maintaining a holistic understanding of the system while translating product goals into clear technical priorities and constraints for the team.
+          `As Lead Ops Officer at Knead, I coordinate our engineering team and bring our product vision to reality for a block‑based trading platform designed to lower the barrier to entry for quantitative investing. Knead is a product‑driven platform that allows users to visually assemble trading strategies from modular building blocks, enabling sophisticated behavior without requiring users to write code. My role centers on keeping the whole team aligned and translating product goals into clear priorities so that parallel efforts converge toward a unified product vision.
 
-          I lead and manage a nine‑person engineering team across front‑end development, backtesting and execution engines, APIs, cloud infrastructure, and compliance‑aware architecture. I set expectations around interfaces, ownership, and delivery timelines, and I established execution systems through ClickUp, including authored SOPs, milestone tracking, and weekly technical reviews. Rather than operating as an individual contributor, I focus on directing work, unblocking engineers, and ensuring that parallel efforts converge toward a unified product vision.
+          On the operations side, I coordinate our engineers, unblock work, and keep execution moving so the team stays focused and on schedule. I also design and run user surveys and interviews to understand the people we're building for, turning that research into insights that shape product direction and priorities.
 
-          From an architectural standpoint, I guide decisions around scalability, numerical correctness, system reliability, and separation of concerns between the strategy engine, API layer, and user‑facing interfaces. I stay fluent in cloud and distributed‑system fundamentals through formal AWS training to make informed infrastructure‑level decisions and communicate effectively with specialists on the team. In parallel, I contribute to company‑level execution by shaping the technical narrative for demos, applications, and pitch materials, helping position Knead as a platform that democratizes investing by making powerful tools intuitive, visual, and engaging.`
-          
+          Beyond day‑to‑day operations, I take part in the company's leadership efforts. I help build the pitch deck and business plan, and I represent Knead in pitch competitions and other leadership settings, helping position the company as a platform that democratizes investing by making powerful tools intuitive, visual, and engaging.`
+
         ],
         image: '/pictures/knead_pic.jpg',
 
@@ -350,35 +348,68 @@ function App() {
         image: '/pictures/bike_bros_pic.png',
       }
     },
-            {
-      title: 'Pianist and Accompanist',
-      company: 'Freelance',
-      location: 'Gainesville, FL',
-      period: 'Jan 2023 – Present',
-      logo: '/pictures/piano-logo.png',
-      website: 'https://www.youtube.com/watch?v=sgQgLC_Gxt8',
-      description: [
-        'Perform as a classical pianist and freelance musician with formal conservatory training, active in solo performance, collaborative work, and weekly professional church music service. Execute rapid learning, preparation, and performance of a high volume of repertoire under tight deadlines.'
-      ],
-      tags: ['Performance', 'Collaboration', 'Rapid Learning', 'Communication', 'Adaptability'],
-      details: {
-
-        fullDescription: [
-
-          `My work as a pianist is centered on disciplined preparation, stylistic accuracy, and dependable performance across a wide range of classical repertoire. I have studied and performed works spanning the Baroque through late Romantic periods, including technically and structurally demanding solo pieces that require long‑term planning, endurance, and interpretive clarity. My approach emphasizes musical architecture, precision, and consistency rather than surface‑level virtuosity.
-
-          In parallel with solo performance, I operate as a freelance pianist with significant collaborative and service‑based experience. I serve as the primary pianist for a church every Sunday, where I regularly learn, rehearse, and perform new repertoire on a weekly cycle. This role requires fast score assimilation, stylistic flexibility, and the ability to deliver polished performances with minimal rehearsal time. Over time, this has resulted in exposure to a large and diverse body of music and has strengthened my reliability under recurring performance constraints.
-
-          Beyond church work, I have extensive experience as a collaborative pianist for instrumentalists and vocalists. This includes accompanying rehearsals and performances, adapting to different musical styles and interpretations, and supporting ensemble cohesion through clear musical communication. I treat freelance performance as a professional service role, where preparation efficiency, responsiveness, and consistency are essential. Across all settings, I apply a systems‑driven practice methodology that breaks repertoire into technical, musical, and structural components and manages preparation timelines backward from performance dates.`
-        ],
-
-        image: '/pictures/piano_pic.png',
-
-      }
-    }
   ]
 
+  // Swap these out for your favorite shots — drop new images anywhere in /public/pictures
+  // and update the image/subtitle/location/date below.
+  const photos: Photo[] = [
+    {
+      image: '/pictures/piano_pic.png',
+      subtitle: 'Sundays at the keys',
+      location: 'University Lutheran Church',
+      date: 'Gainesville, FL',
+    },
+    {
+      image: '/pictures/bike_bros_pic.png',
+      subtitle: 'Turning waste into wheels',
+      location: 'Bike Bros HQ',
+      date: 'Gainesville, FL',
+    },
+    {
+      image: '/pictures/knead_pic.jpg',
+      subtitle: 'Building the future of investing',
+      location: 'Knead',
+      date: 'Gainesville, FL',
+    },
+    {
+      image: '/pictures/piper_experience_image.jpeg',
+      subtitle: 'Where engineering takes flight',
+      location: 'Piper Aircraft Inc.',
+      date: 'Vero Beach, FL',
+    },
+  ];
+
+  const nextPhoto = () => setCurrentPhoto((prev) => (prev + 1) % photos.length)
+  const prevPhoto = () => setCurrentPhoto((prev) => (prev - 1 + photos.length) % photos.length)
+
+  // Auto-advance the photo carousel (resets whenever the user navigates manually)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCurrentPhoto((prev) => (prev + 1) % photos.length)
+    }, 5000)
+    return () => clearTimeout(timeout)
+  }, [currentPhoto, photos.length])
   const books: Book[] = [
+    {
+      title: 'First, Break All the Rules',
+      author: 'Marcus Buckingham & Curt Coffman',
+      image: 'https://covers.openlibrary.org/b/isbn/9780684852867-L.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: ['currently learning...'],
+        keyTakeaways: [],
+      },
+    },
+    {
+      title: 'Fear',
+      author: 'Tich Nhat Hanh',
+      image: 'https://covers.openlibrary.org/b/isbn/9780062004734-L.jpg',
+      status: 'in-progress',
+      details: {
+        fullDescription: ['currently learning...'],
+        keyTakeaways: [],
+      },
+    },
     {
       title: 'Advanced Futures Trading Strategies',
       author: 'Robert Carver',
@@ -390,32 +421,10 @@ function App() {
       }
     },
     {
-      title: 'Python for Algorithmic Trading Cookbook',
-      author: 'Jason Strimpel',
-      image: 'https://covers1.booksamillion.com/covers/bam/1/83/508/470/1835084702_b.jpg',
-      status: 'in-progress',
-      details: {
-        fullDescription: ['currently learning...'],
-        keyTakeaways: [],
-      }
-
-    },
-    {
-      title: 'Fear',
-      author: 'Tich Nhat Hanh',
-      image: 'https://covers.openlibrary.org/b/isbn/9780062004734-L.jpg',
-      status: 'in-progress',
-      details: {
-        fullDescription: ['currently learning...'],
-        keyTakeaways: [],
-      },
-    }
-
-    ,{
       title: 'The Intelligent Investor',
       author: 'Benjamin Graham',
       image: 'https://covers.openlibrary.org/b/isbn/9780060555665-L.jpg',
-      status: 'in-progress',
+      status: 'complete',
       details: {
         fullDescription: [
           `Investment is most intelligent when it's most businesslike. Focus on fundamental value, maintain a margin of safety, and embrace Mr. Market's irrationality as opportunity. Distinguish between investing (thorough analysis, safety of principal, adequate return) and speculation. Dollar-cost averaging, diversification, and patience are the defensive investor's tools. The investor's chief enemy is likely to be themselves.`
@@ -617,6 +626,7 @@ function App() {
             <button onClick={() => scrollToSection('projects')}>PROJECTS</button>
             <button onClick={() => scrollToSection('experience')}>EXPERIENCE</button>
             <button onClick={() => scrollToSection('reading')}>LIBRARY</button>
+            <button onClick={() => scrollToSection('gallery')}>GALLERY</button>
             <button onClick={() => scrollToSection('contact')}>CONTACT</button>
           </div>
         </div>
@@ -640,7 +650,7 @@ function App() {
             </span>
           </h1>
           <p className={`hero-subtitle fade-in-up delay-2 ${isMobile ? 'mobile-wrap' : ''}`}>
-            Engineer, Pianist & Developer, bridging engineering precision with elegant code
+            Engineer and musician working with precision and performing with passion
           </p>
           <div className="hero-buttons fade-in-up delay-3">
             <div className="hero-buttons-row">
@@ -695,32 +705,35 @@ function App() {
           <h3 className="section-title">About Me</h3>
           <div className="about-grid">
             <div className="about-text">
-              <p>
-                I'm an Aerospace Engineering and Piano Performance double-major at the University of Florida, with a passion for building and learning.
-                I thrive at the intersection of engineering precision and creative problem-solving, building everything from predictive ML models
-                for engineering analysis to full-stack web applications and handcrafted mechanical systems.
+              <p className="about-lead">
+                Aerospace Engineering and Piano Performance double-major at the University of Florida, 
+                living at the intersection of <em>precision and creativity</em>
               </p>
               <p>
-                When I'm not working on my projects, you'll find me performing piano, training for triathlons,
-                running my bike refurbishing business, or having a chill afternoon with my friends. I believe in cultivating a holistic skillset across STEM,
-                music, and athletics, and deeply value strong and meaningful relationships with those around me.
+                I love to build. handcrafted machined parts, ML models for engineering analysis, and full-stack apps. After school, I'm at the piano, training for triathlons, or running my
+                bike-refurbishing business.
               </p>
+              <div className="about-tags">
+                <span className="about-tag">🚀 Engineer</span>
+                <span className="about-tag">🎹 Pianist</span>
+                <span className="about-tag">🛠️ Builder</span>
+                <span className="about-tag">🏊 Triathlete</span>
+                <span className="about-tag">🚲 Founder</span>
+              </div>
+              <blockquote className="about-quote">
+                <p className="quote-text">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
+                <cite className="quote-author">— Aristotle</cite>
+              </blockquote>
             </div>
-            <div className="skills-grid">
-              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=typescript&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">React + TypeScript</a>
-              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">Python + TensorFlow</a>
-              <div className="skill-item">C# .NET</div>
-              <div className="skill-item">Flutter + Dart</div>
-              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=javascript&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">Node.js + Supabase</a>
-              <div className="skill-item">SolidWorks & Siemens NX</div>
-              <div className="skill-item">MATLAB</div>
-              <a href="https://github.com/PabloCoralDev?tab=repositories&q=&type=&language=python&sort=" target="_blank" rel="noopener noreferrer" className="skill-item skill-item-link">AWS Cloud Practitioner</a>
+            <div className="about-photo">
+              {/* Placeholder — swap for a favorite candid shot of yourself */}
+              <img src="/pictures/acadia_picture_1.png" alt="Pablo Coral" />
+              <div className="about-photo-tag">
+                <span className="about-photo-dot"></span>
+                Acadia National Park, Maine
+              </div>
             </div>
           </div>
-          <blockquote className="about-quote">
-            <p className="quote-text">"We are what we repeatedly do. Excellence, then, is not an act, but a habit."</p>
-            <cite className="quote-author">— Aristotle</cite>
-          </blockquote>
         </div>
       </section>
 
@@ -729,6 +742,13 @@ function App() {
         <div className="section-content">
           <h2 className="section-label">P_</h2>
           <h3 className="section-title">Projects</h3>
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--text-secondary)',
+            fontStyle: 'italic',
+            marginTop: '-1rem',
+            marginBottom: '3rem',
+            opacity: 0.8}}>Hover over the images !</p>
 
           <div className="projects-grid">
             {projects.map((project, index) => (
@@ -825,7 +845,7 @@ function App() {
       {/* Experience Section */}
       <section id="experience" className="section experience-section">
         <div className="section-content">
-          <h2 className="section-label">E_</h2>
+          <h2 className="section-label">W_</h2>
           <h3 className="section-title">Work Experience</h3>
           <div className="experience-grid">
             {experiences.map((exp, index) => (
@@ -905,6 +925,73 @@ function App() {
                   Lessons Learned →
                 </button>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className="section gallery-section">
+        <div className="section-content">
+          <h2 className="section-label">G_</h2>
+          <h3 className="section-title">Through My Lens</h3>
+          <p style={{
+            fontSize: '1rem',
+            color: 'var(--text-secondary)',
+            fontStyle: 'italic',
+            marginTop: '-1rem',
+            marginBottom: '3rem',
+            opacity: 0.8
+          }}>A few moments from life outside the screen.</p>
+
+          <div className="carousel">
+            <button className="carousel-arrow carousel-arrow-left" onClick={prevPhoto} aria-label="Previous photo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            <div className="carousel-stage">
+              {photos.map((photo, index) => (
+                <div
+                  key={index}
+                  className={`carousel-slide ${index === currentPhoto ? 'active' : ''}`}
+                  aria-hidden={index !== currentPhoto}
+                >
+                  <img src={photo.image} alt={photo.subtitle} className="carousel-image" />
+                  <div className="carousel-caption">
+                    <span className="carousel-index">
+                      {String(index + 1).padStart(2, '0')} <span className="carousel-index-total">/ {String(photos.length).padStart(2, '0')}</span>
+                    </span>
+                    <h4 className="carousel-subtitle">{photo.subtitle}</h4>
+                    <p className="carousel-location">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                        <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="2"/>
+                      </svg>
+                      {photo.location}
+                      {photo.date && <span className="carousel-date"> · {photo.date}</span>}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button className="carousel-arrow carousel-arrow-right" onClick={nextPhoto} aria-label="Next photo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div className="carousel-dots">
+            {photos.map((_, index) => (
+              <button
+                key={index}
+                className={`carousel-dot ${index === currentPhoto ? 'active' : ''}`}
+                onClick={() => setCurrentPhoto(index)}
+                aria-label={`Go to photo ${index + 1}`}
+              />
             ))}
           </div>
         </div>
