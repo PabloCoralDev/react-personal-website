@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Strava data export archives (personal data - never commit)
+export_*.zip
