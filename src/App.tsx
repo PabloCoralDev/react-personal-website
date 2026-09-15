@@ -19,7 +19,7 @@ function App() {
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/piano" element={<PianoPage />} />
-        <Route path="/strava" element={<StravaPage />} />
+        <Route path="/training" element={<StravaPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

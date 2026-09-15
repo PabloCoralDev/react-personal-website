@@ -12,7 +12,7 @@ export function ExperiencePreview() {
         <h3 className="section-title">Work Experience</h3>
         <div className="experience-grid">
           {preview.map((exp, index) => (
-            <ExperienceCard key={index} experience={exp} onClick={() => navigate('/experience')} />
+            <ExperienceCard key={index} experience={exp} onClick={() => navigate('/experience')} compact />
           ))}
         </div>
 

@@ -3,12 +3,17 @@ import type { Experience } from '../../types'
 interface ExperienceCardProps {
   experience: Experience
   onClick: () => void
+  compact?: boolean
 }
 
-export function ExperienceCard({ experience: exp, onClick }: ExperienceCardProps) {
+export function ExperienceCard({ experience: exp, onClick, compact = false }: ExperienceCardProps) {
+  const description = compact ? exp.description.slice(0, 1) : exp.description
+  const tags = compact ? exp.tags.slice(0, 3) : exp.tags
+  const hiddenTagCount = exp.tags.length - tags.length
+
   return (
     <div
-      className={`experience-card ${exp.details ? 'clickable' : ''}`}
+      className={`experience-card ${compact ? 'experience-card-compact' : ''} ${exp.details ? 'clickable' : ''}`}
       onClick={() => exp.details && onClick()}
     >
       <div className="experience-header">
@@ -25,17 +30,18 @@ export function ExperienceCard({ experience: exp, onClick }: ExperienceCardProps
         <span className="experience-period">{exp.period}</span>
       </div>
       <ul className="experience-description">
-        {exp.description.map((item, i) => (
+        {description.map((item, i) => (
           <li key={i}>{item}</li>
         ))}
       </ul>
-      {exp.personalNote && (
+      {!compact && exp.personalNote && (
         <blockquote className="experience-personal-note">{exp.personalNote}</blockquote>
       )}
       <div className="project-tags">
-        {exp.tags.map((tag, i) => (
+        {tags.map((tag, i) => (
           <span key={i} className="tag">{tag}</span>
         ))}
+        {hiddenTagCount > 0 && <span className="tag">+{hiddenTagCount}</span>}
       </div>
       {exp.details && (
         <button className="project-details-btn" style={{ marginTop: '1rem' }}>

@@ -73,7 +73,7 @@ export function Nav() {
           <button onClick={() => scrollOrNavigate('contact')}>CONTACT</button>
 
           <span className="nav-menu-group-label">Personal</span>
-          <Link to="/strava">STRAVA</Link>
+          <Link to="/training">TRAINING</Link>
           <Link to="/piano">PIANO</Link>
           <Link to="/library">LIBRARY</Link>
           <Link to="/gallery">GALLERY</Link>

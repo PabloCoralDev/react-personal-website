@@ -21,7 +21,7 @@ export function StravaPreview() {
         <h3 className="section-title">Training Log</h3>
 
         <div className="strava-preview-layout">
-          <div className="strava-preview-map" onClick={() => navigate('/strava')}>
+          <div className="strava-preview-map" onClick={() => navigate('/training')}>
             <Suspense fallback={<div className="strava-map-loading">Loading map…</div>}>
               <RouteMap activities={previewActivities} height="100%" />
             </Suspense>
@@ -50,7 +50,7 @@ export function StravaPreview() {
         </div>
 
         <div className="see-more-wrap">
-          <Link to="/strava" className="see-more-link">See Full Training Log →</Link>
+          <Link to="/training" className="see-more-link">See Full Training Log →</Link>
         </div>
       </div>
     </section>

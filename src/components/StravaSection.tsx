@@ -39,20 +39,6 @@ export function StravaSection() {
       <div className="section-content">
         <h3 className="section-title">Training Log</h3>
 
-        <div className="piano-controls">
-          <div className="piano-filter-pills">
-            {sportFilters.map((f) => (
-              <button
-                key={f.value}
-                className={`piano-filter-pill ${sportFilter === f.value ? 'active' : ''}`}
-                onClick={() => setSportFilter(f.value)}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className="strava-stats-grid-top">
           <div className="strava-year-card strava-year-card-total">
             <span className="strava-year-card-value">{Math.round(totalMiles).toLocaleString()}</span>
@@ -101,6 +87,21 @@ export function StravaSection() {
         )}
 
         <h4 className="piano-group-title strava-section-heading">Top Routes</h4>
+
+        <div className="piano-controls strava-map-controls">
+          <div className="piano-filter-pills">
+            {sportFilters.map((f) => (
+              <button
+                key={f.value}
+                className={`piano-filter-pill ${sportFilter === f.value ? 'active' : ''}`}
+                onClick={() => setSportFilter(f.value)}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <Suspense fallback={<div className="strava-map-loading">Loading map…</div>}>
           <RouteMap activities={filteredActivities} onSelectActivity={(a) => setSelectedActivityId(a.id)} />
         </Suspense>

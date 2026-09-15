@@ -11,8 +11,6 @@ interface RouteMapProps {
   height?: string
   /** Fit the view tightly to the given activities' tracks (used for a single activity). When false, the map defaults to a fixed Gainesville view instead of zooming out to fit every scattered route. */
   autoFit?: boolean
-  /** Disable pan/zoom/click chrome for small inline previews (e.g. inside a card), so they don't trap page scroll or show controls that don't fit. */
-  interactive?: boolean
 }
 
 const GAINESVILLE: [number, number] = [29.6516, -82.3248]
@@ -57,7 +55,7 @@ function ActivitySummary({ activity }: { activity: StravaActivity }) {
   )
 }
 
-export function RouteMap({ activities, onSelectActivity, height = '480px', autoFit = false, interactive = true }: RouteMapProps) {
+export function RouteMap({ activities, onSelectActivity, height = '480px', autoFit = false }: RouteMapProps) {
   const withTracks = activities.filter((a) => a.track && a.track.length > 1)
   const photoPins = activities.flatMap((a) =>
     (a.photos ?? [])
@@ -66,18 +64,8 @@ export function RouteMap({ activities, onSelectActivity, height = '480px', autoF
   )
 
   return (
-    <div className={`strava-map-wrap ${interactive ? '' : 'strava-map-wrap-static'}`} style={{ height }}>
-      <MapContainer
-        center={GAINESVILLE}
-        zoom={GAINESVILLE_ZOOM}
-        scrollWheelZoom={false}
-        dragging={interactive}
-        touchZoom={interactive}
-        doubleClickZoom={interactive}
-        zoomControl={interactive}
-        attributionControl={interactive}
-        style={{ height: '100%', width: '100%' }}
-      >
+    <div className="strava-map-wrap" style={{ height }}>
+      <MapContainer center={GAINESVILLE} zoom={GAINESVILLE_ZOOM} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -89,25 +77,22 @@ export function RouteMap({ activities, onSelectActivity, height = '480px', autoF
             key={activity.id}
             positions={activity.track as [number, number][]}
             pathOptions={{ color: sportColor[activity.sport], weight: 4, opacity: 0.9 }}
-            eventHandlers={interactive ? { click: () => onSelectActivity?.(activity) } : undefined}
+            eventHandlers={{ click: () => onSelectActivity?.(activity) }}
           >
-            {interactive && (
-              <Popup>
-                <ActivitySummary activity={activity} />
-              </Popup>
-            )}
+            <Popup>
+              <ActivitySummary activity={activity} />
+            </Popup>
           </Polyline>
         ))}
 
-        {interactive &&
-          photoPins.map(({ activity, photo }, index) => (
-            <Marker key={`${activity.id}-${index}`} position={[photo.lat as number, photo.lng as number]} icon={photoIcon}>
-              <Popup>
-                <img src={photo.src} alt={activity.name} className="strava-map-popup-img" />
-                <ActivitySummary activity={activity} />
-              </Popup>
-            </Marker>
-          ))}
+        {photoPins.map(({ activity, photo }, index) => (
+          <Marker key={`${activity.id}-${index}`} position={[photo.lat as number, photo.lng as number]} icon={photoIcon}>
+            <Popup>
+              <img src={photo.src} alt={activity.name} className="strava-map-popup-img" />
+              <ActivitySummary activity={activity} />
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   )

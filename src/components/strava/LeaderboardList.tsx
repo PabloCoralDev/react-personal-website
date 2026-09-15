@@ -1,7 +1,4 @@
-import { lazy, Suspense } from 'react'
 import type { StravaActivity, StravaPersonalRecord } from '../../types'
-
-const RouteMap = lazy(() => import('./RouteMap').then((m) => ({ default: m.RouteMap })))
 
 interface LeaderboardListProps {
   records: StravaPersonalRecord[]
@@ -37,8 +34,6 @@ export function LeaderboardList({ records, activities, onSelect }: LeaderboardLi
         <div className="strava-pr-grid">
           {group.map((record, index) => {
             const activity = record.activityId ? byId.get(record.activityId) : undefined
-            const hasTrack = activity?.track && activity.track.length > 1
-            const thumb = !hasTrack ? activity?.photos?.[0]?.src : undefined
             const secondary = activity
               ? PACE_LABELS.has(record.label)
                 ? formatPace(activity)
@@ -51,15 +46,6 @@ export function LeaderboardList({ records, activities, onSelect }: LeaderboardLi
                 className={`strava-pr-card ${record.activityId ? 'clickable' : ''}`}
                 onClick={() => record.activityId && onSelect(record.activityId)}
               >
-                {activity && hasTrack && (
-                  <div className="strava-pr-card-map">
-                    <Suspense fallback={<div className="strava-pr-map-loading" />}>
-                      <RouteMap activities={[activity]} height="130px" autoFit interactive={false} />
-                    </Suspense>
-                  </div>
-                )}
-                {thumb && <img src={thumb} alt="" className="strava-pr-thumb" />}
-
                 <div className="strava-pr-card-body">
                   <span className="strava-pr-trophy">🏆</span>
                   <span className="strava-pr-label">{record.label}</span>

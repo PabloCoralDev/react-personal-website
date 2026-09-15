@@ -219,6 +219,7 @@
 }
 
 .hero-content {
+  width: 100%;
   text-align: center;
   max-width: 900px;
   position: relative;
@@ -1214,6 +1215,33 @@
 .experience-card:hover {
   border-color: var(--accent);
   box-shadow: 0 8px 20px rgba(255, 122, 69, 0.22);
+}
+
+.experience-card-compact {
+  padding: 1.25rem;
+}
+
+.experience-card-compact .experience-logo {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.75rem;
+}
+
+.experience-card-compact .experience-header {
+  margin-bottom: 0.75rem;
+}
+
+.experience-card-compact .experience-description {
+  margin-bottom: 1rem;
+}
+
+.experience-card-compact .experience-description li {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 
 .experience-logo {
@@ -2468,27 +2496,6 @@
   box-shadow: 0 12px 28px rgba(255, 45, 120, 0.2);
 }
 
-.strava-pr-card-map {
-  pointer-events: none;
-}
-
-.strava-pr-card-map .strava-map-wrap-static {
-  border: none;
-  border-radius: 0;
-}
-
-.strava-pr-map-loading {
-  height: 130px;
-  background: var(--bg-primary);
-}
-
-.strava-pr-thumb {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  display: block;
-}
-
 .strava-pr-card-body {
   display: flex;
   flex-direction: column;
@@ -2754,7 +2761,7 @@
   }
 
   .section {
-    padding: 4rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .hero-cta {
@@ -2817,8 +2824,8 @@
   }
 
   .books-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
   }
 
   .book-modal-header {
@@ -2897,6 +2904,6 @@
   }
 
   .strava-pr-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }
