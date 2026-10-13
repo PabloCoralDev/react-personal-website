@@ -10,7 +10,7 @@ export function About() {
               living at the intersection of <em>precision and creativity</em>
             </p>
             <p>
-              I love to build. handcrafted machined parts, ML models for engineering analysis, and full-stack apps. After school, I'm at the piano, training for triathlons, doing handstands, or running my
+              I love to build. Handcrafted machined parts, ML models for engineering analysis, and full-stack apps. After school, I'm at the piano, training for triathlons, doing handstands, or running my
               bike-refurbishing business!
             </p>
             <div className="about-tags">
