@@ -1,4 +1,5 @@
 import { useTypewriter } from '../hooks/useTypewriter'
+import { useNfcGreeting } from '../hooks/useNfcGreeting'
 import { scrollToSection } from '../utils/scrollToSection'
 import { HeroSpaceScene } from './HeroSpaceScene'
 
@@ -8,11 +9,13 @@ interface HeroProps {
 
 export function Hero({ isMobile }: HeroProps) {
   const { typedText, typingComplete } = useTypewriter("Hi, I'm Pablo")
+  const nfcGreeting = useNfcGreeting()
 
   return (
     <section className="hero">
       <HeroSpaceScene />
       <div className="hero-content">
+        {nfcGreeting && <p className="nfc-greeting fade-in-up">{nfcGreeting}</p>}
         <h1 className={`hero-title typewriter ${isMobile ? 'mobile-wrap' : ''}`}>
           <span className="typewriter-text">
             <span className="typed-content">{typedText}</span>
