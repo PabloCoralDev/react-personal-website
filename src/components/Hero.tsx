@@ -26,6 +26,7 @@ export function Hero({ isMobile }: HeroProps) {
             <span className={`cursor ${typingComplete ? 'blink' : 'static'}`}>_</span>
           </span>
         </h1>
+        <p className="hero-tagline fade-in-up delay-1">Engineer, Musician, Developer, Athlete.</p>
 
         <div className="hero-socials fade-in-up delay-2">
           {socials.map((s) => (

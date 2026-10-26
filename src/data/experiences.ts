@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/uf-logo.png',
     website: 'https://web.mae.ufl.edu/designlab/',
     description: [
-      'Teach and run the lab for groups of four students through a semester-long build of compressed-air engines, mentoring each team from first cut to final assembly and reviewing their drawings and reports for DFMA.'
+      'Run the shop for teams of four building compressed-air engines, teaching lathes, mills and welding from first cut to final assembly.'
     ],
     tags: ['Teaching & Mentoring', 'Manual & CNC Machining', 'DFMA', 'GD&T', 'Shop Safety'],
     personalNote: "I have a passion for teaching, and it is deeply gratifying to see my students grow as much as my friendship and connection with them grows too.",
@@ -36,7 +36,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/piper-logo.png',
     website: 'https://www.piper.com',
     description: [
-      'Modeled brake-rotor temperature from ~47,000 sensor readings with a Runge-Kutta solver and mini-batch SGD, built a Python sensor-data pipeline, set up VR flight-sim aircraft for pilot evaluation, and reverse-engineered an oleo strut in Siemens NX.'
+      'Modeled brake-rotor heating from ~47,000 sensor readings, built a Python data pipeline, and reverse-engineered an oleo strut in Siemens NX.'
     ],
     tags: ['Python', 'Numerical Methods', 'Data Pipelines', 'Siemens NX', 'Metrology', 'Flight Simulation'],
     details: {
@@ -58,7 +58,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/bike_bros-logo.png',
     website: '',
     description: [
-      'Built a network of 4+ mechanics to source and repair high-quality vintage bicycles, and bought, repaired and resold 30+ bikes across Gainesville through Facebook Marketplace and Instagram campaigns.'
+      'Built a network of 4+ mechanics, then bought, repaired and resold 30+ vintage bikes across Gainesville through Instagram and Marketplace.'
     ],
     tags: ['Operations', 'Finances', 'Upcycling', 'Sustainability', 'Leadership'],
 
@@ -86,7 +86,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/knead-logo.svg',
     website: 'https://www.kneadtoinvest.com',
     description: [
-      'Architected and built the Strategy Playground, a drag-and-drop trading-strategy builder with one-click backtests, hired and led 5+ engineers, and co-wrote the pitch that won the 2026 GatorTank competition.'
+      'Built the Strategy Playground, a drag-and-drop trading-strategy builder with one-click backtests, and led 5+ engineers to a 2026 GatorTank win.'
     ],
     tags: ['React', 'TypeScript', 'Flask', 'Microservices', 'Backtrader', 'Leadership'],
     details: {
@@ -111,7 +111,7 @@ export const experiences: Experience[] = [
     period: '2026 – Present',
     website: 'https://coraldevstudios.com',
     description: [
-      'Independent software studio where I co-founded Level, a calisthenics app on the App Store built with React Native, Expo and Supabase, and beta-tested it with 30+ users over 28 days.'
+      'My software studio. Co-founded Level, a calisthenics app on the App Store built with React Native, Expo and Supabase, beta-tested by 30+ users.'
     ],
     tags: ['TypeScript', 'React Native', 'Expo', 'Supabase', 'Swift'],
     details: {
@@ -130,7 +130,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/piano-logo.png',
     website: 'https://www.youtube.com/watch?v=sgQgLC_Gxt8',
     description: [
-      'Collaborate with UF faculty, vocalists, instrumentalists and composers for recitals, juries and concerts, direct weekly worship music at a local church, and perform solo and chamber programs for audiences of up to 3,000.'
+      'Collaborate with UF faculty, singers and instrumentalists, lead weekly church music, and perform solo and chamber programs for up to 3,000.'
     ],
     tags: ['Performance', 'Collaboration', 'Rapid Learning', 'Communication', 'Adaptability'],
     details: {
