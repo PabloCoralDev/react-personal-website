@@ -8,14 +8,7 @@ export function GalleryPreview() {
     <section id="gallery" className="section gallery-section">
       <div className="section-content">
         <h3 className="section-title">Through My Lens</h3>
-        <p style={{
-          fontSize: '1rem',
-          color: 'var(--text-secondary)',
-          fontStyle: 'italic',
-          marginTop: '-1rem',
-          marginBottom: '3rem',
-          opacity: 0.8
-        }}>A few moments from life outside the screen.</p>
+        <p className="section-subtitle">A few moments from life outside the screen.</p>
 
         <Link to="/gallery" className="gallery-preview-grid">
           {preview.map((photo, index) => (

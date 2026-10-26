@@ -75,7 +75,7 @@ export function PianoSection() {
             {categoryFilters.map((f) => (
               <button
                 key={f.value}
-                className={`piano-filter-pill ${categoryFilter === f.value ? 'active' : ''}`}
+                className={`btn btn-secondary piano-filter-pill ${categoryFilter === f.value ? 'active' : ''}`}
                 onClick={() => setCategoryFilter(f.value)}
               >
                 {f.label}
@@ -87,7 +87,7 @@ export function PianoSection() {
             {statusFilters.map((f) => (
               <button
                 key={f.value}
-                className={`piano-filter-pill ${statusFilter === f.value ? 'active' : ''}`}
+                className={`btn btn-secondary piano-filter-pill ${statusFilter === f.value ? 'active' : ''}`}
                 onClick={() => setStatusFilter(f.value)}
               >
                 {f.label}

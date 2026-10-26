@@ -9,10 +9,8 @@ interface ProjectCardProps {
 export function ProjectCard({ project, onClick, compact = false }: ProjectCardProps) {
   if (compact) {
     return (
-      <div className="project-card project-card-compact clickable" onClick={onClick}>
-        <div className="project-image-container project-image-square">
-          <img src={project.outer_image} alt={project.title} className="project-image" />
-        </div>
+      <div className="project-card-compact" onClick={onClick}>
+        <img src={project.outer_image} alt={project.title} className="project-thumb" loading="lazy" />
         <h5 className="project-title">{project.title}</h5>
       </div>
     )
@@ -55,7 +53,7 @@ export function ProjectCard({ project, onClick, compact = false }: ProjectCardPr
             href={project.details.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="project-github-btn"
+            className="btn btn-secondary"
             onClick={(e) => e.stopPropagation()}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -69,14 +67,14 @@ export function ProjectCard({ project, onClick, compact = false }: ProjectCardPr
             href={project.details.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="project-github-btn"
+            className="btn btn-secondary"
             onClick={(e) => e.stopPropagation()}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="live-icon">
-              <circle cx="12" cy="12" r="2" fill="black"></circle>
-              <circle cx="12" cy="12" r="5" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-1"></circle>
-              <circle cx="12" cy="12" r="8" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-2"></circle>
-              <circle cx="12" cy="12" r="11" stroke="black" strokeWidth="1.5" className="pulse-ring pulse-ring-3"></circle>
+              <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+              <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.5" className="pulse-ring pulse-ring-1"></circle>
+              <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" className="pulse-ring pulse-ring-2"></circle>
+              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5" className="pulse-ring pulse-ring-3"></circle>
             </svg>
             Live Demo
           </a>
@@ -86,7 +84,7 @@ export function ProjectCard({ project, onClick, compact = false }: ProjectCardPr
             href={project.details.sheets}
             target="_blank"
             rel="noopener noreferrer"
-            className="project-github-btn"
+            className="btn btn-secondary"
             onClick={(e) => e.stopPropagation()}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -95,7 +93,7 @@ export function ProjectCard({ project, onClick, compact = false }: ProjectCardPr
             Explore the Sheet!
           </a>
         )}
-        <button className="project-details-btn">
+        <button className="btn btn-primary project-details-btn">
           View Details →
         </button>
       </div>

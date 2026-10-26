@@ -1,10 +1,8 @@
-import { StarfieldBackground } from '../components/StarfieldBackground'
 import { ReadingSection } from '../components/ReadingSection'
 
 export function LibraryPage() {
   return (
-    <div className="starfield-page">
-      <StarfieldBackground />
+    <div className="page">
       <ReadingSection />
     </div>
   )

@@ -1,24 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { projects } from '../../data/projects'
 import { ProjectCard } from '../cards/ProjectCard'
+import { Carousel } from '../Carousel'
 
 export function ProjectsPreview() {
   const navigate = useNavigate()
-  const preview = projects.slice(0, 3)
 
   return (
     <section id="projects" className="section projects-section">
       <div className="section-content">
         <h3 className="section-title">Projects</h3>
 
-        <div className="projects-preview-row">
-          {preview.map((project, index) => (
-            <ProjectCard key={index} project={project} onClick={() => navigate('/projects')} compact />
-          ))}
-        </div>
+        <Carousel
+          label="Projects"
+          items={projects}
+          getKey={(project) => project.title}
+          slideClassName="projects-slide"
+          renderItem={(project) => <ProjectCard project={project} onClick={() => navigate('/projects')} compact />}
+        />
 
         <div className="see-more-wrap">
-          <Link to="/projects" className="see-more-link">See All Projects →</Link>
+          <Link to="/projects" className="btn btn-secondary">See All Projects →</Link>
         </div>
       </div>
     </section>

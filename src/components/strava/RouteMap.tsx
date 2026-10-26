@@ -17,8 +17,8 @@ const GAINESVILLE: [number, number] = [29.6516, -82.3248]
 const GAINESVILLE_ZOOM = 12
 
 const sportColor: Record<StravaActivity['sport'], string> = {
-  Run: '#ff2d78',
-  Ride: '#ff7ab8',
+  Run: '#0071e3',
+  Ride: '#d4a537',
 }
 
 const photoIcon = L.divIcon({

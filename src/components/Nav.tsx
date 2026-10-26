@@ -3,17 +3,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { scrollToSection } from '../utils/scrollToSection'
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const location = useLocation()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     setMenuOpen(false)
@@ -49,7 +42,7 @@ export function Nav() {
   }
 
   return (
-    <nav ref={navRef} className={`nav ${scrolled ? 'scrolled' : ''}`}>
+    <nav ref={navRef} className="nav">
       <div className="nav-content">
         {menuOpen && <div className="nav-menu-backdrop" onClick={() => setMenuOpen(false)} />}
 

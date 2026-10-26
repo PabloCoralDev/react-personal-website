@@ -1,6 +1,7 @@
 import { lazy, Suspense, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { stravaSnapshot } from '../../data/stravaData'
+import { ActivityHeatmap } from '../strava/ActivityHeatmap'
 
 const RouteMap = lazy(() => import('../strava/RouteMap').then((m) => ({ default: m.RouteMap })))
 
@@ -28,29 +29,31 @@ export function StravaPreview() {
           </div>
 
           <div className="strava-preview-stats">
-            <div className="strava-year-card strava-year-card-total">
-              <span className="strava-year-card-value">{Math.round(totalMiles).toLocaleString()}</span>
-              <span className="strava-year-card-label">Total Miles</span>
+            <div className="strava-metric">
+              <span className="strava-metric-label">Total Miles</span>
+              <span className="strava-metric-value">{Math.round(totalMiles).toLocaleString()}</span>
             </div>
             {latestYear && (
-              <div className="strava-year-card">
-                <span className="strava-year-card-value">
+              <div className="strava-metric">
+                <span className="strava-metric-label">{latestYear.year} So Far</span>
+                <span className="strava-metric-value">
                   {Math.round(latestYear.miles.Run + latestYear.miles.Ride).toLocaleString()} mi
                 </span>
-                <span className="strava-year-card-label">{latestYear.year} So Far</span>
               </div>
             )}
             {latestPR && (
-              <div className="strava-year-card">
-                <span className="strava-year-card-value">{latestPR.value}</span>
-                <span className="strava-year-card-label">{latestPR.sport} {latestPR.label} PR</span>
+              <div className="strava-metric">
+                <span className="strava-metric-label">{latestPR.sport} {latestPR.label} PR</span>
+                <span className="strava-metric-value">{latestPR.value}</span>
               </div>
             )}
           </div>
         </div>
 
+        <ActivityHeatmap days={stravaSnapshot.heatmap} fit />
+
         <div className="see-more-wrap">
-          <Link to="/training" className="see-more-link">See Full Training Log →</Link>
+          <Link to="/training" className="btn btn-secondary">See Full Training Log →</Link>
         </div>
       </div>
     </section>

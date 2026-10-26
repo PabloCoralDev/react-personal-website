@@ -93,7 +93,7 @@ export function StravaSection() {
             {sportFilters.map((f) => (
               <button
                 key={f.value}
-                className={`piano-filter-pill ${sportFilter === f.value ? 'active' : ''}`}
+                className={`btn btn-secondary piano-filter-pill ${sportFilter === f.value ? 'active' : ''}`}
                 onClick={() => setSportFilter(f.value)}
               >
                 {f.label}

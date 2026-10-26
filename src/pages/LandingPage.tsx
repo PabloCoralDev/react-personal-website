@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom'
-import { StarfieldBackground } from '../components/StarfieldBackground'
 import { Hero } from '../components/Hero'
 import { About } from '../components/About'
 import { ProjectsPreview } from '../components/previews/ProjectsPreview'
@@ -26,15 +25,14 @@ export function LandingPage() {
   }, [location.state, navigate])
 
   return (
-    <div className="starfield-page">
-      <StarfieldBackground />
+    <div className="page">
       <Hero isMobile={isMobile} />
       <About />
       <StravaPreview />
       <ProjectsPreview />
       <ExperiencePreview />
-      <LibraryPreview />
       <PianoPreview />
+      <LibraryPreview />
       <GalleryPreview />
       <ContactSection />
     </div>

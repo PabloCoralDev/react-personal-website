@@ -11,13 +11,7 @@ export function ProjectsSection() {
     <section id="projects" className="section projects-section">
       <div className="section-content">
         <h3 className="section-title">Projects</h3>
-        <p style={{
-          fontSize: '1rem',
-          color: 'var(--text-secondary)',
-          fontStyle: 'italic',
-          marginTop: '-1rem',
-          marginBottom: '3rem',
-          opacity: 0.8}}>Hover over the images !</p>
+        <p className="section-subtitle">Hover over the images !</p>
 
         <div className="projects-grid">
           {projects.map((project, index) => (

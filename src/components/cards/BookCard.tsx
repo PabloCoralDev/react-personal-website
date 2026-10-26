@@ -19,7 +19,7 @@ export function BookCard({ book, onClick }: BookCardProps) {
         </span>
       </div>
       <p className="book-author">by {book.author}</p>
-      <button className="book-lessons-btn">
+      <button className="btn btn-secondary book-lessons-btn">
         Lessons Learned →
       </button>
     </div>

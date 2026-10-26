@@ -44,7 +44,7 @@ export function ExperienceCard({ experience: exp, onClick, compact = false }: Ex
         {hiddenTagCount > 0 && <span className="tag">+{hiddenTagCount}</span>}
       </div>
       {exp.details && (
-        <button className="project-details-btn" style={{ marginTop: '1rem' }}>
+        <button className="btn btn-primary project-details-btn" style={{ marginTop: '1rem' }}>
           View Details →
         </button>
       )}

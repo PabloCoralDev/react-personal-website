@@ -48,7 +48,7 @@ export function PianoPieceModal({ piece, onClose }: PianoPieceModalProps) {
               href={piece.imslpUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="modal-btn piano-imslp-btn"
+              className="btn btn-primary piano-imslp-btn"
             >
               View on IMSLP ↗
             </a>

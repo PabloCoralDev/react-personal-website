@@ -6,7 +6,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #030305; /* matches --bg-primary in App.css */
+  background-color: #ffffff; /* matches --bg-primary in App.css */
 }
 
 body {
@@ -14,7 +14,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
-  background-color: #030305;
+  background-color: #ffffff;
 }
 
 #root {

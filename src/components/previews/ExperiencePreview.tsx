@@ -17,7 +17,7 @@ export function ExperiencePreview() {
         </div>
 
         <div className="see-more-wrap">
-          <Link to="/experience" className="see-more-link">See All Experience →</Link>
+          <Link to="/experience" className="btn btn-secondary">See All Experience →</Link>
         </div>
       </div>
     </section>
