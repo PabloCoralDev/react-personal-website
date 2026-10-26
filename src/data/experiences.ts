@@ -10,9 +10,9 @@ export const experiences: Experience[] = [
     logo: '/pictures/uf-logo.png',
     website: 'https://web.mae.ufl.edu/designlab/',
     description: [
-      'Direct semester-long trainings for groups of 4 students, providing hands-on instruction on manual machining processes & safety, as well as DFMA and GD&T principles, while supervising lab work to ensure operational safety.'
+      'Teach and run the lab for groups of four students through a semester-long build of compressed-air engines, mentoring each team from first cut to final assembly and reviewing their drawings and reports for DFMA.'
     ],
-    tags: ['Teaching & Mentoring', 'Manual and CNC Machining', 'DFMA', 'GD&T', 'Operational Safety'],
+    tags: ['Teaching & Mentoring', 'Manual & CNC Machining', 'DFMA', 'GD&T', 'Shop Safety'],
     personalNote: "I have a passion for teaching, and it is deeply gratifying to see my students grow as much as my friendship and connection with them grows too.",
     hasTeachingGallery: true,
     details: {
@@ -29,16 +29,16 @@ export const experiences: Experience[] = [
     }
   },
       {
-    title: 'Powerplant and Mechanical Systems Engineering Intern',
+    title: 'IPT Power Plant & Mechanical Systems Engineering Intern',
     company: 'Piper Aircraft Inc.',
     location: 'Vero Beach, FL',
     period: 'Jan 2025 – May 2025',
     logo: '/pictures/piper-logo.png',
     website: 'https://www.piper.com',
     description: [
-      'Developed solutions to help advance Piper aircraft\'s mission of making flight available for all, designign both software and hardware to streamline operations, and increase testing safety'
+      'Modeled brake-rotor temperature from ~47,000 sensor readings with a Runge-Kutta solver and mini-batch SGD, built a Python sensor-data pipeline, set up VR flight-sim aircraft for pilot evaluation, and reverse-engineered an oleo strut in Siemens NX.'
     ],
-    tags: ['Siemens NX', 'Python', 'TensorFlow', 'Pandas', 'CFD', 'Blender'],
+    tags: ['Python', 'Numerical Methods', 'Data Pipelines', 'Siemens NX', 'Metrology', 'Flight Simulation'],
     details: {
       fullDescription: [
         `During my time at Piper Aircraft, I worked with real aircraft systems and large sets of engineering data, focusing on building tools and models that made complex information easier to understand and use. I developed a Python based heat analysis tool to study how aircraft brakes warm up over time using test data. This allowed engineers to better visualize trends and chose appropriate brake rotor dimensions for a POC Aircraft.
@@ -51,23 +51,23 @@ export const experiences: Experience[] = [
     }
   },
   {
-    title: 'Founder and Partner',
+    title: 'Partner and Chief Operations Officer',
     company: 'Bike Bros Gainesville',
     location: 'Gainesville, FL',
-    period: 'May 2025 – Present',
+    period: 'Summer 2025 – Present',
     logo: '/pictures/bike_bros-logo.png',
     website: '',
     description: [
-      'Founded and operate a bicycle refurbishment & sales business — traffic has surged recently as the local impound/upcycling model has caught on. Manage a network of bicycle mechanics, and drive day-to-day operations to ensure product quality, and optimal profit margins.'
+      'Built a network of 4+ mechanics to source and repair high-quality vintage bicycles, and bought, repaired and resold 30+ bikes across Gainesville through Facebook Marketplace and Instagram campaigns.'
     ],
-    tags: ['Operations', 'finances', 'upcycling', 'Sustainability', 'Leadership'],
+    tags: ['Operations', 'Finances', 'Upcycling', 'Sustainability', 'Leadership'],
 
     details: {
       fullDescription: [
 
         `At Bike Bros Gainesville, the work centers on identifying value where others see waste and turning abandoned or overlooked bicycles into reliable, affordable transportation. Gainesville generates a steady supply of impounded and discarded bikes, many of which still have meaningful market and functional value. Inventory that cannot be responsibly restored is recycled, while select bicycles are refurbished and reintroduced into the community with an emphasis on quality, sustainability, and accessibility.
 
-        My role as Founder and CEO is rooted in quantitative decision-making and hands-on operations. I personally perform preemptive valuations before acquisition, analyzing each bike or lot based on overall condition, model and style, market demand, estimated parts and repair costs, resale timelines, and risk. For every opportunity, I quantitatively model best and worst case profit scenarios and derive a strict maximum bid price from those bounds, allowing the business to operate with disciplined margins and a data-driven advantage over competitors who rely primarily on intuition.
+        My role as Partner and COO is rooted in quantitative decision-making and hands-on operations. I personally perform preemptive valuations before acquisition, analyzing each bike or lot based on overall condition, model and style, market demand, estimated parts and repair costs, resale timelines, and risk. For every opportunity, I quantitatively model best and worst case profit scenarios and derive a strict maximum bid price from those bounds, allowing the business to operate with disciplined margins and a data-driven advantage over competitors who rely primarily on intuition.
 
         In addition to strategy and valuation, I oversee day-to-day execution across the business. This includes early-morning impound lot sourcing, inventory transport, financial management, repair coordination, marketing through Instagram and online marketplaces, and direct customer communication. Bike Bros Gainesville is operated as a hands-on venture where execution quality, consistency, and accountability directly determine outcomes, mirroring the demands of a real operating company rather than a casual side project.
 
@@ -79,25 +79,25 @@ export const experiences: Experience[] = [
     }
   },
   {
-    title: 'Lead Operating Officer',
+    title: 'Co-Founder and Chief Technology Officer',
     company: 'Knead',
     location: 'Gainesville, FL',
-    period: 'Dec 2025 – Sep 2026',
+    period: 'Spring 2026 – Fall 2026',
     logo: '/pictures/knead-logo.svg',
     website: 'https://www.kneadtoinvest.com',
     description: [
-      'Coordinated the engineering team and helped turn the product vision into reality for an easy-to-use quantitative trading platform designed to make investing accessible and intuitive for non‑technical users.'
+      'Architected and built the Strategy Playground, a drag-and-drop trading-strategy builder with one-click backtests, hired and led 5+ engineers, and co-wrote the pitch that won the 2026 GatorTank competition.'
     ],
-    tags: ['Operations', 'Leadership & PM', 'Product', 'User Research', 'Business Strategy'],
+    tags: ['React', 'TypeScript', 'Flask', 'Microservices', 'Backtrader', 'Leadership'],
     details: {
 
       fullDescription: [
 
-        `As Lead Ops Officer at Knead, I coordinated our engineering team and helped bring our product vision to reality for a block‑based trading platform designed to lower the barrier to entry for quantitative investing. Knead was a product‑driven platform that let users visually assemble trading strategies from modular building blocks, enabling sophisticated behavior without requiring users to write code. My role centered on keeping the whole team aligned and translating product goals into clear priorities so that parallel efforts converged toward a unified product vision.
+        `As Co-Founder and CTO at Knead, I architected and built the Strategy Playground in React and TypeScript: a visual trading-strategy builder where users drag Blockly blocks that a custom abstract syntax tree (AST) translator converts into Python. Strategies run as one-click Backtrader backtests, and results are shown on TradingView charts with buy/sell markers, indicator overlays, Sharpe ratio, and max drawdown benchmarked against the S&P 500 (a sample is available on this site!).
 
-        On the operations side, I coordinated our engineers, unblocked work, and kept execution moving so the team stayed focused and on schedule. I also designed and ran user surveys and interviews to understand the people we were building for, turning that research into insights that shaped product direction and priorities.
+        On the backend, I built a working prototype of each service, including the backtesting engine behind a Flask API gateway, then delegated polishing each service to our engineers and partnered with the lead engineer to turn the system into a full microservices backend. I also designed a live-trading architecture with per-strategy subprocesses, threaded market-data delivery, and a rate-limited order scheduler that keeps broker credentials outside strategy code and respects API limits.
 
-        Beyond day‑to‑day operations, I took part in the company's leadership efforts, helping build the pitch deck and business plan and representing Knead in pitch competitions and other leadership settings. I've since moved on from Knead to focus on other ventures.`
+        Beyond engineering, I hired, led and mentored 5+ engineers, designing our recruiting and technical interview process from scratch, and developed the pitch deck and business plan that won the 2026 GatorTank pitch competition ($1,200). I've since moved on from Knead to focus on other ventures.`
 
       ],
       image: '/pictures/knead_pic.jpg',
@@ -111,9 +111,9 @@ export const experiences: Experience[] = [
     period: '2026 – Present',
     website: 'https://coraldevstudios.com',
     description: [
-      'Independent software studio building and shipping consumer apps, including Level (iOS/Expo) and web products, end to end — design, development, and release.'
+      'Independent software studio where I co-founded Level, a calisthenics app on the App Store built with React Native, Expo and Supabase, and beta-tested it with 30+ users over 28 days.'
     ],
-    tags: ['TypeScript', 'Swift', 'React', 'Tailwind', 'Expo Go'],
+    tags: ['TypeScript', 'React Native', 'Expo', 'Supabase', 'Swift'],
     details: {
       fullDescription: [
         `Coral Dev Studios is my independent software studio, where I design, build, and ship apps end to end rather than just prototype them. It's the home for Level, a mobile app built with Expo/React Native and Swift, along with web products built on a modern TypeScript/React/Tailwind stack.
@@ -130,7 +130,7 @@ export const experiences: Experience[] = [
     logo: '/pictures/piano-logo.png',
     website: 'https://www.youtube.com/watch?v=sgQgLC_Gxt8',
     description: [
-      'Perform as a classical pianist and freelance musician with formal conservatory training, active in solo performance, collaborative work, and weekly professional church music service. Execute rapid learning, preparation, and performance of a high volume of repertoire under tight deadlines.'
+      'Collaborate with UF faculty, vocalists, instrumentalists and composers for recitals, juries and concerts, direct weekly worship music at a local church, and perform solo and chamber programs for audiences of up to 3,000.'
     ],
     tags: ['Performance', 'Collaboration', 'Rapid Learning', 'Communication', 'Adaptability'],
     details: {

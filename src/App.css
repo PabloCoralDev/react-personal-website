@@ -173,12 +173,49 @@
 
 /* Hero Section */
 .hero {
-  min-height: 70svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: calc(var(--nav-h) + var(--space-section)) var(--gutter) var(--space-section);
+  padding: calc(var(--nav-h) + var(--space-section) * 1.5) var(--gutter) var(--gap-lg);
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.scroll-arrow {
+  margin-top: var(--gap-md);
+  display: inline-flex;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow:hover {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow { animation: none; }
 }
 
 .page {
@@ -258,14 +295,14 @@
 
 /* Buttons — pill-shaped; width follows the label, height is fixed, one line max */
 .btn {
-  --btn-h: 36px;
+  --btn-h: 32px;
   --btn-fs: 0.9rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4em;
   height: var(--btn-h);
-  padding: 0 1.1em;
+  padding: 0 1.6em;
   border: none;
   border-radius: 999px;
   font: inherit;
@@ -285,9 +322,9 @@
 }
 
 .btn-lg {
-  --btn-h: 44px;
+  --btn-h: 40px;
   --btn-fs: 1rem;
-  padding: 0 1.4em;
+  padding: 0 2.2em;
 }
 
 .btn-primary {
@@ -342,6 +379,7 @@
 
 /* Sections */
 .section {
+  scroll-margin-top: var(--nav-h);
   display: flex;
   align-items: center;
   padding: var(--space-section) var(--gutter);
@@ -955,11 +993,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.experience-card-compact {
-  padding: 1.25rem;
-}
-
-.experience-card-compact .experience-logo {
+.experience-logo {
   width: 48px;
   height: 48px;
   margin-bottom: 0.75rem;
@@ -1569,19 +1603,114 @@
   flex-basis: 78%;
 }
 
-.piano-slide,
+.piano-slide {
+  flex-basis: 54%;
+}
+
 .library-slide {
   flex-basis: 45%;
 }
 
+.experience-slide {
+  flex-basis: 86%;
+}
+
 @media (min-width: 600px) {
   .projects-slide { flex-basis: 45%; }
-  .piano-slide,
+  .piano-slide { flex-basis: 288px; }
   .library-slide { flex-basis: 240px; }
+  .experience-slide { flex-basis: 48%; }
 }
 
 @media (min-width: 1024px) {
-  .projects-slide { flex-basis: 33.333%; }
+  .projects-slide,
+  .experience-slide { flex-basis: 33.333%; }
+}
+
+/* Experience "review" carousel: no card chrome, hairline dividers between slides */
+.experience-slide + .experience-slide .experience-review {
+  border-left: 1px solid var(--border);
+}
+
+.experience-review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  aspect-ratio: 5 / 6;
+  height: 100%;
+  padding: 0 var(--gap-md);
+}
+
+.experience-review-head {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.experience-review-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  object-fit: contain;
+  background: var(--bg-secondary);
+}
+
+.experience-review-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.experience-review-company {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.experience-review-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.experience-review-summary {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.experience-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--gap-sm);
+}
+
+.experience-skills .tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.25;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 999px;
+}
+
+.text-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
 }
 
 @media (hover: none) {
@@ -1606,6 +1735,7 @@
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: var(--radius);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   box-shadow: var(--shadow-card);
   transition: transform 0.3s ease;
 }
@@ -2301,13 +2431,15 @@
 
 .strava-preview-stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: var(--gap-md);
 }
 
 .strava-metric {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0.15rem;
 }
 
@@ -2337,6 +2469,11 @@
     flex-direction: column;
     justify-content: center;
     gap: var(--gap-lg);
+  }
+
+  .strava-metric {
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
