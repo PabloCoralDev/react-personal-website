@@ -19,7 +19,7 @@ export function Hero({ isMobile }: HeroProps) {
   return (
     <section className="hero">
       <div className="hero-content">
-        {nfcGreeting && <p className="nfc-greeting fade-in-up">{nfcGreeting}</p>}
+        {nfcGreeting && <p className="nfc-greeting">{nfcGreeting}</p>}
         <h1 className={`hero-title typewriter ${isMobile ? 'mobile-wrap' : ''}`}>
           <span className="typewriter-text">
             <span className="typed-content">{typedText}</span>

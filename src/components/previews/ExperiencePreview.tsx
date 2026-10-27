@@ -16,6 +16,8 @@ export function ExperiencePreview() {
           items={experiences}
           getKey={(exp) => `${exp.company}-${exp.title}`}
           slideClassName="experience-slide"
+          centered
+          edgeArrows
           renderItem={(exp) => <ExperienceCard experience={exp} onClick={() => navigate('/experience')} compact />}
         />
 

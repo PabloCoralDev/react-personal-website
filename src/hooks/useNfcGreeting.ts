@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const GREETINGS: Record<string, string> = {
-  phone: "You just tapped my phone. Here's what I build.",
+  phone: "You just tapped my phone! Here's what I build.",
+  blazer: "You just tapped my blazer! Here's what I build.",
 }
 const FALLBACK_GREETING = "Thanks for tapping. Here's what I build."
 
