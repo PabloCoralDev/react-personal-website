@@ -6,15 +6,27 @@ interface ExperienceCardProps {
   compact?: boolean
 }
 
-/** Outbound site link in the shared app-link style, labelled with the bare domain. */
+/** Outbound link in the shared app-link style: Instagram shows its glyph and @handle, other sites a globe and bare domain. */
 function WebsiteLink({ href }: { href: string }) {
+  const url = new URL(href)
+  const host = url.hostname.replace(/^www\./, '')
+  const instagram = host === 'instagram.com'
+
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" className="app-link" onClick={(e) => e.stopPropagation()}>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0071e3" strokeWidth="1.8" aria-hidden="true">
-        <circle cx="12" cy="12" r="9.5" />
-        <path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z" />
-      </svg>
-      {new URL(href).hostname.replace(/^www\./, '')}
+      {instagram ? (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E4405F" strokeWidth="2" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="0.6" fill="#E4405F" />
+        </svg>
+      ) : (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0071e3" strokeWidth="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z" />
+        </svg>
+      )}
+      {instagram ? `@${url.pathname.replace(/\//g, '')}` : host}
     </a>
   )
 }

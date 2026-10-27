@@ -504,7 +504,8 @@
   scroll-margin-top: var(--nav-h);
   display: flex;
   align-items: center;
-  padding: var(--space-section) var(--gutter);
+  /* Slightly less below than above: sections read as continuous, the gap still marks a new one */
+  padding: var(--space-section) var(--gutter) calc(var(--space-section) * 0.75);
 }
 
 .section-content {
@@ -1427,7 +1428,7 @@
 .see-more-wrap {
   display: flex;
   justify-content: center;
-  margin-top: var(--gap-lg);
+  margin-top: var(--gap-sm);
 }
 
 /* Embla carousel (loop) */

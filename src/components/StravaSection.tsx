@@ -93,7 +93,7 @@ export function StravaSection() {
               <td className="strava-col-strong">{record.value}</td>
               <td className="strava-col-detail">{prDetail(record, activity)}</td>
               <td className="strava-col-muted">
-                {new Date(record.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                {new Date(record.date).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}
               </td>
             </tr>
           )

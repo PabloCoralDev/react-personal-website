@@ -56,7 +56,7 @@ export const experiences: Experience[] = [
     location: 'Gainesville, FL',
     period: 'Summer 2025 – Present',
     logo: '/pictures/bike_bros-logo.png',
-    website: '',
+    website: 'https://www.instagram.com/bikebrosgnv/',
     description: [
       'Built a network of 4+ mechanics, then bought, repaired and resold 30+ vintage bikes across Gainesville through Instagram and Marketplace.'
     ],
@@ -108,6 +108,7 @@ export const experiences: Experience[] = [
     title: 'Founder',
     company: 'Coral Dev Studios',
     location: 'Gainesville, FL',
+    logo: '/pictures/coral-dev-studios-logo.svg',
     period: '2026 – Present',
     website: 'https://coraldevstudios.com',
     description: [
