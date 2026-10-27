@@ -16,7 +16,7 @@ export function ProjectsPreview() {
           items={projects}
           getKey={(project) => project.title}
           slideClassName="projects-slide"
-          renderItem={(project) => <ProjectCard project={project} onClick={() => navigate('/projects')} compact />}
+          renderItem={(project) => <ProjectCard project={project} onClick={() => navigate('/projects', { state: { project: project.slug } })} />}
         />
 
         <div className="see-more-wrap">

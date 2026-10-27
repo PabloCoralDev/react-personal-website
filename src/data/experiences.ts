@@ -12,7 +12,7 @@ export const experiences: Experience[] = [
     description: [
       'Run the shop for teams of four building compressed-air engines, teaching lathes, mills and welding from first cut to final assembly.'
     ],
-    tags: ['Teaching & Mentoring', 'Manual & CNC Machining', 'DFMA', 'GD&T', 'Shop Safety'],
+    tags: ['Teaching', 'Mentoring', 'CNC Machining', 'Manual Lathe', 'DFMA', 'GD&T', 'Shop Safety'],
     personalNote: "I have a passion for teaching, and it is deeply gratifying to see my students grow as much as my friendship and connection with them grows too.",
     hasTeachingGallery: true,
     details: {

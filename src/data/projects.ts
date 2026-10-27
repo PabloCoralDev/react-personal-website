@@ -1,8 +1,12 @@
 import type { Project } from '../types'
 
 export const projects: Project[] = [
-      {
+  {
+    slug: 'custom-pen',
     title: 'Custom Hand-Machined Pen',
+    category: 'Hardware',
+    field: 'Manual machining',
+    stats: [{ value: '310 SS', label: 'Stainless body' }, { value: 'Single-point', label: 'Threaded by hand' }],
     description: 'Designed and machined a custom pen for my Dad\'s 65th birthday, creating a timeless and useful gift. Utilized Single-point threading along other machining techniques.',
     tags: ['Manual Lathe', 'Single-Point Threading', 'Machining', 'On-The-Spot problem solving', 'DFMA'],
     outer_image: '/pictures/hand_machined_pen-out.jpeg',
@@ -18,7 +22,11 @@ export const projects: Project[] = [
     }
   },
   {
+    slug: 'heat-equalizer',
     title: 'The (Heat) Equalizer™',
+    category: 'Hardware',
+    field: 'Thermal design',
+    stats: [{ value: 'V3', label: 'Design iteration' }, { value: '~$70', label: 'Total parts cost' }],
     description: 'Designed a heat-transfer device to smooth the sinusoidal heating profile of electric stoves',
     tags: ['SolidWorks', 'Fusion 360', 'CAM', 'DFM'],
     outer_image: '/pictures/heat_device-out.jpeg',
@@ -35,8 +43,12 @@ export const projects: Project[] = [
       ]
     }
   },
-   {
+  {
+    slug: 'air-engine',
     title: 'Air Engine Components',
+    category: 'Hardware',
+    field: 'CNC machining',
+    stats: [{ value: '5', label: 'Parts CNC-machined' }, { value: 'ACE', label: 'CNC certified' }],
     description: 'Programmed, CNC-machined and assembled 5 components for an air engine',
     tags: ['Fusion 360', 'Haas VF-3', 'CNC', 'ACE Certified'],
     outer_image: '/pictures/air_engine_components-out.jpeg',
@@ -49,7 +61,11 @@ export const projects: Project[] = [
     }
   },
   {
+    slug: 'fsd-truss',
     title: 'FSD Truss Automation Pipeline',
+    category: 'Software',
+    field: 'Structural automation',
+    stats: [{ value: '~16 hr', label: 'Hand calcs replaced' }, { value: '<2 min', label: 'Per truss' }],
     description: 'Automated Python pipeline for iterative FSD (Fully Stressed Design) of general 2D trusses by interacting with the Abaqus API through the Powershell.',
     tags: ['Python', 'ABAQUS API', 'PowerShell', 'Async Communication'],
     outer_image: '/pictures/abaqus_project-out.jpeg',
@@ -79,7 +95,11 @@ export const projects: Project[] = [
     }
   },
   {
+    slug: 'decision-matrix',
     title: 'Dynamic Decision Matrix',
+    category: 'Software',
+    field: 'Data analysis',
+    stats: [{ value: '3', label: 'Scoring functions' }, { value: '4', label: 'Constraints weighed' }],
     description: 'Built a dynamic decision matrix using Google Sheets and JavaScript to mathematically choose the best car given price, mpg, tranmission and trunk space constrains. <b>Final contender shown in the picture above!</b>',
     tags: ['JavaScript', 'Google Apps Script', 'Data Analysis', 'Google Sheets'],
     outer_image: '/pictures/car_decision_matrix-out.jpeg',
@@ -91,8 +111,12 @@ export const projects: Project[] = [
       sheets: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTCVtAUelqurRjV4xumrZep8Ptkvn8AJ9DBHgum5hQvDlWraqsPq9BYhWdw1pwCYliq-bZXFNYj4W2f/pubhtml'
     }
   },
-      {
+  {
+    slug: 'diff-eq',
     title: 'Differential Equations Playground',
+    category: 'Software',
+    field: 'Full-stack web',
+    stats: [{ value: 'Python', label: 'FastAPI backend' }, { value: 'React', label: 'Front end' }],
     description: 'Full-stack application to deepen mathematical understanding and cross-language integration',
     tags: ['Python', 'React', 'FastAPI', 'Vercel'],
     outer_image: '/pictures/diff_eq_playground-out.png',
@@ -103,4 +127,12 @@ export const projects: Project[] = [
       github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
     }
   },
+]
+
+/** Skill areas for the Toolbox table; `used` lists project slugs. */
+export const toolbox: Array<{ area: string; tools: string; used: string[] }> = [
+  { area: 'CAD & Simulation', tools: 'SolidWorks, Fusion 360, Abaqus FEA', used: ['custom-pen', 'heat-equalizer', 'air-engine', 'fsd-truss'] },
+  { area: 'Manufacturing', tools: 'Manual lathe, Haas VF-3 CNC, CAM, DFM/DFMA', used: ['custom-pen', 'heat-equalizer', 'air-engine'] },
+  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell', used: ['fsd-truss', 'decision-matrix', 'diff-eq'] },
+  { area: 'Data & Web', tools: 'FastAPI, Google Apps Script, Sheets, Vercel', used: ['decision-matrix', 'diff-eq'] },
 ]
