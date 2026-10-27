@@ -6,6 +6,19 @@ interface ExperienceCardProps {
   compact?: boolean
 }
 
+/** Outbound site link in the shared app-link style, labelled with the bare domain. */
+function WebsiteLink({ href }: { href: string }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="app-link" onClick={(e) => e.stopPropagation()}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0071e3" strokeWidth="1.8" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5" />
+        <path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z" />
+      </svg>
+      {new URL(href).hostname.replace(/^www\./, '')}
+    </a>
+  )
+}
+
 export function ExperienceCard({ experience: exp, onClick, compact = false }: ExperienceCardProps) {
   if (compact) {
     return (
@@ -24,8 +37,11 @@ export function ExperienceCard({ experience: exp, onClick, compact = false }: Ex
             <span key={tag} className="tag">{tag}</span>
           ))}
         </div>
-        {exp.details && (
-          <button className="text-link" onClick={onClick}>View details →</button>
+        {(exp.details || exp.website) && (
+          <div className="experience-review-actions">
+            {exp.details && <button className="text-link" onClick={onClick}>View details →</button>}
+            {exp.website && <WebsiteLink href={exp.website} />}
+          </div>
         )}
       </article>
     )
@@ -56,6 +72,11 @@ export function ExperienceCard({ experience: exp, onClick, compact = false }: Ex
       </ul>
       {exp.personalNote && (
         <blockquote className="experience-personal-note">{exp.personalNote}</blockquote>
+      )}
+      {exp.website && (
+        <div className="experience-card-links" onClick={(e) => e.stopPropagation()}>
+          <WebsiteLink href={exp.website} />
+        </div>
       )}
       <div className="project-tags">
         {exp.tags.map((tag, i) => (

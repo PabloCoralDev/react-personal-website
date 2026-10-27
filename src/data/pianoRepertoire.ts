@@ -45,6 +45,9 @@ import jorgeBenJorPhoto from '../assets/piano-thumbnails/composer-jorge-ben-jor.
 // imslpUrl is left unset wherever the work isn't public domain (most 20th/21st-century
 // composers), or where I couldn't confidently verify the exact IMSLP page. Feel free to
 // fill in / correct any of these — pdfLocation and videoUrl are yours to add whenever ready.
+/** Stable id for a piece (composer + title are unique). */
+export const pieceKey = (piece: PianoPiece) => `${piece.composer}-${piece.title}`
+
 export const pianoRepertoire: PianoPiece[] = [
   // Liszt
   {

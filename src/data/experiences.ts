@@ -111,12 +111,12 @@ export const experiences: Experience[] = [
     period: '2026 – Present',
     website: 'https://coraldevstudios.com',
     description: [
-      'My software studio. Co-founded Level, a calisthenics app on the App Store built with React Native, Expo and Supabase, beta-tested by 30+ users.'
+      'My software studio: co-founded Level, a calisthenics app on the App Store (30+ beta users), and built TestBoard to manage beta testers.'
     ],
     tags: ['TypeScript', 'React Native', 'Expo', 'Supabase', 'Swift'],
     details: {
       fullDescription: [
-        `Coral Dev Studios is my independent software studio, where I design, build, and ship apps end to end rather than just prototype them. It's the home for Level, a mobile app built with Expo/React Native and Swift, along with web products built on a modern TypeScript/React/Tailwind stack.
+        `Coral Dev Studios is my independent software studio, where I design, build, and ship apps end to end rather than just prototype them. It's the home for Level, a calisthenics app on the App Store built with Expo/React Native, Supabase and Swift, and TestBoard, my tool for recruiting and managing beta testers, along with web products built on a modern TypeScript/React/Tailwind stack.
 
         Running the studio solo means owning every layer of the product: interface design, front-end and native app development, backend integration, and the actual app-store/release process — the same full-stack ownership mindset I bring to my engineering work, applied to shipping real, user-facing software.`
       ]

@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { pianoRepertoire } from '../../data/pianoRepertoire'
+import { pianoRepertoire, pieceKey } from '../../data/pianoRepertoire'
 import { PianoPieceCard } from '../cards/PianoPieceCard'
 import { Carousel } from '../Carousel'
 import { shuffleArray } from '../../utils/shuffleArray'
@@ -17,9 +17,9 @@ export function PianoPreview() {
         <Carousel
           label="Piano repertoire"
           items={preview}
-          getKey={(piece) => `${piece.composer}-${piece.title}`}
+          getKey={pieceKey}
           slideClassName="piano-slide"
-          renderItem={(piece) => <PianoPieceCard piece={piece} onClick={() => navigate('/piano')} />}
+          renderItem={(piece) => <PianoPieceCard piece={piece} onClick={() => navigate('/piano', { state: { piece: pieceKey(piece) } })} />}
         />
 
         <div className="see-more-wrap">

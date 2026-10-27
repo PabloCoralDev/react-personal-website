@@ -1,9 +1,16 @@
+/** A quantity, never a name: counts, cost, time or tolerance. */
+export interface ProjectStat {
+  value: string
+  label: string
+}
+
 export interface Project {
   slug: string
   title: string
   category: 'Hardware' | 'Software'
   /** Short discipline label shown above the title */
   field: string
+  stats?: ProjectStat[]
   description: string
   tags: string[]
   outer_image: string
