@@ -29,18 +29,23 @@ export function StravaActivityModal({ activity, onClose }: StravaActivityModalPr
 
         <div className="book-modal-body">
           <div className="strava-activity-stats">
-            <div>
-              <span className="strava-activity-stat-value">{activity.distanceMiles.toFixed(1)} mi</span>
-              <span className="strava-activity-stat-label">Distance</span>
-            </div>
+            {/* Distance and elevation are hidden when the watch didn't record the route */}
+            {activity.distanceMiles > 0 && (
+              <div>
+                <span className="strava-activity-stat-value">{activity.distanceMiles.toFixed(1)} mi</span>
+                <span className="strava-activity-stat-label">Distance</span>
+              </div>
+            )}
             <div>
               <span className="strava-activity-stat-value">{formatDuration(activity.movingTimeSeconds)}</span>
               <span className="strava-activity-stat-label">Moving Time</span>
             </div>
-            <div>
-              <span className="strava-activity-stat-value">{Math.round(activity.elevationGainFt)} ft</span>
-              <span className="strava-activity-stat-label">Elevation</span>
-            </div>
+            {activity.distanceMiles > 0 && (
+              <div>
+                <span className="strava-activity-stat-value">{Math.round(activity.elevationGainFt)} ft</span>
+                <span className="strava-activity-stat-label">Elevation</span>
+              </div>
+            )}
           </div>
 
           {activity.track && activity.track.length > 1 && (

@@ -52,7 +52,7 @@ export function StravaPreview() {
 
         <ActivityHeatmap days={stravaSnapshot.heatmap} fit />
 
-        <div className="see-more-wrap">
+        <div className="see-more-wrap see-more-roomy">
           <Link to="/training" className="btn btn-secondary">See Full Training Log →</Link>
         </div>
       </div>

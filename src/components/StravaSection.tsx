@@ -20,6 +20,24 @@ const bikePhotos = [
   { gearName: 'Blue bike', src: '/pictures/bike-blue.jpg', blurb: 'Where the miles started' },
 ]
 
+// Moments lead with rides/runs with friends, then the fun solo ones; anything else follows, newest first.
+const FEATURED_MOMENTS = [
+  '20714426099', // 14E aka "the leg destroyer"
+  '20639927543', // Quick Ride
+  '12323580412', // Tri group ride
+  '19974702372', // 5k with the boi
+  '18958067612', // 2.5 also not ez
+  '18675108192', // Run w the boi
+  '18554788312', // Run with Ivan
+  '18400083904', // Run w the boi
+  '20529954669', // 10E (the orange cat)
+  '11349511524', // UF night run
+  '20434293529', // 9 miler
+  '11133915814', // Ez morning run
+  '20623168321', // 13.1E
+  '10760062151', // Longer run before Thermo exam
+]
+
 const PACE_LABELS = new Set(['Mile', '5K', '10K', 'Half Marathon', 'Marathon'])
 
 const mi = (n: number) => `${Math.round(n).toLocaleString()} mi`
@@ -61,7 +79,15 @@ export function StravaSection() {
     () => activities.filter((a) => sportFilter === 'all' || a.sport === sportFilter),
     [activities, sportFilter],
   )
-  const moments = useMemo(() => activities.filter((a) => a.photos && a.photos.length > 0), [activities])
+  const moments = useMemo(() => {
+    const rank = (a: StravaActivity) => {
+      const i = FEATURED_MOMENTS.indexOf(a.id)
+      return i === -1 ? FEATURED_MOMENTS.length : i
+    }
+    return activities
+      .filter((a) => a.photos && a.photos.length > 0)
+      .sort((a, b) => rank(a) - rank(b) || b.date.localeCompare(a.date))
+  }, [activities])
   const garage = useMemo(() => [...gear].sort((a, b) => Number(!!b.current) - Number(!!a.current)), [gear])
 
   const totalMiles = years.reduce((sum, y) => sum + y.miles.Run + y.miles.Ride, 0)
@@ -243,7 +269,7 @@ export function StravaSection() {
                   <img src={a.photos![0].src} alt={a.name} className="project-thumb" loading="lazy" />
                   <h5 className="project-title">{a.name}</h5>
                   <p className="strava-moment-meta">
-                    {a.sport} · {a.distanceMiles.toFixed(1)} mi · {formatActivityDate(a.date)}
+                    {[a.sport, a.distanceMiles > 0 && `${a.distanceMiles.toFixed(1)} mi`, formatActivityDate(a.date)].filter(Boolean).join(' · ')}
                   </p>
                 </div>
               )}
