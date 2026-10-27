@@ -64,8 +64,8 @@ export const projects: Project[] = [
     field: 'Structural automation',
     description: 'Automated Python pipeline for iterative FSD (Fully Stressed Design) of general 2D trusses by interacting with the Abaqus API through the Powershell.',
     tags: ['Python', 'ABAQUS API', 'PowerShell', 'Async Communication'],
-    outer_image: '/pictures/abaqus_project-out.jpeg',
-    inner_image: '/pictures/abaqus_project-in.jpeg',
+    outer_image: '/pictures/abaqus_project-flowchart.png',
+    inner_image: '/pictures/abaqus_project-out.jpeg',
     details: {
       fullDescription: [
         `Engineered an automated Python pipeline for FSD (Fully Stressed Design) of 2D trusses, integrating the ABAQUS API with async PowerShell communication to write and run .inp files (Abaqus' standard input script for any 2D or 3D truss, which specifies nodes, connections and initial conditions).

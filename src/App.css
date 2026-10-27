@@ -233,6 +233,164 @@
   text-align: center;
 }
 
+.hire-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  animation: fadeIn 0.2s ease;
+}
+
+.hire-sheet {
+  position: relative;
+  width: 100%;
+  max-height: 92svh;
+  overflow-y: auto;
+  padding: var(--gap-lg) var(--gutter) calc(var(--gap-lg) + env(safe-area-inset-bottom));
+  border-radius: 20px 20px 0 0;
+  background: var(--bg-primary);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
+  text-align: left;
+  animation: sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.hire-close {
+  position: absolute;
+  top: var(--gap-md);
+  right: var(--gap-md);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.hire-title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.hire-subtitle {
+  margin: 0.25rem 0 var(--gap-md);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.hire-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.hire-form input,
+.hire-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  font: inherit;
+  font-size: 16px; /* keeps iOS from zooming in on focus */
+  color: var(--text-primary);
+  resize: vertical;
+}
+
+.hire-form input:focus,
+.hire-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+.hire-form .hire-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.hire-submit {
+  align-self: center;
+  margin-top: var(--gap-sm);
+  min-width: 10rem;
+  justify-content: center;
+}
+
+.hire-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.hire-error {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #c4302b;
+}
+
+.hire-alt {
+  margin: var(--gap-md) 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.hire-error a,
+.hire-alt a {
+  color: var(--accent);
+}
+
+.hire-sent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+  padding: var(--gap-lg) 0 var(--gap-sm);
+  text-align: center;
+}
+
+.hire-sent h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.hire-sent p {
+  margin: 0 0 var(--gap-sm);
+  color: var(--text-secondary);
+}
+
+@media (min-width: 600px) {
+  .hire-overlay {
+    align-items: center;
+    padding: var(--gutter);
+  }
+
+  .hire-sheet {
+    max-width: 440px;
+    padding: calc(var(--gap-lg) * 1.25);
+    border-radius: 20px;
+    animation: fadeInUp 0.25s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hire-sheet { animation: none; }
+}
+
 .nfc-greeting {
   margin: 0 0 var(--gap-md);
   color: var(--accent);
@@ -1482,7 +1640,7 @@
   }
 }
 
-/* Edge arrows: always visible (touch too) so the row reads as swipeable */
+/* Edge arrows: bare chevrons, always visible (touch too) so the row reads as swipeable */
 .embla-edge-arrow {
   position: absolute;
   top: 50%;
@@ -1490,14 +1648,10 @@
   display: grid;
   place-items: center;
   width: 32px;
-  height: 32px;
+  height: 44px;
   padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: none;
+  background: none;
   color: var(--text-primary);
   cursor: pointer;
   transform: translateY(-50%);
