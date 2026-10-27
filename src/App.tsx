@@ -9,6 +9,7 @@ import { PianoPage } from './pages/PianoPage'
 import { StravaPage } from './pages/StravaPage'
 import { GalleryPage } from './pages/GalleryPage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { HirePage } from './pages/HirePage'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/piano" element={<PianoPage />} />
         <Route path="/training" element={<StravaPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/hire" element={<HirePage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

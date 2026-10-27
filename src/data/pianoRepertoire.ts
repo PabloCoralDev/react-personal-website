@@ -31,6 +31,7 @@ import wtc2Thumb from '../assets/piano-thumbnails/bach-wtc-2-titlepage.jpg'
 import jeuxDeauThumb from '../assets/piano-thumbnails/ravel-jeux-deau.jpg'
 import khachaturianPhoto from '../assets/piano-thumbnails/composer-khachaturian.jpg'
 import haydnPhoto from '../assets/piano-thumbnails/composer-haydn.jpg'
+import handelPhoto from '../assets/piano-thumbnails/composer-handel.jpg'
 import rachmaninoffPhoto from '../assets/piano-thumbnails/composer-rachmaninoff.jpg'
 import griegPhoto from '../assets/piano-thumbnails/composer-grieg.jpg'
 import sinatraPhoto from '../assets/piano-thumbnails/composer-sinatra.jpg'
@@ -383,12 +384,12 @@ export const pianoRepertoire: PianoPiece[] = [
     imslpUrl: 'https://imslp.org/wiki/Erlk%C3%B6nig,_D.328_(Schubert,_Franz)',
   },
   {
-    composer: 'Haydn',
+    composer: 'Handel',
     title: 'Arm, Arm, Ye Brave',
     category: 'chamber',
     status: 'performed',
-    notes: 'Commonly attributed to Handel (Judas Maccabaeus) — double check attribution before linking to IMSLP.',
-    thumbnail: haydnPhoto,
+    notes: 'From Judas Maccabaeus',
+    thumbnail: handelPhoto,
   },
   {
     composer: 'Cassadó',

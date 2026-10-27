@@ -4,6 +4,7 @@ import type { PianoPiece } from '../types'
 import { pianoRepertoire, pieceKey } from '../data/pianoRepertoire'
 import { PianoPieceCard } from './cards/PianoPieceCard'
 import { getYouTubeEmbedUrl } from '../utils/youtube'
+import { ListControls } from './ListControls'
 
 type Category = PianoPiece['category']
 type Status = PianoPiece['status']
@@ -77,19 +78,10 @@ function PieceDetail({ piece, onClose }: { piece: PianoPiece; onClose: () => voi
   )
 }
 
-function FilterIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-      <path d="M3 6h18M6.5 12h11M10 18h4" />
-    </svg>
-  )
-}
-
 export function PianoSection() {
   const { state } = useLocation()
   const [selectedKey, setSelectedKey] = useState<string | null>((state as { piece?: string } | null)?.piece ?? null)
   const [search, setSearch] = useState('')
-  const [filtersOpen, setFiltersOpen] = useState(false)
   const [categoryFilter, setCategoryFilter] = useState<Category | 'all'>('all')
   const [statusFilter, setStatusFilter] = useState<Status | 'all'>('all')
 
@@ -116,68 +108,20 @@ export function PianoSection() {
       .filter((group) => group.pieces.length > 0)
   }, [filtered])
 
-  const activeFilters = Number(categoryFilter !== 'all') + Number(statusFilter !== 'all')
-
   return (
     <section id="piano" className="section piano-section">
       <div className="section-content">
         <h3 className="section-title">Piano Repertoire</h3>
 
-        <div className="piano-controls">
-          <label className="piano-search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3.5-3.5" />
-            </svg>
-            <input
-              type="search"
-              placeholder="Search title or composer"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              aria-label="Search repertoire"
-            />
-          </label>
-
-          <button
-            className={`piano-filter-toggle${filtersOpen || activeFilters ? ' active' : ''}`}
-            onClick={() => setFiltersOpen((open) => !open)}
-            aria-expanded={filtersOpen}
-            aria-controls="piano-filters"
-            aria-label={`Filters${activeFilters ? ` (${activeFilters} active)` : ''}`}
-          >
-            <FilterIcon />
-            {activeFilters > 0 && <span className="piano-filter-count">{activeFilters}</span>}
-          </button>
-        </div>
-
-        {filtersOpen && (
-          <div id="piano-filters" className="piano-filters">
-            <div className="piano-filter-row">
-              <span className="piano-filter-label">Type</span>
-              {categoryFilters.map((f) => (
-                <button
-                  key={f.value}
-                  className={`piano-filter-option${categoryFilter === f.value ? ' active' : ''}`}
-                  onClick={() => setCategoryFilter(f.value)}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-            <div className="piano-filter-row">
-              <span className="piano-filter-label">Status</span>
-              {statusFilters.map((f) => (
-                <button
-                  key={f.value}
-                  className={`piano-filter-option${statusFilter === f.value ? ' active' : ''}`}
-                  onClick={() => setStatusFilter(f.value)}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <ListControls
+          search={search}
+          onSearch={setSearch}
+          placeholder="Search title or composer"
+          filters={[
+            { label: 'Type', options: categoryFilters, value: categoryFilter, onChange: (v) => setCategoryFilter(v as Category | 'all') },
+            { label: 'Status', options: statusFilters, value: statusFilter, onChange: (v) => setStatusFilter(v as Status | 'all') },
+          ]}
+        />
 
         {groups.length === 0 && <p className="piano-empty-state">No pieces match your search.</p>}
 

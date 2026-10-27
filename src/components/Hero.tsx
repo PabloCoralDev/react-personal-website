@@ -1,8 +1,7 @@
-import { useCallback, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { useNfcGreeting } from '../hooks/useNfcGreeting'
 import { scrollToSection } from '../utils/scrollToSection'
-import { HireSheet } from './HireSheet'
 
 interface HeroProps {
   isMobile: boolean
@@ -17,9 +16,6 @@ const socials = [
 export function Hero({ isMobile }: HeroProps) {
   const { typedText, typingComplete } = useTypewriter("Hi, I'm Pablo")
   const nfcGreeting = useNfcGreeting()
-  const [hireOpen, setHireOpen] = useState(false)
-  // Stable so the sheet's effect doesn't re-run on every typewriter tick
-  const closeHire = useCallback(() => setHireOpen(false), [])
 
   return (
     <section className="hero">
@@ -44,7 +40,7 @@ export function Hero({ isMobile }: HeroProps) {
         </div>
 
         <div className="hero-ctas fade-in-up delay-2">
-          <button type="button" className="btn btn-lg btn-gold" onClick={() => setHireOpen(true)}>
+          <Link to="/hire" className="btn btn-lg btn-gold">
             <svg viewBox="0 0 512 512" fill="none">
               <rect x="32" y="128" width="448" height="320" rx="48" ry="48" stroke="currentColor" strokeLinejoin="round" strokeWidth="32"/>
               <path d="M144,128V96a32,32,0,0,1,32-32H336a32,32,0,0,1,32,32v32" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/>
@@ -52,7 +48,7 @@ export function Hero({ isMobile }: HeroProps) {
               <path d="M320,240v24a8,8,0,0,1-8,8H200a8,8,0,0,1-8-8V240" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"/>
             </svg>
             Hiring?
-          </button>
+          </Link>
           <a href="/coral-pablo-resume.pdf" download className="btn btn-secondary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -70,8 +66,6 @@ export function Hero({ isMobile }: HeroProps) {
           </svg>
         </button>
       </div>
-
-      {hireOpen && <HireSheet onClose={closeHire} />}
     </section>
   )
 }

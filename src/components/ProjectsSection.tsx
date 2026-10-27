@@ -118,11 +118,11 @@ function ProjectEntry({ project, eager }: { project: Project; eager: boolean }) 
       <ProjectMedia project={project} eager={eager} />
 
       <div className="project-entry-body">
-        <h4 className="project-entry-title">
+        <p className="project-eyebrow">
           <span className="project-number">{number(project.slug)}</span>
-          {project.title}
-        </h4>
-        <p className="project-eyebrow">{project.category} · {project.field}</p>
+          {project.category} · {project.field}
+        </p>
+        <h4 className="project-entry-title">{project.title}</h4>
         <p className="project-entry-summary" dangerouslySetInnerHTML={{ __html: project.description }} />
 
         {project.stats && (
@@ -190,7 +190,7 @@ export function ProjectsSection() {
   const visible = projects.filter((p) => filter === 'All' || p.category === filter)
 
   return (
-    <section id="projects" className="section projects-section projects-page">
+    <section id="projects" className="section projects-section">
       <div className="section-content">
         <h3 className="section-title">Projects</h3>
         <p className="section-subtitle">Things I've designed, machined and coded. Swipe the photos for a closer look.</p>
@@ -222,12 +222,7 @@ export function ProjectsSection() {
           ))}
         </div>
 
-      </div>
-
-      <div className="project-toolbox-band">
-        <div className="section-content">
-        <h4 className="project-toolbox-title">Toolbox</h4>
-        <p className="project-toolbox-subtitle">Skills, and where I used them. Tap a number to jump to that project.</p>
+        <h4 className="strava-subheading">Toolbox</h4>
         <table className="strava-table project-toolbox">
           <thead>
             <tr>
@@ -264,7 +259,6 @@ export function ProjectsSection() {
             ))}
           </tbody>
         </table>
-        </div>
       </div>
     </section>
   )

@@ -3,25 +3,21 @@ import type { Book } from '../../types'
 interface BookCardProps {
   book: Book
   onClick: () => void
+  selected?: boolean
 }
 
-export function BookCard({ book, onClick }: BookCardProps) {
+/** Card-less: the cover is the card, title and author sit underneath. */
+export function BookCard({ book, onClick, selected = false }: BookCardProps) {
   return (
-    <div className="book-card clickable" onClick={onClick}>
+    <button className={`book-card${selected ? ' selected' : ''}`} onClick={onClick} aria-expanded={selected}>
       <div className="book-image-container">
-        <img src={book.image} alt={book.title} className="book-image" />
+        <img src={book.image} alt={book.title} className="book-image" loading="lazy" />
       </div>
-      <div className="book-header-compact">
-        <h4 className="book-title">{book.title}</h4>
-        <span className={`book-status-compact ${book.status}`}>
-          {book.status === 'in-progress' && <span className="status-dot-small"></span>}
-          {book.status === 'complete' ? 'Complete' : 'Reading'}
-        </span>
-      </div>
-      <p className="book-author">by {book.author}</p>
-      <button className="btn btn-secondary book-lessons-btn">
-        Lessons Learned →
-      </button>
-    </div>
+      <span className={`book-status-compact ${book.status}`}>
+        {book.status === 'complete' ? 'Finished' : 'Reading'}
+      </span>
+      <h4 className="book-title">{book.title}</h4>
+      <p className="book-author">{book.author}</p>
+    </button>
   )
 }

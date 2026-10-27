@@ -233,55 +233,18 @@
   text-align: center;
 }
 
-.hire-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.35);
-  animation: fadeIn 0.2s ease;
-}
-
-.hire-sheet {
-  position: relative;
-  width: 100%;
-  max-height: 92svh;
-  overflow-y: auto;
-  padding: var(--gap-lg) var(--gutter) calc(var(--gap-lg) + env(safe-area-inset-bottom));
-  border-radius: 20px 20px 0 0;
-  background: var(--bg-primary);
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12);
-  text-align: left;
-  animation: sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes sheet-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.hire-close {
-  position: absolute;
-  top: var(--gap-md);
-  right: var(--gap-md);
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  cursor: pointer;
+.hire-content {
+  max-width: 480px;
 }
 
 .hire-title {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: clamp(1.6rem, 5vw, 2rem);
   font-weight: 600;
+}
+
+.hire-restored {
+  color: var(--accent);
 }
 
 .hire-subtitle {
@@ -373,23 +336,6 @@
   color: var(--text-secondary);
 }
 
-@media (min-width: 600px) {
-  .hire-overlay {
-    align-items: center;
-    padding: var(--gutter);
-  }
-
-  .hire-sheet {
-    max-width: 440px;
-    padding: calc(var(--gap-lg) * 1.25);
-    border-radius: 20px;
-    animation: fadeInUp 0.25s ease;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hire-sheet { animation: none; }
-}
 
 .nfc-greeting {
   margin: 0 0 var(--gap-md);
@@ -1316,39 +1262,6 @@
   font-style: italic;
 }
 
-.book-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  white-space: nowrap;
-  width: fit-content;
-  margin-top: 0.5rem;
-}
-
-.book-status.complete {
-  background: #d1fae5;
-  color: #065f46;
-  border: 1px solid #10b981;
-}
-
-.book-status.in-progress {
-  background: #fef3c7;
-  color: #92400e;
-  border: 1px solid #f59e0b;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #f59e0b;
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
 .book-modal-body {
   padding: 2rem 3rem 3rem;
 }
@@ -1376,143 +1289,102 @@
   margin-bottom: 0;
 }
 
-.book-takeaways-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.book-takeaway-item {
-  padding: 0.5rem 1rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: 2rem;
-  text-align: center;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: all 0.3s ease;
-}
-
-.book-takeaway-item:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-/* Reading Section */
+/* Library: card-less covers, same scale as before */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-auto-flow: row dense;
+  gap: var(--gap-lg) var(--gap-md);
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  gap: 0.1rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
   cursor: pointer;
-  padding: 1.5rem;
-}
-
-.book-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent);
 }
 
 .book-image-container {
-  width: 100%;
-  height: 260px;
+  aspect-ratio: 2 / 3;
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
   background: var(--bg-secondary);
-  border-radius: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.book-card.selected .book-image-container {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 .book-image {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  transition: transform 0.35s ease;
 }
 
-.book-header-compact {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+.book-card:hover .book-image {
+  transform: scale(1.03);
 }
 
 .book-title {
-  font-size: 1.125rem;
+  margin: 0;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-primary);
   line-height: 1.3;
-  flex: 1;
+  color: var(--text-primary);
 }
 
 .book-author {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.75rem;
   font-style: italic;
-  margin-bottom: auto;
-  flex-grow: 1;
+  color: var(--text-secondary);
 }
 
+/* Status: plain colored text, no pill or dot */
 .book-status-compact {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.125rem 0.5rem;
-  border-radius: 1rem;
-  font-size: 0.625rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  white-space: nowrap;
-  flex-shrink: 0;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
+  white-space: nowrap;
 }
 
-.book-status-compact.complete {
-  background: #d1fae5;
-  color: #065f46;
-  border: 1px solid #10b981;
+.book-status-compact.complete { color: #047857; }
+.book-status-compact.in-progress { color: var(--accent); }
+
+.library-credit {
+  font-size: 0.75rem;
 }
 
-.book-status-compact.in-progress {
-  background: #fef3c7;
-  color: #92400e;
-  border: 1px solid #f59e0b;
+.book-detail-text {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
-.status-dot-small {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #f59e0b;
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
-}
-
-.book-lessons-btn {
-  margin-top: auto;
-  align-self: flex-start;
+.book-detail-takeaways {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.6rem;
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+  color: var(--text-primary);
 }
 
 /* Live Icon Animation */
@@ -1749,9 +1621,8 @@
 
 .experience-review-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--gap-sm);
   margin-top: auto;
 }
@@ -1966,19 +1837,22 @@
   min-width: 0;
 }
 
-.project-entry-title {
+.project-eyebrow {
   display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.2;
+  align-items: center;
+  gap: var(--gap-sm);
   margin: 0;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 
 .project-number {
-  flex: 0 0 auto;
+  font-size: 1rem;
   font-weight: 700;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
   background: var(--gold-gradient);
   -webkit-background-clip: text;
@@ -1986,13 +1860,11 @@
   color: transparent;
 }
 
-.project-eyebrow {
-  margin: -0.25rem 0 0;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
+.project-entry-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .project-entry-summary {
@@ -2121,40 +1993,6 @@
   animation: fadeInUp 0.3s ease both;
 }
 
-/* Toolbox: its own full-width grey band so it reads as a separate section */
-.projects-page {
-  flex-direction: column;
-  align-items: stretch;
-  padding-bottom: 0;
-}
-
-.project-toolbox-band {
-  margin: var(--space-section) calc(var(--gutter) * -1) 0;
-  padding: var(--space-section) var(--gutter);
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-}
-
-.project-toolbox-title {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 600;
-}
-
-.project-toolbox-subtitle {
-  margin: 0.2rem 0 var(--gap-md);
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.project-toolbox {
-  font-size: 0.85rem;
-}
-
-.project-toolbox-band .project-toolbox-used button {
-  background: var(--bg-primary);
-}
-
 /* Toolbox table: numbered jump chips */
 .project-toolbox-used {
   display: flex;
@@ -2211,34 +2049,7 @@
 .piano-slide .piano-card,
 .library-slide .book-card {
   height: 100%;
-}
-
-.library-slide .book-card {
-  padding: 0.9rem;
-}
-
-.library-slide .book-image-container {
-  height: auto;
-  aspect-ratio: 2 / 3;
-  padding: 0;
-  background: none;
-  margin-bottom: 0.75rem;
-}
-
-.library-slide .book-image {
-  object-fit: cover;
-  border-radius: 0.25rem;
-  box-shadow: var(--shadow-card);
-}
-
-.library-slide .book-header-compact {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
-
-.library-slide .book-title {
-  font-size: 1rem;
+  justify-content: flex-start;
 }
 
 .gallery-preview-grid {
@@ -2279,14 +2090,14 @@
 }
 
 /* Piano Repertoire */
-.piano-controls {
+.list-controls {
   display: flex;
   align-items: center;
   gap: var(--gap-sm);
   margin-bottom: var(--gap-md);
 }
 
-.piano-search {
+.list-search {
   flex: 1;
   display: flex;
   align-items: center;
@@ -2300,12 +2111,12 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.piano-search:focus-within {
+.list-search:focus-within {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
 }
 
-.piano-search input {
+.list-search input {
   flex: 1;
   min-width: 0;
   height: 100%;
@@ -2318,11 +2129,11 @@
   outline: none;
 }
 
-.piano-search input::placeholder {
+.list-search input::placeholder {
   color: var(--text-secondary);
 }
 
-.piano-search input::-webkit-search-cancel-button {
+.list-search input::-webkit-search-cancel-button {
   cursor: pointer;
 }
 
@@ -2338,7 +2149,7 @@
   color: #ffffff;
 }
 
-.piano-filter-toggle {
+.filter-toggle {
   position: relative;
   display: grid;
   place-items: center;
@@ -2353,12 +2164,12 @@
   cursor: pointer;
 }
 
-.piano-filter-toggle.active {
+.filter-toggle.active {
   border-color: var(--accent);
   color: var(--accent);
 }
 
-.piano-filter-count {
+.filter-count {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -2373,7 +2184,7 @@
   line-height: 16px;
 }
 
-.piano-filters {
+.filter-panel {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -2381,14 +2192,14 @@
   animation: fadeIn 0.2s ease;
 }
 
-.piano-filter-row {
+.filter-row {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.1rem 0.9rem;
 }
 
-.piano-filter-label {
+.filter-label {
   width: 3.4rem;
   font-size: 0.68rem;
   font-weight: 600;
@@ -2397,7 +2208,7 @@
   color: var(--text-secondary);
 }
 
-.piano-filter-option {
+.filter-option {
   padding: 0.2rem 0;
   border: none;
   background: none;
@@ -2407,7 +2218,7 @@
   cursor: pointer;
 }
 
-.piano-filter-option.active {
+.filter-option.active {
   color: var(--accent);
   font-weight: 600;
 }
@@ -2545,18 +2356,6 @@
   color: var(--text-secondary);
 }
 
-.book-status.up-next {
-  background: rgba(129, 140, 248, 0.12);
-  color: #4338ca;
-  border: 1px solid rgba(129, 140, 248, 0.4);
-}
-
-.book-status.performed {
-  background: rgba(16, 185, 129, 0.12);
-  color: #047857;
-  border: 1px solid rgba(16, 185, 129, 0.4);
-}
-
 /* Inline detail row (replaces the modal) */
 .piano-detail {
   position: relative;
@@ -2644,7 +2443,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .piano-detail,
-  .piano-filters { animation: none; }
+  .filter-panel { animation: none; }
 }
 
 
@@ -3175,8 +2974,8 @@ td.strava-col-strong {
   }
 
   .books-grid {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--gap-md) 0.75rem;
   }
 
   .book-modal-header {
@@ -3191,10 +2990,6 @@ td.strava-col-strong {
     font-size: 1.25rem;
   }
 
-  .book-takeaways-grid {
-    grid-template-columns: 1fr;
-  }
-
   .gallery-preview-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3207,7 +3002,3 @@ td.strava-col-strong {
 
 }
 
-/* Card is already the link in the home carousel; a pill would overflow the narrow slide */
-.library-slide .book-lessons-btn {
-  display: none;
-}

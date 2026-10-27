@@ -20,7 +20,7 @@ export function LibraryPreview() {
           items={preview}
           getKey={(book) => book.title}
           slideClassName="library-slide"
-          renderItem={(book) => <BookCard book={book} onClick={() => navigate('/library')} />}
+          renderItem={(book) => <BookCard book={book} onClick={() => navigate('/library', { state: { book: book.title } })} />}
         />
 
         <div className="see-more-wrap">
