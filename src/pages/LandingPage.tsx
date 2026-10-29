@@ -28,9 +28,9 @@ export function LandingPage() {
     <div className="page">
       <Hero isMobile={isMobile} />
       <About />
-      <StravaPreview />
       <ProjectsPreview />
       <ExperiencePreview />
+      <StravaPreview />
       <PianoPreview />
       <LibraryPreview />
       <GalleryPreview />

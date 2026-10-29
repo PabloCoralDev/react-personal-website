@@ -126,6 +126,48 @@ export const projects: Project[] = [
       github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
     }
   },
+  {
+    slug: 'adaptive-bollinger',
+    title: 'Volatility-Adaptive Bollinger Bands',
+    category: 'Software',
+    field: 'Quantitative trading',
+    stats: [{ value: '5', label: 'HMM volatility regimes' }, { value: '4 / 4', label: 'Winning trades, META 2023' }],
+    description: 'A mean-reversion trading system whose Bollinger Band width is set live by a 5-state Hidden Markov Model of market volatility. Backtests on historical data and paper-trades through the Alpaca API.',
+    tags: ['Python', 'Hidden Markov Models', 'NumPy', 'pandas', 'Alpaca API', 'asyncio'],
+    outer_image: '/pictures/bollinger_backtest-out.png',
+    inner_image: '/pictures/bollinger_math-in.png',
+    details: {
+      fullDescription: [
+        `Classic Bollinger Bands use a fixed width (usually 2 standard deviations), so the same rule that catches real overreactions in a calm market fires constantly in a volatile one. I made the width adaptive: a 5-state Gaussian Hidden Markov Model, trained on two features per bar (log return and intra-bar range), classifies the current volatility regime, and the band width scales with it, from 1.0σ in the calmest regime to 3.0σ in the most volatile.
+
+        States are ranked by the determinant of their covariance matrix. Every 5 bars, the last 20 bars are Viterbi-decoded to find the current regime, and the band width is updated. Signals are evaluated on closes through the previous bar and filled at the current bar, so the backtest has no lookahead. Every fill pays a $1 commission plus 5 bps of slippage.
+
+        <b>Winning case (META, 2023, daily bars, HMM trained on 2021–2022):</b> 4 round trips, all profitable (+5% to +14% each), for +$113.69 on a one-share position with a 2.56 Sharpe ratio. The same strategy with a fixed 2σ band made a single trade for +$34.33. The chart in the overview is the system's own output: price with the bands and every buy/sell, the equity curve, and the volatility regime the HMM picked for each stretch of the year.
+
+        The same strategy class runs live: an asyncio WebSocket loop streams 1-minute bars from Alpaca, re-decodes the regime every 5 bars, and places paper market orders on a worker thread so the data stream never blocks.`
+      ]
+    }
+  },
+  {
+    slug: 'brake-temp-model',
+    title: 'Brake Rotor Temperature Model',
+    category: 'Software',
+    field: 'Thermal modeling · Piper Aircraft',
+    stats: [{ value: '~47,000', label: 'Sensor readings modeled' }, { value: '5 min', label: 'Prediction horizon' }],
+    description: 'At Piper Aircraft, I modeled brake rotor temperature from flight-test sensor data with a delay-differential energy balance, solved it with Runge-Kutta, and tuned it with mini-batch gradient descent.',
+    tags: ['Python', 'Heat Transfer', 'Runge-Kutta (RK4)', 'Mini-batch SGD', 'Signal Processing', 'Data Pipelines'],
+    outer_image: '/pictures/brake_model-out.jpeg',
+    inner_image: '/pictures/brake_math-in.png',
+    details: {
+      fullDescription: [
+        `Brake rotors heat up during taxi and takeoff and cool down in flight; the goal was to estimate how much heat capacity the rotors had left at any moment. I taught myself heat transfer to model it from ~47,000 airspeed, brake-pressure and temperature readings logged by the aircraft's data acquisition system.
+
+        First, a Python pipeline ingests the flight CSVs, smooths them with a Savitzky-Golay filter and resamples with Akima interpolation. A weighted decision table then uses airspeed, brake pressure and altitude to label each moment as taxi heating, takeoff/landing heating, ground cooling or in-flight cooling. The photo in the overview is that program's output: heating stretches in red, cooling in green, with the rate of change and its outlier bands below.
+
+        The model itself is an energy balance on the brake assembly, mc·dT/dt = heat in − heat out. Heat in is driven by airspeed × brake pressure with a time delay, and heat out is convective cooling that grows with airspeed. A 4th-order Runge-Kutta solver integrates it forward to predict the temperature over the next 5 minutes at every sample, and mini-batch stochastic gradient descent, with gradients from a finite-difference Jacobian, tunes the model's constants to minimize the mean squared error across all prediction windows.`
+      ]
+    }
+  },
 ]
 
 /** Skill areas for the Toolbox table; `used` lists project slugs. */
