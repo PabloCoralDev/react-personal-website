@@ -179,13 +179,25 @@ function ProjectEntry({ project, eager }: { project: Project; eager: boolean }) 
 
 export function ProjectsSection() {
   const [filter, setFilter] = useState<CategoryFilter>('All')
-  const { state } = useLocation()
+  const { state, hash } = useLocation()
   const target = (state as { project?: string } | null)?.project
+  // Shareable deep link: /projects#<slug> (e.g. /projects#adaptive-bollinger)
+  const hashSlug = hash.slice(1).replace(/^project-/, '')
+  const linked = projects.some((p) => p.slug === hashSlug) ? hashSlug : null
 
   // Arriving from a home-page carousel tap: land on that project.
   useEffect(() => {
     if (target) requestAnimationFrame(() => jumpTo(target))
   }, [target])
+
+  // Arriving from a shared link: jump straight there, no scroll animation.
+  useEffect(() => {
+    if (linked) {
+      requestAnimationFrame(() =>
+        document.getElementById(`project-${linked}`)?.scrollIntoView({ behavior: 'instant', block: 'start' }),
+      )
+    }
+  }, [linked])
 
   const visible = projects.filter((p) => filter === 'All' || p.category === filter)
 

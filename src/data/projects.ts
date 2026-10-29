@@ -174,6 +174,7 @@ export const projects: Project[] = [
 export const toolbox: Array<{ area: string; tools: string; used: string[] }> = [
   { area: 'CAD & Simulation', tools: 'SolidWorks, Fusion 360, Abaqus FEA', used: ['custom-pen', 'heat-equalizer', 'air-engine', 'fsd-truss'] },
   { area: 'Manufacturing', tools: 'Manual lathe, Haas VF-3 CNC, CAM, DFM/DFMA', used: ['custom-pen', 'heat-equalizer', 'air-engine'] },
-  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell', used: ['fsd-truss', 'decision-matrix', 'diff-eq'] },
-  { area: 'Data & Web', tools: 'FastAPI, Google Apps Script, Sheets, Vercel', used: ['decision-matrix', 'diff-eq'] },
+  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell, asyncio', used: ['fsd-truss', 'decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
+  { area: 'Numerical Methods & ML', tools: 'Runge-Kutta solvers, gradient descent, Hidden Markov Models', used: ['diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
+  { area: 'Data & Web', tools: 'pandas, NumPy, FastAPI, Alpaca API, Google Apps Script, Vercel', used: ['decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
 ]
