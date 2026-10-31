@@ -4,6 +4,15 @@ import { projects } from '../../data/projects'
 import { ProjectCard } from '../cards/ProjectCard'
 import { Carousel } from '../Carousel'
 
+// Home carousel leads with the professional/numerical work; the rest keep their page order, Heat Equalizer last.
+const LEAD = ['diff-eq', 'brake-temp-model']
+const LAST = ['heat-equalizer']
+const carouselProjects = [
+  ...LEAD.map((slug) => projects.find((p) => p.slug === slug)!),
+  ...projects.filter((p) => !LEAD.includes(p.slug) && !LAST.includes(p.slug)),
+  ...LAST.map((slug) => projects.find((p) => p.slug === slug)!),
+]
+
 export function ProjectsPreview() {
   const navigate = useNavigate()
 
@@ -28,7 +37,7 @@ export function ProjectsPreview() {
 
         <Carousel
           label="Projects"
-          items={projects}
+          items={carouselProjects}
           getKey={(project) => project.title}
           slideClassName="projects-slide"
           renderItem={(project) => <ProjectCard project={project} onClick={() => navigate('/projects', { state: { project: project.slug } })} />}
