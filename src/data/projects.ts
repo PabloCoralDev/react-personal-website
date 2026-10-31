@@ -112,21 +112,6 @@ export const projects: Project[] = [
     }
   },
   {
-    slug: 'diff-eq',
-    title: 'Differential Equations Playground',
-    category: 'Software',
-    field: 'Full-stack web',
-    description: 'Full-stack application to deepen mathematical understanding and cross-language integration',
-    tags: ['Python', 'React', 'FastAPI', 'Vercel'],
-    outer_image: '/pictures/diff_eq_playground-out.png',
-    details: {
-      fullDescription: [
-        `Developing a full-stack differential equations playground to deepen mathematical understanding and cross-language integration. Handling logic in a Python backend, and interfacing with a modern React front-end through FastAPI. Hosting open-source on a Vercel + GitHub integration.`
-      ],
-      github: 'https://github.com/PabloCoralDev/Differential_Equations_Playground'
-    }
-  },
-  {
     slug: 'adaptive-bollinger',
     title: 'Volatility-Adaptive Bollinger Bands',
     category: 'Software',
@@ -197,7 +182,7 @@ export const projects: Project[] = [
 export const toolbox: Array<{ area: string; tools: string; used: string[] }> = [
   { area: 'CAD & Simulation', tools: 'SolidWorks, Siemens NX, Fusion 360, Abaqus FEA, Blender, MS Flight Simulator', used: ['custom-pen', 'heat-equalizer', 'air-engine', 'fsd-truss', 'flight-sim-model'] },
   { area: 'Manufacturing', tools: 'Manual lathe, Haas VF-3 CNC, CAM, DFM/DFMA', used: ['custom-pen', 'heat-equalizer', 'air-engine'] },
-  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell, asyncio', used: ['fsd-truss', 'decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model', 'flight-sim-model'] },
-  { area: 'Numerical Methods & ML', tools: 'Runge-Kutta solvers, gradient descent, Hidden Markov Models', used: ['diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
-  { area: 'Data & Web', tools: 'pandas, NumPy, FastAPI, Alpaca API, Google Apps Script, Vercel', used: ['decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
+  { area: 'Programming', tools: 'Python, JavaScript, PowerShell, asyncio', used: ['fsd-truss', 'decision-matrix', 'adaptive-bollinger', 'brake-temp-model', 'flight-sim-model'] },
+  { area: 'Numerical Methods & ML', tools: 'Runge-Kutta solvers, gradient descent, Hidden Markov Models', used: ['adaptive-bollinger', 'brake-temp-model'] },
+  { area: 'Data & Web', tools: 'pandas, NumPy, Alpaca API, Google Apps Script', used: ['decision-matrix', 'adaptive-bollinger', 'brake-temp-model'] },
 ]
