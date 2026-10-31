@@ -168,13 +168,36 @@ export const projects: Project[] = [
       ]
     }
   },
+  {
+    slug: 'flight-sim-model',
+    title: 'VR Flight Simulator Model',
+    category: 'Software',
+    field: 'Flight simulation · Piper Aircraft',
+    stats: [{ value: '3', label: 'Aircraft configurations' }, { value: '14 pages', label: 'Build guide written' }],
+    description: 'At Piper Aircraft, I took an experimental aircraft from Siemens NX to Blender to a flyable Microsoft Flight Simulator build, tuned its flight dynamics with the project test pilot, and integrated it in VR so pilots could evaluate design options before they were built.',
+    tags: ['Siemens NX', 'Blender', 'Microsoft Flight Simulator', 'Flight Dynamics', 'VR', 'Python'],
+    outer_image: '/pictures/flight_sim_model-out.jpeg',
+    details: {
+      fullDescription: [
+        `The goal was a version of the experimental aircraft that a pilot could fly in VR before the real one existed, with a working cockpit, a spinning propeller and realistic handling, so design options could be judged from the pilot's seat.
+
+        I imported the aircraft from Siemens NX into Blender and edited the geometry precisely for each design option, building the nose-extension variants from the same base model. Getting a custom model into Microsoft Flight Simulator turned out to be the hardest part: the process is poorly documented, and the first builds flew with no proper file structure and no way to tune them. I worked out the full pipeline myself, rebuilding the project's folder structure from scratch and debugging the build until the aircraft was flyable.
+
+        For flight dynamics, I based the aircraft on a Daher TBM 930, extracting its configuration files as a starting point, then rewrote the XML for our aircraft's dynamics, animation and sound. I tuned the pitch and roll response with the project test pilot, combining their feedback with my own analysis, and checked torque at given angles of attack and speeds against the real aircraft. I also used the simulator's CFD visualization to find areas of excess drag.
+
+        Then I integrated the whole aircraft in VR: a propeller animated by the thrust lever (driving both its speed and the engine sound), a working primary flight display (PFD) that responds in-game and in VR, and visibility details like propeller blur, eye position and canopy glare. Three configurations now live permanently on the simulator computer: the baseline aircraft, a 13-inch nose extension, and a 15-inch baggage bay.
+
+        Because the documentation was so scattered, I wrote a 14-page build guide (folder hierarchy, control files, and animating parts with NLA tracks) so future aircraft can be built far faster. Alongside it, I wrote a Python tool that uses the CAD geometry and trigonometry to show how a 0–19 inch nose extension changes the pitch-down a pilot needs to keep the baseline view over the nose.`
+      ]
+    }
+  },
 ]
 
 /** Skill areas for the Toolbox table; `used` lists project slugs. */
 export const toolbox: Array<{ area: string; tools: string; used: string[] }> = [
-  { area: 'CAD & Simulation', tools: 'SolidWorks, Fusion 360, Abaqus FEA', used: ['custom-pen', 'heat-equalizer', 'air-engine', 'fsd-truss'] },
+  { area: 'CAD & Simulation', tools: 'SolidWorks, Siemens NX, Fusion 360, Abaqus FEA, Blender, MS Flight Simulator', used: ['custom-pen', 'heat-equalizer', 'air-engine', 'fsd-truss', 'flight-sim-model'] },
   { area: 'Manufacturing', tools: 'Manual lathe, Haas VF-3 CNC, CAM, DFM/DFMA', used: ['custom-pen', 'heat-equalizer', 'air-engine'] },
-  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell, asyncio', used: ['fsd-truss', 'decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
+  { area: 'Programming', tools: 'Python, JavaScript, React, PowerShell, asyncio', used: ['fsd-truss', 'decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model', 'flight-sim-model'] },
   { area: 'Numerical Methods & ML', tools: 'Runge-Kutta solvers, gradient descent, Hidden Markov Models', used: ['diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
   { area: 'Data & Web', tools: 'pandas, NumPy, FastAPI, Alpaca API, Google Apps Script, Vercel', used: ['decision-matrix', 'diff-eq', 'adaptive-bollinger', 'brake-temp-model'] },
 ]

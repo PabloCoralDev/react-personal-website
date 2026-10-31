@@ -5,7 +5,7 @@ import { ProjectCard } from '../cards/ProjectCard'
 import { Carousel } from '../Carousel'
 
 // Home carousel leads with the professional/numerical work; the rest keep their page order, Heat Equalizer last.
-const LEAD = ['diff-eq', 'brake-temp-model']
+const LEAD = ['diff-eq', 'brake-temp-model', 'flight-sim-model']
 const LAST = ['heat-equalizer']
 const carouselProjects = [
   ...LEAD.map((slug) => projects.find((p) => p.slug === slug)!),
